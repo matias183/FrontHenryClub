@@ -1,0 +1,45 @@
+.contenedorGeneral {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.galeria ul {
+  display: flex;
+  padding: 0;
+  width: 1000%;
+  margin-left: 10px;
+  animation: cambio 25s infinite normal;
+  margin-bottom: 150px;
+}
+.galeria li {
+  width: 100%;
+  list-style: none;
+  margin-left: 10px;
+  margin-bottom: 150px;
+}
+.galeria img {
+  width: 300px;
+  border-radius: 50%;
+  border: solid transparent 2px;
+  border-radius: 10px;
+  margin-bottom: 150px;
+}
+
+@keyframes cambio {
+  0% {
+    margin-left: 0;
+  }
+  25% {
+    margin-left: -100%;
+  }
+  50% {
+    margin-left: -200%;
+  }
+  75% {
+    margin-left: -300%;
+  }
+  100% {
+    margin-left: -400%;
+  }
+}
