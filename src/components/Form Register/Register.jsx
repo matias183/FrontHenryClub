@@ -34,15 +34,14 @@ export default function Register() {
   const handleReset = () => {
 
     setInputs({
-      name: "",
-      hp: "",
-      attack: "",
-      defense: "",
-      speed: "",
-      height: "",
-      weight: "",
-      sprite: "",
-      types: [],
+      nombre: "",
+      apellido: "",
+      correo: "",
+      telefono: "",
+      dni: "",
+      edad:"",
+      usuario: "",
+      contraseña: "",
     });
 
   };
@@ -50,11 +49,10 @@ export default function Register() {
   const onSubmit = (e) => {
     e.preventDefault();
     setError(validate(inputs));
-    console.log(error);
     if (Object.keys(error).length > 0) {
-      // alert("Revisa los campos")
       alert(`falta ${Object.keys(error)}`)
     } else if(nombre && apellido && correo && telefono && dni && edad && usuario && contraseña) {
+      alert("Succes")
       setLoading(true);
       dispatch(CreateMember())
       setLoading(false);
@@ -103,7 +101,7 @@ export default function Register() {
               value={telefono}
               name="telefono"
               id="telefono"
-              type="number"
+              type="string"
               placeholder="555..."
               autoComplete="off"
             />
@@ -143,7 +141,7 @@ export default function Register() {
               name="edad"
               id="edad"
               type="number"
-              placeholder="555..."
+              placeholder="edad"
               autoComplete="off"
             />
           </div>
@@ -161,6 +159,7 @@ export default function Register() {
             />
           </div>
           <div>
+            <p>Debe contener al menos 1 letra y 1 número</p>
             {error.contraseña && <p style={{color:"red"}}>{error.contraseña}</p>}
             <label>Contraseña{" "}</label>
             <input
@@ -178,6 +177,7 @@ export default function Register() {
             Ya tienes una cuenta?
             <Link to="/login">Inicia Sesión!</Link>
           </p>
+            {!inputs.nombre && <p>Debe ser un nombre real</p>}
         </form>
       </div>
     </div>
