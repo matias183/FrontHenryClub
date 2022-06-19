@@ -3,74 +3,92 @@ import React, { useState } from "react";
 import {useDispatch} from "react-redux";
 import {Loginmember} from "../../redux/Action";
 import{Link} from 'react-router-dom'
+import {useLocalStorage} from "../../custom/useLocalStorage"
+import Google from "./google.png";
+import Facebook from "./facebook.png";
+import Github from "./github.png";
+import s from './Login.module.css';
+import validate from "./validate"
 
 export default function Login() {
   const dispatch= useDispatch()
-
   const [loading, setLoading] = useState(false);
-  const [inputs, setInputs] = useState( { 
-   correo: "",
-   contraseña: ""
-     });
-
-  const { correo, contraseña } = inputs;
+  const [input, setInput] = useLocalStorage("input", { email: "",password: ""});
+  const{email, password} =input   
+  const [errors, setErrors]=useState({})
 
   const HandleChange = (e) => {
-    setInputs({ 
-      ...inputs,
+    e.preventDefault();
+    setInput({ 
+      ...input,
        [e.target.name]: e.target.value });
+       setErrors( validate({ 
+        ...input,
+         [e.target.name]: e.target.value }));
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (correo !== "" && contraseña !== "") {
-      setLoading(true);
+    if (email !== "" && password !== "");
+    else if( input.email && input.password &&
+      !Object.keys(errors).length )
+    {
+     setLoading(true);
      dispatch(Loginmember())
-      setInputs({ correo: "", contraseña: "" });
+      setInput({ email: "", password: "" });
       setLoading(false);
     }
   };
 
   return (
-    <div>
-      <div>
-        <h3>Bienvenido a la Seccion</h3>
-        <h2>De Inicio de Sesion</h2>
+    <div className={s.login}>
+        <h1 className={s.loginTitle}>Welcome to Club Henry 👍</h1>
+        <h3 className={s.loginTitle2}>Choose a Login Method</h3>
+      
+      <div className={s.wrapper}>
+      <div className={s.left}>
+          <div className={s.loginButtongoogle} >
+            <img src={Google} alt="Google" className={s.icon} />
+            Google</div>
+          <div className={s.loginButtonfacebook}>
+            <img src={Facebook} alt="Facebook" className={s.icon} />
+            Facebook </div>
+          <div className={s.loginButtongithub}>
+            <img src={Github} alt="Github" className={s.icon}/>
+            Github</div>
+        </div>
 
-        <form onSubmit={onSubmit}>
-     
-            <div>
-              <label>Correo</label>
-              <input
+        <div className={s.center}>
+          <div className={s.line}/>
+          <div className={s.or}>OR</div>
+        </div>
+
+        <form className={s.right} onSubmit={onSubmit}>
+              <input className={s.input}
                 onChange={HandleChange}
-                value={correo}
-                name="correo"
-                id="correo"
+                value={email}
+                name="email"
+                id="email"
                 type="email"
-                placeholder="Correo..."
+                placeholder="E-mail..."
                 autoComplete="off"
               />
-            </div>
-    
-
-          <div>
-            <div>
-              <label> Contraseña</label>
-              <input
+                {errors.email && <p className={s.errors}>{errors.email}</p>}
+              <input className={s.input}
                 onChange={HandleChange}
-                value={contraseña}
-                name="contraseña"
-                id="contraseña"
+                value={password}
+                name="password"
+                id="password"
                 type="password"
-                placeholder="Contraseña..."
+                placeholder="Password..."
                 autoComplete="off"
               />
-            </div>
-          </div>
-          <button type="submit">{loading ? "Cargando..." : "Iniciar Sesión"}</button>
+                {errors.password && <p className={s.errors}>{errors.password}</p>}
+          <button className={s.submit} type="submit">{loading ? "Cargando..." : "Iniciar Sesión"}</button>
           <br />
           <p>Aun no tienes cuenta? <Link to="/register" >Registrate!</Link></p>
         </form>
+       
       </div>
     </div>
   );
