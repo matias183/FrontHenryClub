@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
+import Footer from '../footer/footer'
 export default function contact() {
   return (
     <div>
@@ -10,6 +11,13 @@ export default function contact() {
  <li> email: comunicaciones@clubhenry.org.ar</li>
      </ul>
      
+    <div>
+      <Link to={'/home'}>
+      <button>Regresar</button>
+      </Link>
+    </div>
+
+     <Footer />
     </div>
     //ver posibilidad de poner form para enviar correo de contacto
   )
