@@ -1,6 +1,6 @@
 import React from 'react';
 import S from './Home.module.css';
-import Footer from '../footer/footer';
+import Footer from '../footer/footer.jsx';
 import NavBar from '../../navbar/navbar';
 import GaleriaImg from '../Galeria de imagenes/GaleriaImg'
 import News from '../News/News';
