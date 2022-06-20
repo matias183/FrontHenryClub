@@ -11,6 +11,7 @@ import Register from './components/Form Register/Register';
 import News from './components/News/News.jsx';
 import { IconName } from "react-icons/fa";
 import Contact from './components/Contact/contact.jsx';
+import Activity from './components/Form Create Activities/NewActivity.jsx';
 
 
 
@@ -27,6 +28,7 @@ function App() {
       <Route exact path="/profile/:id" component={Profile} />
       <Route exact path="/news" component={News} />
       <Route exact path="/contact-us" component={Contact} />
+      <Route exact path="/newactivity" component={Activity} />
       <Route exact path="*" component={Landing} />
       
       </Switch>
