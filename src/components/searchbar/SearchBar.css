@@ -1,0 +1,43 @@
+.inputS {
+  margin: 15px;
+  height: 3vh;
+  width: 13vw;
+  border-radius: 20px;
+  border-color: #ffffff;
+  background-color: rgb(255, 255, 255);
+  font-size: 18px;
+  font-family: "Red Hat Display", sans-serif;
+}
+
+.buttonS {
+  height: 5vh;
+  font-size: 13px;
+  font-weight: bold;
+  margin-left: 2px;
+  color: rgb(246, 248, 250);
+  background-color: #050744;
+  border: none;
+  border-radius: 10px;
+  transition: all ease 200ms;
+  cursor: pointer;
+  outline: none;
+  font-family: "Red Hat Display", sans-serif;
+  box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.2),
+  inset 0 2px 0 hsla(0, 0%, 100%, 0.1), inset 0 1.2em 0 hsla(0, 0%, 100%, 0.1),
+  inset 0 -0.2em 0 hsla(0, 0%, 100%, 0.1),
+  inset 0 -0.25em 0 hsla(0, 0%, 0%, 0.25),
+  0 0.25em 0.25em hsla(0, 0%, 0%, 0.05);
+  text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.25);
+  cursor: pointer;
+}
+
+.buttonS:hover {
+  background-color:hsl(0,0%, 100%);
+  color: black;
+}
+
+.buttonS:active {
+  transform: translateY(3%);
+  
+}
+
