@@ -5,7 +5,7 @@ import './News.css'
 export default function noticias() {
   return (
     <div>
-      <p className='titleNews'>Noticias del club</p>
+      <h1 className='titleNews'>Noticias del club</h1>
       <div className='newsContainer'>
         <div>
           <div className='news'>

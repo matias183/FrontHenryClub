@@ -1,7 +1,5 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import{Link} from 'react-router-dom'
-
 
 
 export default function Barra() {
@@ -12,9 +10,9 @@ export default function Barra() {
     <div>
 
 <select defaultValue="default">
-  <option value="default" disabled="disabled">Galery</option>
-  <option value="foto">fotos</option>
-  <option value="video">videos</option>
+  <option value="default" disabled="disabled">Galeria</option>
+  <option value="foto">Fotos</option>
+  <option value="video">Videos</option>
 </select>
 
 
@@ -35,7 +33,7 @@ export default function Barra() {
 <option value="nosotros">Nosotros</option> 
 </select>
 
-<Link to="/contact-us">Contactanos </Link>
+
     </div>
   )
 }
