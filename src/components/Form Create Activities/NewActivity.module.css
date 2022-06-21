@@ -1,14 +1,14 @@
 .new{
-    background-color:lightslategray;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+   
 }
 .loginTitle2{
     position: absolute;
     top: 120px;
-    color: black;
+    color: gray;
   }
 
   .wrapper {

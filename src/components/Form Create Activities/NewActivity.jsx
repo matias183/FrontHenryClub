@@ -15,11 +15,12 @@
      days: "",
      hours:"",
      fee: "",
+     instructor: "",
      location: "",
      maxCapacity:"",
      description: "",
     });
-    const{name,days,hours,fee,location,maxCapacity,description} =input   
+    const{name,days,hours,fee, instructor,location,maxCapacity,description} =input   
     const [errors, setErrors]=useState({})
   
     const HandleChange = (e) => {
@@ -44,6 +45,7 @@
         days: "",
         hours:"",
         fee: "",
+        instructor: "",
         location: "",
         maxCapacity:"",
         description: "",
@@ -54,11 +56,13 @@
   
     return (
       <div className={s.new}>
-        
-          <h3 className={s.loginTitle2}>Create New Activity</h3>
+            <div className={s.loginTitle2}> <h3 >Create New Activity</h3> </div>
+
         
         <div className={s.wrapper}>
+      
           <form className={s.Form} onSubmit={onSubmit}>
+
                 <input className={s.input}
                   onChange={HandleChange}
                   value={name}
@@ -99,6 +103,19 @@
                   autoComplete="off"
                 />
                    {errors.fee && <p className={s.errors}>{errors.fee}</p>}
+
+
+                   <input className={s.input}
+                  onChange={HandleChange}
+                  value={instructor}
+                  name="instructor"
+                  id="instructor"
+                  type="instructor"
+                  placeholder=" designated instructor"
+                  autoComplete="off"
+                />
+                   {errors.instructor && <p className={s.errors}>{errors.instructor}</p>}
+
                 <input className={s.input}
                   onChange={HandleChange}
                   value={ location}

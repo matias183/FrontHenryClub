@@ -12,6 +12,9 @@ export default function validate(input) {
       if (!input.fee) {
         errors.fee = "Este campo es obligatorio";
       }
+      if (!input.instructor) {
+        errors.instructor = "Este campo es obligatorio";
+      }
       if (!input.location) {
         errors.location = "Este campo es obligatorio";
       }
