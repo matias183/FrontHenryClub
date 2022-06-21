@@ -2,7 +2,7 @@ export default function validate(input) {
 	let err = {};
 	const mailRegExp = /\S+@\S+\.\S+/; //Revisa *@*.*
 	const phoneRegExp = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/; // 10 digitos
-	const dniRegExp = /^\d{8}\d*/; //Revisa 8 o más números
+	const dniRegExp = /^\d{7}\d?/; //Revisa 8 o más números
 	const passRegExp = /(?=.*[0-9])/; //al menos 1 letra y 1 número
   console.log(typeof input.edad)
 	if (input.nombre === "") {
