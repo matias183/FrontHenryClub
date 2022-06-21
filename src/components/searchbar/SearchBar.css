@@ -1,43 +1,70 @@
 .inputS {
   margin: 15px;
-  height: 3vh;
-  width: 13vw;
-  border-radius: 20px;
+  height: 1.5vh;
+  width: 3vw;
+  border-radius: 5px;
   border-color: #ffffff;
   background-color: rgb(255, 255, 255);
   font-size: 18px;
-  font-family: "Red Hat Display", sans-serif;
+  transition: all 0.3s ease;
+}
+.inputS:focus {
+  width: 13vw;
+  transition: all 0.3s ease;
+}
+.inputS:hover {
+  border-radius: 5px;
 }
 
-.buttonS {
-  height: 5vh;
-  font-size: 13px;
-  font-weight: bold;
-  margin-left: 2px;
-  color: rgb(246, 248, 250);
-  background-color: #050744;
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  flex-direction: column;
+
+  cursor: pointer;
+  border: solid 2px red;
+}
+
+button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: black;
   border: none;
-  border-radius: 10px;
-  transition: all ease 200ms;
+  color: #ffffff;
+  text-align: center;
+  font-size: 17px;
+  padding: 10px;
+  width: 130px;
+  transition: all 0.5s;
   cursor: pointer;
-  outline: none;
-  font-family: "Red Hat Display", sans-serif;
-  box-shadow: inset 0 0 0 1px hsla(0, 0%, 0%, 0.2),
-  inset 0 2px 0 hsla(0, 0%, 100%, 0.1), inset 0 1.2em 0 hsla(0, 0%, 100%, 0.1),
-  inset 0 -0.2em 0 hsla(0, 0%, 100%, 0.1),
-  inset 0 -0.25em 0 hsla(0, 0%, 0%, 0.25),
-  0 0.25em 0.25em hsla(0, 0%, 0%, 0.05);
-  text-shadow: 0 1px 1px hsla(0, 0%, 100%, 0.25);
+  margin: 5px;
+}
+button:hover {
+  background-image: linear-gradient(#434c9a, #9c824a);
+}
+
+button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+button span:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -15px;
+  transition: 0.5s;
   cursor: pointer;
 }
-
-.buttonS:hover {
-  background-color:hsl(0,0%, 100%);
-  color: black;
+button:hover span {
+  padding-right: 15px;
 }
-
-.buttonS:active {
-  transform: translateY(3%);
-  
+button:hover span:after {
+  opacity: 1;
+  right: 0;
 }
-
