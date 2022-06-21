@@ -25,7 +25,19 @@
 }
 
 .App-link {
+  display: none;
   color: #61dafb;
+}
+
+.App-link {
+  color: transparent;
+}
+.Card_cardBody__CeDBf a {
+  text-decoration: none;
+}
+.footer_contacto__R5a5N link p a {
+  color: transparent;
+  text-decoration: none;
 }
 
 @keyframes App-logo-spin {
