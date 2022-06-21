@@ -27,7 +27,7 @@ export default function validate(input) {
 		err.usuario = "No puede estar vacío";
 	}
 	if (!passRegExp.test(input.contraseña)) {
-		err.contraseña = "La contraseña debe contener al menos 1 letra y 1 numero";
+		err.contraseña = "Debe contener al menos 1 letra y 1 numero";
 	}
 
 	return err;
