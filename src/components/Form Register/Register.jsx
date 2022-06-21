@@ -70,7 +70,7 @@ export default function Register() {
 
 
               <div>
-                <p>Instrucciones (temporal)</p>
+                
                 {error.nombre && <p className={style.error}>{error.nombre}</p>}
                 <label className={style.tag}>Nombre</label>
                 <input
@@ -85,7 +85,7 @@ export default function Register() {
                 />
               </div>
               <div>
-                <p>Instrucciones (temporal)</p>
+              
                 {error.apellido && <p className={style.error}>{error.apellido}</p>}
                 <label className={style.tag}>Apellido</label>
                 <input
@@ -100,7 +100,7 @@ export default function Register() {
                 />
               </div>
               <div>
-                <p>Instrucciones (temporal)</p>
+                
                 {error.telefono && <p className={style.error}>{error.telefono}</p>}
                 <label className={style.tag}>Número de telefono</label>
                 <input
@@ -115,7 +115,7 @@ export default function Register() {
                 />
               </div>
               <div>
-                <p>Instrucciones (temporal)</p>
+               
                 {error.correo && <p className={style.error}>{error.correo}</p>}
                 <label className={style.tag}>Correo</label>
                 <input
@@ -135,7 +135,7 @@ export default function Register() {
 
 
               <div>
-                <p>Instrucciones (temporal)</p>
+                
                 {error.dni && <p className={style.error}>{error.dni}</p>}
                 <label className={style.tag}>DNI</label>
                 <input
@@ -145,12 +145,11 @@ export default function Register() {
                   name="dni"
                   id="dni"
                   type="string"
-                  placeholder="88.88..."
+                  placeholder="8888..."
                   autoComplete="off"
                 />
               </div>
               <div>
-                <p>Instrucciones (temporal)</p>
                 {error.edad && <p className={style.error}>{error.edad}</p>}
                 <label className={style.tag}>Edad</label>
                 <input
@@ -165,7 +164,6 @@ export default function Register() {
                 />
               </div>
               <div>
-                <p>Nombre visible para los demás</p>
                 {error.usuario && <p className={style.error}>{error.usuario}</p>}
                 <label className={style.tag}>Nombre de usuario</label>
                 <input
