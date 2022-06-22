@@ -3,7 +3,7 @@ import Search from '../components/searchbar/SearchBar';
 import Barra from '../Barra/Barra';
 import { Link } from 'react-router-dom';
 import logoHenry from '../utils/fotos/logo.gif';
-import { FaArrowCircleRight } from 'react-icons/fa';
+import { FaArrowCircleRight, FaUserAlt } from 'react-icons/fa';
 import './NavBar.css';
 
 export default function navbar() {
@@ -30,15 +30,23 @@ export default function navbar() {
             <p className="botonDeslizable">
               <FaArrowCircleRight />{' '}
             </p>{' '}
-            {/* boton de ingreso desplegable*/}
+            {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
           </Link>
+          <div className="dropdownDos">
+            {/* ENTRAR A PERFIL DE USUARIO */}
+            <Link to="/login">
+              <p className="botonDeslizableDos">
+                <FaUserAlt />{' '}
+              </p>{' '}
+            </Link>
+          </div>
           <div className="dropdown-content">
             <Link to="/profile/:id">
-              <span>Mi perfil</span>
+              <span>Iniciar Sesión</span>
             </Link>{' '}
             {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
             <Link to="/profile/:id">
-              <span>Link 2</span>
+              <span>Registrate</span>
             </Link>{' '}
             {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
           </div>
