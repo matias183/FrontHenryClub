@@ -31,10 +31,3 @@
     justify-content: center;
     color: #050744;
 }
-
-.textDescription{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 400px;
-}

@@ -1,6 +1,6 @@
 
 import {
-  ALL_MEMBERS, ALL_IMAGES,ALL_NEWS,SEARCH_SEARCH,
+  ALL_MEMBERS, ALL_IMAGES,ALL_NEWS,SEARCH_SEARCH, DETAIL_NEWS,
 } from "./DataTypes";
 
 
@@ -9,6 +9,7 @@ members:[],
 images:[],
 news:[],
 activities:[],
+detail_news: []
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -29,7 +30,11 @@ const rootReducer = (state = initialState, action) => {
 
         return { ...state,
            news: buscar(action.payload, state.news)}; // REVISAR QUE BUSCAMOS
-      
+    case DETAIL_NEWS:
+      return {
+        ...state,
+        detail_news: action.payload
+      }
     default:
       return state;
   }
