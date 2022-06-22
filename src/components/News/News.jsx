@@ -41,6 +41,9 @@ export default function Noticias() {
     }
   }
 
+
+export default function noticias({title, subtitle, text, image, id}) {
+
   return (
     <div>
       <div>
@@ -53,6 +56,7 @@ export default function Noticias() {
       <h1 className="titleNews">Noticias del club</h1>
       <div className="newsContainer">
         <div>
+
           <div className="news">
             <img
               src="https://imagenes.elpais.com/resizer/CahsaaNXHL9-FdAX72zScMZtTu8=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/SU7EFDELFA7VVUEMTQNS26S4HQ.jpg"
@@ -86,6 +90,17 @@ export default function Noticias() {
             <Link to="/news">Leer Más...</Link>
           </div>
         </div>
+
+          <div className='news'>
+            <img src={image} alt='img not found' className='imgNews'/>
+            <h2>{title}</h2>
+            <span>{subtitle}</span>
+            <Link to={'/news/' + id}>
+              Leer Más...
+            </Link>
+          </div>
+        </div>
+
       </div>
 
       <div className="seccionComentarios">

@@ -1,6 +1,6 @@
 import axios from "axios";
 import {
-    ALL_MEMBERS, ALL_IMAGES,ALL_NEWS,SEARCH_SEARCH,
+    ALL_MEMBERS, ALL_IMAGES,ALL_NEWS,SEARCH_SEARCH, DETAIL_NEWS
   } from "./DataTypes";
 
 //traer
@@ -26,15 +26,15 @@ export function getGalery() {
     };
   }
   
-  export function getNews() {
-    return async function (dispatch) {
-      let res = await axios(`traer anuncios/noticias`);
-      return dispatch({
-        type: ALL_NEWS,
-        payload: res.data,
-      });
-    };
-  }
+export function getNews() {
+  return async function (dispatch) {
+    let res = await axios(`http://localhost:3001/news`);
+    return dispatch({
+      type: ALL_NEWS,
+      payload: res.data,
+    });
+  };
+}
 
 
 //buscar
@@ -72,3 +72,15 @@ export function CreateNews(input) {
       return res.data;
     };
   }
+
+//detalle
+
+export function DetailNews (id) {
+  return async function(dispatch) {
+    const json = await axios.get(`http://localhost:3001/news/${id}`)
+    dispatch({
+      type: DETAIL_NEWS,
+      payload: json.data
+    })
+  }
+}
