@@ -30,6 +30,12 @@
 .App-link {
   display: none;
   color: #61dafb;
+  
+}
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .App-link {

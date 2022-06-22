@@ -12,9 +12,10 @@
 
 .titulo {
   position: absolute;
+  color: #222861;
   top: 0;
   text-transform: uppercase;
-  text-shadow: 5px 5px 5px grey;
+  text-shadow: 5px 5px 5px rgb(73, 70, 70);
   font-weight: 700;
   font-size: 40px;
 }
@@ -25,7 +26,7 @@
   left: 0;
   width: 8vw;
   height: 15vh;
-  box-shadow: 0 0 10px 10px gray;
+  /* box-shadow: 0 0 10px 10px gray; */
 }
 
 .searchbar {
@@ -36,10 +37,21 @@
 
 .botonDeslizable {
   position: absolute;
-  background-color: #222861;
-  color: white;
+
+  color: #222861;
   padding: 20px;
-  font-size: 20px;
+  font-size: 30px;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+.botonDeslizableDos {
+  position: absolute;
+
+  color: #222861;
+  padding: 20px;
+  font-size: 30px;
   border: none;
   border-radius: 50%;
   width: 20px;
@@ -48,7 +60,14 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  left: 45vw;
+  top: -2vh;
+  left: 40vw;
+}
+.dropdownDos {
+  position: relative;
+  display: inline-block;
+  top: -2vh;
+  left: 3vw;
 }
 
 .dropdown-content {
@@ -83,5 +102,5 @@
 
 /* cambiiar el color del boton cuando se muestra el contenido */
 .dropdown:hover .botonDeslizable {
-  background-image: linear-gradient(#434c9a, #9c824a);
+  /* background-image: linear-gradient(#434c9a, #9c824a); */
 }

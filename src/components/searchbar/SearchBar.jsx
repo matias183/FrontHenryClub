@@ -31,12 +31,12 @@ export default function SearchBar() {
             type="text"
             name="search"
             id="Search"
-            placeholder="Search..."
+            placeholder="Buscar..."
             value={name}
             onChange={handleInputChange}
           />
           <button className="botones">
-            <span>Search</span>
+            <span>Buscar</span>
           </button>
         </form>
         <br />
