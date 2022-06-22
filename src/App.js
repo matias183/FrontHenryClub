@@ -26,7 +26,7 @@ function App() {
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/galery" component={GaleriaImg} />
-      <Route exact path="/profile/:id" component={Profile} />
+      <Route path="/profile" component={Profile} />
       <Route exact path="/news" component={News} />
       <Route exact path='/news/:id' component={DetailNews} />
       <Route exact path="/contact-us" component={Contact} />
