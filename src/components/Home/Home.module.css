@@ -55,9 +55,8 @@
 /*FUENTES*/
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@700&display=swap');
 
-
-.contenedorGeneral{
+/* .contenedorGeneral{
   background-color: black;
-  /* background-image: url('../../utils/fotos/fondoHenry.jpg'); */
+  background-image: url('../../utils/fotos/fondoHenry.jpg');
   background-image: linear-gradient(to right,  rgb(255, 255, 255),#222861, #ffffff);;
-}
+} */
