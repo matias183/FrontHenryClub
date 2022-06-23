@@ -179,7 +179,7 @@ export function updateComment(input) {
 	};
 }
 
-export function updateUser(input) {
+export function updateMember(input) {
 	return async (dispatch) => {
 		try {
 			let { data } = axios.put(`http://localhost:3001/user/${id}`, input);
@@ -213,7 +213,7 @@ export function deleteComment(id) {
 	};
 }
 
-export function deleteUser(id) {
+export function deleteMember(id) {
 	return async (dispatch) => {
 		try {
 			let { data } = axios.delete(`http://localhost:3001/user/${id}`);
