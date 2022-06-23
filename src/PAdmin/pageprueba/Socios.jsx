@@ -2,7 +2,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect} from "react";
 import{NavLink} from "react-router-dom"
-import {getMembers,deleteMember } from "../../redux/Action";
+import {getMembers,deleteMember } from "../../redux/Actions/Action";
 
 export default function Socios () {
   const dispatch= useDispatch()

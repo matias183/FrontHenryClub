@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { CreateMember } from "../../redux/Action";
+import { CreateMember } from "../../redux/Actions/Action";
 import validate from "./Validations/validations"
 import { Link } from 'react-router-dom'
 import style from './Register.module.css'

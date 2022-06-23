@@ -2,7 +2,7 @@
   
   import React, { useState } from "react";
   import {useDispatch} from "react-redux";
-  import {Loginmember} from "../../redux/Action";
+  import {Loginmember} from "../../redux/Actions/Action";
   import {useLocalStorage} from "../../custom/useLocalStorage"
   import validate from "../Form Create Activities/validate"
   import s from './NewActivity.module.css';
