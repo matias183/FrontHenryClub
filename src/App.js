@@ -13,6 +13,7 @@ import DetailNews from './components/News/DetailNews';
 import { IconName } from "react-icons/fa";
 import Contact from './components/Contact/contact.jsx';
 import Activity from './components/Form Create Activities/NewActivity.jsx';
+import MyCalendar from './components/Calendario/Calendario';
 
 
 
@@ -31,6 +32,7 @@ function App() {
       <Route exact path='/news/:id' component={DetailNews} />
       <Route exact path="/contact-us" component={Contact} />
       <Route exact path="/newactivity" component={Activity} />
+      <Route exact path="/calendario" component={MyCalendar} />
       <Route exact path="*" component={Landing} />
       
       </Switch>
