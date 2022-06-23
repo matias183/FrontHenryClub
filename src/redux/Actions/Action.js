@@ -159,10 +159,10 @@ export function createContact(input) {
 }
 
 //PUT
-export function updateNews(input) {
+export function updateNews(id,input) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.put(`http://localhost:3001/news/${input}`, input);
+			let { data } = axios.put(`http://localhost:3001/news/${id}`, input);
 			return dispatch({ type: UPDATE_NEWS, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -170,10 +170,10 @@ export function updateNews(input) {
 	};
 }
 
-export function updateComment(input) {
+export function updateComment(id,input) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.put(`http://localhost:3001/comment/${input}`);
+			let { data } = axios.put(`http://localhost:3001/comment/${id}`, input);
 			return dispatch({ type: UPDATE_COMMENT, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -181,10 +181,10 @@ export function updateComment(input) {
 	};
 }
 
-export function updateMember(input) {
+export function updateMember(id,input) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.put(`http://localhost:3001/user/${input}`, input);
+			let { data } = axios.put(`http://localhost:3001/user/${id}`, input);
 			return dispatch({ type: UPDATE_MEMBER, payload: data });
 		} catch (error) {
 			alert(error.response.data);
