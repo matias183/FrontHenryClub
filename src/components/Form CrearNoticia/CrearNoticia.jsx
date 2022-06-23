@@ -9,7 +9,7 @@ export default function CrearAnuncio() {
           <span>Volver</span>
         </button>
       </Link>
-      <h1>Crear Noticia</h1>
+      <h1>Crear Noticias</h1>
       <form>
         <label htmlFor="">Titulo de Noticia: </label>
         <input type="text" />
