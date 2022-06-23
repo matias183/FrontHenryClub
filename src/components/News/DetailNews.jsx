@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {DetailNews} from '../../redux/Action'
+import {detailNews} from '../../redux/Action'
 import Footer from '../footer/footer';
 
 export default function NewsDetail() {
@@ -10,7 +10,7 @@ export default function NewsDetail() {
     const noticia = useSelector((state) => state.detail_news)
 
     useEffect(() => {
-        dispatch(DetailNews(id))
+        dispatch(detailNews(id))
     }, [dispatch, id])
 
     const [error, setError] = useState('');

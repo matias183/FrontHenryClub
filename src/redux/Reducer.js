@@ -1,6 +1,6 @@
 
 import {
-  ALL_MEMBERS, ALL_IMAGES,ALL_NEWS,SEARCH_SEARCH, DETAIL_NEWS,PUT_MEMBER,DELETE_MEMBER
+  ALL_MEMBERS, ALL_IMAGES,ALL_NEWS,SEARCH_SEARCH, DETAIL_NEWS,DELETE_MEMBER, UPDATE_MEMBER
 } from "./DataTypes";
 
 
@@ -38,7 +38,7 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, news: action.payload };
 
     // ELIMINAR Y EDITAR
-    case PUT_MEMBER:
+    case UPDATE_MEMBER:
       return { ...state, };
       case DELETE_MEMBER:
       return { ...state,};
