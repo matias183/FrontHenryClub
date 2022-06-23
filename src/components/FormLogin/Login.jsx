@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import {useDispatch} from "react-redux";
-import {Loginmember} from "../../redux/Action";
+import {Loginmember} from "../../redux/Actions/Action";
 import{Link} from 'react-router-dom'
 import {useLocalStorage} from "../../custom/useLocalStorage"
 import Google from "./google.png";

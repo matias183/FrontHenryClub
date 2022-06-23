@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import {detailNews} from '../../redux/Action'
+import {detailNews} from '../../redux/Actions/Action'
 import Footer from '../footer/footer';
 
 export default function NewsDetail() {
