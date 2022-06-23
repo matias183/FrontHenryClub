@@ -8,7 +8,6 @@ import GaleriaImg from './components/Galeria de imagenes/GaleriaImg.jsx';
 import Profile from './Profile/Profile.jsx';
 import Register from './components/Form Register/Register';
 import News from './components/News/News.jsx';
-import CrearNoticia from './components/Form CrearNoticia/CrearNoticia';
 import { IconName } from 'react-icons/fa';
 import Contact from './components/Contact/contact.jsx';
 import Activity from './components/Form Create Activities/NewActivity.jsx';
@@ -27,7 +26,6 @@ function App() {
         <Route exact path="/news" component={News} />
         <Route exact path="/contact-us" component={Contact} />
         <Route exact path="/newactivity" component={Activity} />
-        <Route exact path="/createNews" component={CrearNoticia} />
         <Route exact path="*" component={Landing} />
       </Switch>
     </div>
