@@ -1,0 +1,8 @@
+.formCalendario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.calendarioContainer{
+    height: 80%;
+}
