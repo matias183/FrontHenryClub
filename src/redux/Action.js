@@ -17,6 +17,7 @@ import {
 	CLEAR_PAGE,
 } from "./DataTypes";
 
+
 //Get
 
 export function getMembers() {
@@ -100,6 +101,7 @@ export function detailNews(id) {
 		});
 	};
 }
+
 
 //Post
 export function CreateNews(input) {

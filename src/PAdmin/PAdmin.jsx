@@ -7,7 +7,7 @@ import FormActiv from '../components/Form Create Activities/NewActivity'
 import s from './Profile.module.css'
 
 
-export default function profile() {
+export default function PAdmin() {
   return (
     <> 
   <div className={s.header}>
@@ -17,24 +17,24 @@ export default function profile() {
    <div className={s.barralateral}>
      <ul>
       <li>
-        <NavLink to="/profile/news">News</NavLink>
+        <NavLink to="/admin/news">News</NavLink>
       </li>
       <li>
-        <NavLink to="/profile/socios">Socios</NavLink>
+        <NavLink to="/admin/socios">Socios</NavLink>
       </li>
       <li> 
-      <NavLink to="/profile/home">Home</NavLink>
+      <NavLink to="/admin/home">Home</NavLink>
       </li>
       <li> 
-      <NavLink to="/profile/newactivity">Crea Actividad</NavLink>
+      <NavLink to="/admin/newactivity">Crea Actividad</NavLink>
       </li>
      </ul>
     </div>
     <div className={s.mostrar}>
-     <Route path="/profile/socios" component={Socios} />
-     <Route path="/profile/home" component={Home} />
-     <Route path="/profile/news" component={News} />
-     <Route path="/profile/newactivity" component={FormActiv} />
+     <Route path="/admin/socios" component={Socios} />
+     <Route path="/admin/home" component={Home} />
+     <Route path="/admin/news" component={News} />
+     <Route path="/admin/newactivity" component={FormActiv} />
      
     
     </div>

@@ -1,11 +1,23 @@
 
 import {
-  ALL_MEMBERS, ALL_IMAGES,ALL_NEWS,SEARCH_SEARCH, DETAIL_NEWS,
+  ALL_MEMBERS, ALL_IMAGES,ALL_NEWS,SEARCH_SEARCH, DETAIL_NEWS,PUT_MEMBER,DELETE_MEMBER
 } from "./DataTypes";
 
 
 const initialState = {
-members:[],
+members:[
+  {
+    name: "Jon",
+    surname: "Snow",
+    dni: 21361313235,
+  },
+  {
+    name: "Jamie ",
+    surname: "Lannister",
+    dni: 22361313235,
+  },
+
+],
 images:[],
 news:[],
 activities:[],
@@ -14,6 +26,7 @@ detail_news: []
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    //TRAER
     case ALL_MEMBERS:
       return { ...state, 
         members: action.payload,
@@ -24,6 +37,13 @@ const rootReducer = (state = initialState, action) => {
     case ALL_NEWS:
       return { ...state, news: action.payload };
 
+    // ELIMINAR Y EDITAR
+    case PUT_MEMBER:
+      return { ...state, };
+      case DELETE_MEMBER:
+      return { ...state,};
+
+    //BUSCAR
     case SEARCH_SEARCH:
       const buscar = (name, arr) => {
         return arr.filter((e) => e.name.toLowerCase() === name.toLowerCase());}
