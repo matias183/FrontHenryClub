@@ -5,23 +5,11 @@ import {
 
 
 const initialState = {
-members:[
-  {
-    name: "Jon",
-    surname: "Snow",
-    dni: 21361313235,
-  },
-  {
-    name: "Jamie ",
-    surname: "Lannister",
-    dni: 22361313235,
-  },
-
-],
+members:[],
 images:[],
 news:[],
 activities:[],
-detail_news: []
+detail_news: [],
 };
 
 const rootReducer = (state = initialState, action) => {
