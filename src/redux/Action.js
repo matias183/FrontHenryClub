@@ -1,13 +1,13 @@
 import axios from "axios";
 import {
-    ALL_MEMBERS, ALL_IMAGES,ALL_NEWS,SEARCH_SEARCH, DETAIL_NEWS
+    ALL_MEMBERS, ALL_IMAGES,ALL_NEWS,SEARCH_SEARCH, DETAIL_NEWS,PUT_MEMBER,DELETE_MEMBER
   } from "./DataTypes";
 
 //traer
 
 export function getMembers() {
     return async function (dispatch) {
-      let res = await axios(`traer usuarios`);
+      let res = await axios(`http://localhost:3001/user`);
       return dispatch({
         type: ALL_MEMBERS,
         payload: res.data,
@@ -44,6 +44,28 @@ export const search = (name) => {
     payload: name,
   };
 };  
+
+//delete - update members
+export function deleteMember(id) {
+  return async function (dispatch) {
+    try {
+      await axios.delete(`http://localhost:3001/user/${id}`);
+      return dispatch({ type: DELETE_MEMBER,});
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export const updateMember = (id, input) => {
+  return async function (dispatch) {
+    await axios.put(`http://localhost:3001/user/${id}`, input);
+    return dispatch({
+      type: PUT_MEMBER,
+    });
+  };
+};
+
 
 //crear 
 export function CreateNews(input) {
