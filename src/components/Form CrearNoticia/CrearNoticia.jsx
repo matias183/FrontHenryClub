@@ -1,26 +1,57 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+//
+//
+//
+// ESCRIBIR EN CONSOLA "npm i"
+//
+//
+//
+import { createNews } from '../../redux/Actions/Action';
 import React, { useEffect, useState } from 'react';
-import { CreateNews } from '../../redux/Actions/Action';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+  foto: yup
+    .mixed()
+    .required('Necesitas subir una foto.')
+    .test('fileSize', 'El archivo es muy grande.', value => {
+      console.log(value);
+      return value && value[0].size <= 10000000;
+    })
+    .test('type', 'Solo se soporta archivos "JPG, JPEG ,PNG, SVG"', value => {
+      return (
+        (value && value[0].type === 'image/jpg') ||
+        value[0].type === 'image/jpeg' ||
+        value[0].type === 'image/png' ||
+        value[0].type === 'image/png'
+      );
+    }),
+});
 
 export default function CrearAnuncio() {
   // estados:
   const dispatch = useDispatch();
 
+  //CREAR UN USESELECTOR PARA EL ESTADO DE SPORTS
+  // const noticias = useSelector(state => state.sports);
+
   const [error, setError] = useState('');
 
   const [input, setInput] = useState({
+    id: '',
     title: '',
     subtitle: '',
     text: '',
     image: '',
+    sportId: '',
+    userId: '',
+    news: [],
   });
 
-  useEffect(() => {
-    dispatch();
-  });
+  // useEffect(() => {
+  //   dispatch(getNews());
+  // }, []);
 
   // validaciones:
   function validarNombre(e) {
@@ -30,7 +61,7 @@ export default function CrearAnuncio() {
     } else {
       setError('');
     }
-    handleChange(e);
+    // handleChange(e);
   }
 
   function validarSubtitulo(e) {
@@ -40,16 +71,16 @@ export default function CrearAnuncio() {
     } else {
       setError('');
     }
-    handleChange(e);
+    // handleChange(e);
   }
 
   function validarTextNoticia(e) {
-    if (/\d/.test(evt.target.value) && evt.target.value > 20) {
+    if (/\d/.test(e.target.value) && e.target.value > 20) {
       setError('Texto invalido.');
     } else {
       setError('');
     }
-    handleChange(e);
+    // handleChange(e);
   }
 
   //FIJARSE COMO VALIDAR EL INPUT FILE
@@ -63,6 +94,41 @@ export default function CrearAnuncio() {
   //   handleChange(e);
   // }
 
+  async function handleSubit(e) {
+    if (
+      // input.news.length > 0 &&
+      // input.title.length > 0 &&
+      // typeof input.title === 'string' &&
+      // input.subtitle.length > 0 &&
+      // typeof input.subtitle === 'string' &&
+      // input.text.length > 0 &&
+      // input.image
+      true
+    ) {
+      dispatch(createNews(input));
+      setInput({
+        id: '',
+        title: '',
+        subtitle: '',
+        text: '',
+        image: '',
+
+        news: [],
+      });
+      e.preventDefault();
+      alert('Noticia Creada');
+    } else {
+      alert('Todos los campos deben llenarse para publicar su noticia.');
+    }
+  }
+
+  // async function handleChange(e) {
+  //   setInput({
+  //     ...input,
+  //     [e.target.title]: e.target.value,
+  //   });
+  // }
+
   return (
     <div>
       <Link to={'/home'}>
@@ -71,7 +137,7 @@ export default function CrearAnuncio() {
         </button>
       </Link>
       <h1>Crear Noticias</h1>
-      <form>
+      <form onSubmit={handleSubit} id="form">
         <label htmlFor="">Titulo de Noticia: </label>
         <input type="text" onChange={validarNombre} />
 
@@ -90,9 +156,14 @@ export default function CrearAnuncio() {
 
         <label htmlFor="">Imagen de la Noticia: </label>
         {/* HACER ONCHANGE PARA INPUT FILE */}
-        <input type="file" />
+        {/* onChange={validarImagen} */}
+        <input type="file" name="foto" />
+        {error.foto && <p>{error.foto.message}</p>}
 
-        <button type="submit">Publicar</button>
+        {/* onChange={getNews} */}
+        <button id="boton" value="Publicar" type="submit">
+          Publicar
+        </button>
       </form>
     </div>
   );
