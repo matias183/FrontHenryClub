@@ -6,7 +6,6 @@ import Home from './components/Home/Home.jsx'
 import Reserve from './components/Form Reserve/Reserve.jsx'
 import Login from './components/FormLogin/Login.jsx'
 import GaleriaImg from './components/Galeria de imagenes/GaleriaImg.jsx'
-import Profile from './Profile/Profile.jsx';
 import Admin from './PAdmin/PAdmin.jsx'
 import User from './User/User.jsx'
 import Register from './components/Form Register/Register';
@@ -27,7 +26,6 @@ function App() {
       <Route exact path="/register" component={Register} />
       <Route exact path="/galery" component={GaleriaImg} />
       <Route path="/admin" component={Admin} />
-      <Route exact path="/profile/:id" component={Profile} />
       <Route path="/user/:id" component={User} />
       <Route exact path="/news" component={News} />
       <Route exact path='/news/:id' component={DetailNews} />

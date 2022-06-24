@@ -32,14 +32,7 @@ export default function navbar() {
             </p>{' '}
             {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
           </Link>
-          <div className="dropdownDos">
-            {/* ENTRAR A PERFIL DE USUARIO */}
-            <Link to="/login">
-              <p className="botonDeslizableDos">
-                <FaUserAlt />{' '}
-              </p>{' '}
-            </Link>
-          </div>
+
           <div className="dropdown-content">
             <Link to="/profile/:id">
               <span>Iniciar Sesión</span>

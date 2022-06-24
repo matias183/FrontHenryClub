@@ -38,7 +38,7 @@ export function getContacts() {
 	};
 }
 
-export function getGalery() {
+export function getGallery() {
 	return async (dispatch) => {
 		try {
 			let { data } = await axios.get("Ruta para imagenes");
@@ -72,7 +72,7 @@ export function getComments() {
 }
 
 //
-export function Loginmember(input) {
+export function loginMember(input) {
 	return async function () {
 		const res = await axios.post("ruta crear usuario", input);
 		return res.data;
@@ -104,7 +104,7 @@ export function detailNews(id) {
 
 
 //Post
-export function CreateNews(input) {
+export function createNews(input) {
 	return async function () {
 		const { data } = await axios.post(
 			"http://localhost:3001/news/crear",
@@ -114,13 +114,13 @@ export function CreateNews(input) {
 	};
 }
 
-export function CreateActivity(input) {
+export function createActivity(input) {
 	return async function () {
 		const { data } = await axios.post("ruta crear actividad", input);
 		return data;
 	};
 }
-export function CreateMember(input) {
+export function createMember(input) {
 	return async () => {
 		try {
 			let { data } = await axios.post("http://localhost:3001/user", input);
@@ -159,10 +159,10 @@ export function createContact(input) {
 }
 
 //PUT
-export function updateNews(input) {
+export function updateNews(id,input) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.put(`http://localhost:3001/news/${input}`, input);
+			let { data } = axios.put(`http://localhost:3001/news/${id}`, input);
 			return dispatch({ type: UPDATE_NEWS, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -170,10 +170,10 @@ export function updateNews(input) {
 	};
 }
 
-export function updateComment(input) {
+export function updateComment(id,input) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.put(`http://localhost:3001/comment/${input}`);
+			let { data } = axios.put(`http://localhost:3001/comment/${id}`, input);
 			return dispatch({ type: UPDATE_COMMENT, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -181,10 +181,10 @@ export function updateComment(input) {
 	};
 }
 
-export function updateMember(input) {
+export function updateMember(id,input) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.put(`http://localhost:3001/user/${input}`, input);
+			let { data } = axios.put(`http://localhost:3001/user/${id}`, input);
 			return dispatch({ type: UPDATE_MEMBER, payload: data });
 		} catch (error) {
 			alert(error.response.data);
