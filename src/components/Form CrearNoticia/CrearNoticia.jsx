@@ -61,7 +61,7 @@ export default function CrearAnuncio() {
     } else {
       setError('');
     }
-    handleChange(e);
+    // handleChange(e);
   }
 
   function validarSubtitulo(e) {
@@ -71,16 +71,16 @@ export default function CrearAnuncio() {
     } else {
       setError('');
     }
-    handleChange(e);
+    // handleChange(e);
   }
 
   function validarTextNoticia(e) {
-    if (/\d/.test(evt.target.value) && evt.target.value > 20) {
+    if (/\d/.test(e.target.value) && e.target.value > 20) {
       setError('Texto invalido.');
     } else {
       setError('');
     }
-    handleChange(e);
+    // handleChange(e);
   }
 
   //FIJARSE COMO VALIDAR EL INPUT FILE
@@ -96,13 +96,14 @@ export default function CrearAnuncio() {
 
   async function handleSubit(e) {
     if (
-      input.news.length > 0 &&
-      input.title.length > 0 &&
-      typeof input.title === 'string' &&
-      input.subtitle.length > 0 &&
-      typeof input.subtitle === 'string' &&
-      input.text.length > 0 &&
-      input.image
+      // input.news.length > 0 &&
+      // input.title.length > 0 &&
+      // typeof input.title === 'string' &&
+      // input.subtitle.length > 0 &&
+      // typeof input.subtitle === 'string' &&
+      // input.text.length > 0 &&
+      // input.image
+      true
     ) {
       dispatch(createNews(input));
       setInput({
@@ -111,8 +112,7 @@ export default function CrearAnuncio() {
         subtitle: '',
         text: '',
         image: '',
-        sportId: '',
-        userId: '',
+
         news: [],
       });
       e.preventDefault();
@@ -138,13 +138,6 @@ export default function CrearAnuncio() {
       </Link>
       <h1>Crear Noticias</h1>
       <form onSubmit={handleSubit} id="form">
-        <label htmlFor="">Seleccionar deporte:</label>
-        <select name="" id="">
-          {/* HACER UN MAPEO PARA EL DEPORTE A SELECCIONAR */}
-          <option value="">Deporte</option>
-          {sport?.map()}
-        </select>
-
         <label htmlFor="">Titulo de Noticia: </label>
         <input type="text" onChange={validarNombre} />
 
@@ -163,10 +156,12 @@ export default function CrearAnuncio() {
 
         <label htmlFor="">Imagen de la Noticia: </label>
         {/* HACER ONCHANGE PARA INPUT FILE */}
-        <input type="file" name="foto" onChange={validarImagen} />
+        {/* onChange={validarImagen} */}
+        <input type="file" name="foto" />
         {error.foto && <p>{error.foto.message}</p>}
 
-        <button id="boton" onChange={getNews} value="Publicar" type="submit">
+        {/* onChange={getNews} */}
+        <button id="boton" value="Publicar" type="submit">
           Publicar
         </button>
       </form>
