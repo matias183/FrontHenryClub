@@ -38,7 +38,7 @@ export function getContacts() {
 	};
 }
 
-export function getGalery() {
+export function getGallery() {
 	return async (dispatch) => {
 		try {
 			let { data } = await axios.get("Ruta para imagenes");
@@ -72,7 +72,7 @@ export function getComments() {
 }
 
 //
-export function Loginmember(input) {
+export function loginMember(input) {
 	return async function () {
 		const res = await axios.post("ruta crear usuario", input);
 		return res.data;
@@ -104,7 +104,7 @@ export function detailNews(id) {
 
 
 //Post
-export function CreateNews(input) {
+export function createNews(input) {
 	return async function () {
 		const { data } = await axios.post(
 			"http://localhost:3001/news/crear",
@@ -114,13 +114,13 @@ export function CreateNews(input) {
 	};
 }
 
-export function CreateActivity(input) {
+export function createActivity(input) {
 	return async function () {
 		const { data } = await axios.post("ruta crear actividad", input);
 		return data;
 	};
 }
-export function CreateMember(input) {
+export function createMember(input) {
 	return async () => {
 		try {
 			let { data } = await axios.post("http://localhost:3001/user", input);
@@ -224,6 +224,20 @@ export function deleteMember(id) {
 			alert(error.response.data);
 		}
 	};
+}
+//Perfil
+export function GetProfile(id){
+	return async function (dispatch) {
+	  try {
+		const json = await axios.get("http://localhost:3001/profile/:id"); /*"http://localhost:3001/profile/" + id lo puse asi para probar como se ve, para que funcione poner el codigo comentado*/  
+		return dispatch({
+		  type: "GET_PROFILE",
+		  payload: json.data,
+		});
+	  } catch (error) {
+		console.log(error);
+	  }
+  };
 }
 
 //Buscar ???

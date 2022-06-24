@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { CreateMember } from "../../redux/Actions/Action";
+import { createMember } from "../../redux/Actions/Action";
 import validate from "./Validations/validations"
 import { Link } from 'react-router-dom'
 import style from './Register.module.css'
@@ -55,7 +55,7 @@ export default function Register() {
     } else if (nombre && apellido && correo && telefono && dni && edad && usuario && contraseña) {
       alert("Succes")
       setLoading(true);
-      dispatch(CreateMember())
+      dispatch(createMember())
       setLoading(false);
     }
   };

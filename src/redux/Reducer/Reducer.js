@@ -14,6 +14,7 @@ import {
 	DELETE_NEWS,
 	DELETE_COMMENT,
 	CLEAR_PAGE,
+	GET_PROFILE,
 } from "../Actions/DataTypes";
 
 const initialState = {
@@ -24,11 +25,12 @@ const initialState = {
   newsDetail: {},
 	activities: [],
   comments: [],
+	contacts: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
 	switch (type) {
-		//TRAER
+		//GET
 		case ALL_MEMBERS:
 			return {
 				...state,
@@ -47,28 +49,65 @@ const rootReducer = (state = initialState, { type, payload }) => {
         news: payload
       };
 
+		case ALL_COMMENTS:
+			return {
+				...state,
+				comments: payload
+			}
+
+		case ALL_CONTACTS:
+			return {
+				...state,
+				contacts: payload
+			}
+
 		// ELIMINAR Y EDITAR
-		case UPDATE_MEMBER:
-			return { 
-        ...state 
-      };
+		// case UPDATE_MEMBER:
+		// 	return { 
+    //     ...state,
+		// 		memberDetail: {}
+    //   };
     
-		case DELETE_MEMBER:
-			return { ...state };
-
-		//BUSCAR
-		case SEARCH_SEARCH:
-			const buscar = (name, arr) => {
-				return arr.filter((e) => e.name.toLowerCase() === name.toLowerCase());
-			};
-
-			return { ...state, news: buscar(payload, state.news) }; // REVISAR QUE BUSCAMOS
+		// case DELETE_MEMBER:
+		// 	return { 
+		// 		...state
+		// 		members: state.members.filter(member => member.id ===)
+		// 	};
+		
+		//DETALLES
 		case DETAIL_NEWS:
 			return {
 				...state,
-				detail_news: payload,
+				newsDetail: payload,
 			};
-		default:
+
+		case DETAIL_MEMBER:
+			return {
+				...state,
+				memberDetail: payload,
+			}
+			
+			//BUSCAR
+			case SEARCH_SEARCH:
+				//functión para buscar en el estado
+				const buscar = (name, arr) => {
+					return arr.filter((e) => e.title.toLowerCase() === name.toLowerCase());
+				};
+				return { ...state, news: buscar(payload, state.news) }; // REVISAR QUE BUSCAMOS
+			
+			case CLEAR_PAGE: 
+			return {
+				...state,
+				memberDetail: {},
+				newsDetail: {},
+			}
+			case GET_PROFILE:
+				return{
+					...state,
+					profile:payload,
+				}
+
+			default:
 			return state;
 	}
 };

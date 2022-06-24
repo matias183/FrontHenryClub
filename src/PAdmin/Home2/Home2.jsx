@@ -1,15 +1,13 @@
 import React from 'react';
-import S from './Home.module.css';
-import Footer from '../footer/footer.jsx';
-import NavBar from '../../navbar/navbar';
+import S from './Home2.module.css';
+import Footer from '../../components/footer/footer';
 import Barra from '../../Barra/Barra';
-import GaleriaImg from '../Galeria de imagenes/GaleriaImg';
-import News from '../News/News';
+import GaleriaImg from '../../components/Galeria de imagenes/GaleriaImg';
+import News from '../News2/News2';
 
 export default function Home() {
   return (
     <div className={S.contenedorGeneral}>
-      <NavBar /> {/* ACA VA LA NAVBAR */}
       <Barra/>
       <div className={S.contenido}>
         <div className={S.contenidoCentral}>

@@ -5,10 +5,8 @@
 //
 //
 //
-import React from 'react';
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
 import { createNews } from '../../redux/Actions/Action';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';

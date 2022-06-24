@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import {useDispatch} from "react-redux";
-import {Loginmember} from "../../redux/Actions/Action";
+import {loginMember} from "../../redux/Actions/Action";
 import{Link} from 'react-router-dom'
 import {useLocalStorage} from "../../custom/useLocalStorage"
 import Google from "./google.png";
@@ -34,7 +34,7 @@ export default function Login() {
       !Object.keys(errors).length )
     {
      setLoading(true);
-     dispatch(Loginmember())
+     dispatch(loginMember())
       setInput({ email: "", password: "" });
       setLoading(false);
     }
