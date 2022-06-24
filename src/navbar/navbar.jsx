@@ -1,6 +1,6 @@
 import React from 'react';
 import Search from '../components/searchbar/SearchBar';
-import Barra from '../Barra/Barra';
+// import Barra from '../Barra/Barra';
 import { Link } from 'react-router-dom';
 import logoHenry from '../utils/fotos/logo.gif';
 import { FaArrowCircleRight, FaUserAlt } from 'react-icons/fa';
@@ -46,7 +46,7 @@ export default function navbar() {
         </div>
         <br />
       </div>
-      <Barra />
+      {/* <Barra /> */}
     </div>
   );
 }

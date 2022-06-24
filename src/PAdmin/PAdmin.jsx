@@ -1,9 +1,11 @@
 import React from 'react'
 import { Route, NavLink} from 'react-router-dom';
+import Header from "../navbar/navbar"
 import Socios from './pageprueba/Socios'
-import Home from '../components/Home/Home';
-import News from '../components/News/News.jsx';
-import FormActiv from '../components/Form Create Activities/NewActivity'
+import Home from './Home2/Home2';
+import News from './News2/News2';
+import FormActiv from '../components/Form Create Activities/NewActivity';
+import Createnews from '../components/Form CrearNoticia/CrearNoticia'
 import s from './Profile.module.css'
 
 
@@ -11,7 +13,7 @@ export default function PAdmin() {
   return (
     <> 
   <div className={s.header}>
-    <h3>header</h3>
+  <Header/>
   </div>
   <div className={s.container}>
    <div className={s.barralateral}>
@@ -28,6 +30,9 @@ export default function PAdmin() {
       <li> 
       <NavLink to="/admin/newactivity">Crea Actividad</NavLink>
       </li>
+      <li> 
+      <NavLink to="/admin/createnews">Crea Noticia</NavLink>
+      </li>
      </ul>
     </div>
     <div className={s.mostrar}>
@@ -35,6 +40,7 @@ export default function PAdmin() {
      <Route path="/admin/home" component={Home} />
      <Route path="/admin/news" component={News} />
      <Route path="/admin/newactivity" component={FormActiv} />
+     <Route path="/admin/createnews" component={Createnews} />
      
     
     </div>
