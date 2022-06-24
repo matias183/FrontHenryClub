@@ -26,7 +26,8 @@
     "thunk": "^0.0.1",
     "web-vitals": "^0.2.4",
     "webpack": "^5.72.1",
-    "yarn": "^1.22.19"
+    "yarn": "^1.22.19",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
