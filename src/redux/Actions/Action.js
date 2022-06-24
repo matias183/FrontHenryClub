@@ -225,6 +225,20 @@ export function deleteMember(id) {
 		}
 	};
 }
+//Perfil
+export function GetProfile(id){
+	return async function (dispatch) {
+	  try {
+		const json = await axios.get("http://localhost:3001/profile/:id"); /*"http://localhost:3001/profile/" + id lo puse asi para probar como se ve, para que funcione poner el codigo comentado*/  
+		return dispatch({
+		  type: "GET_PROFILE",
+		  payload: json.data,
+		});
+	  } catch (error) {
+		console.log(error);
+	  }
+  };
+}
 
 //Buscar ???
 export const search = (name) => {

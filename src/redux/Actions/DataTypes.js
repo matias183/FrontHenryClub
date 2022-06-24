@@ -13,3 +13,4 @@ export const DELETE_COMMENT = "DELETE_COMMENT";
 export const ALL_IMAGES = "ALL_IMAGES";
 export const SEARCH_SEARCH = "SEARCH_SEARCH";
 export const CLEAR_PAGE = "CLEAR_PAGE";
+export const GET_PROFILE="GET_PROFILE"
