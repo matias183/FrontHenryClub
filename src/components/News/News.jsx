@@ -19,7 +19,7 @@ export default function Noticias({ title, subtitle, image, id }) {
             <img src={image} alt="img not found" className="imgNews" />
             <h2>{title}</h2>
             <span>{subtitle}</span>
-            <Link to={'/news/' + id}>Leer Más...</Link>
+            <Link to={'/news'}>Leer Más...</Link>
           </div>
         </div>
       </div>

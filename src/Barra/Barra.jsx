@@ -8,17 +8,13 @@ export default function Barra() {
   return (
     <div className={S.contenedor}>
       <select defaultValue="default">
-        <option value="default" disabled="disabled">
-          Galeria
-        </option>
+        <option value="default">Galeria</option>
         <option value="foto">Fotos</option>
         <option value="video">Videos</option>
       </select>
 
       <select defaultValue="default">
-        <option value="default" disabled="disabled">
-          Actividades
-        </option>
+        <option value="default">Actividades</option>
         {Activities.map(e => {
           return (
             <option value={e.name} key={e.name}>
@@ -28,10 +24,9 @@ export default function Barra() {
         })}
       </select>
 
-      <select defaultValue="default" onChange="window.location.href=this.value">
-        <option value="default" disabled="disabled">
-          Club
-        </option>
+      {/* onChange="window.location.href=this.value" PONERLO DENTRO DEL SELECT PARA EL ONCHANGE*/}
+      <select defaultValue="default">
+        <option value="default">Club</option>
         <option value="historia">Historia</option>
         <option value="planes">Planes</option>
         <option value="Comunidad">Comunidad</option>
