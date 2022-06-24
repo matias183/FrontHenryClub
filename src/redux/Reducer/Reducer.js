@@ -14,6 +14,7 @@ import {
 	// DELETE_NEWS,
 	// DELETE_COMMENT,
 	CLEAR_PAGE,
+	GET_PROFILE,
 } from "../Actions/DataTypes";
 
 const initialState = {
@@ -107,6 +108,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
 				memberDetail: {},
 				newsDetail: {},
 			}
+			case GET_PROFILE:
+				return{
+					...state,
+					profile:payload,
+				}
 
 			default:
 			return state;

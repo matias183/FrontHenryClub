@@ -1,6 +1,6 @@
 import React from 'react';
 import Search from '../components/searchbar/SearchBar';
-import Barra from '../Barra/Barra';
+// import Barra from '../Barra/Barra';
 import { Link } from 'react-router-dom';
 import logoHenry from '../utils/fotos/logo.gif';
 import { FaArrowCircleRight, FaUserAlt } from 'react-icons/fa';
@@ -32,14 +32,7 @@ export default function navbar() {
             </p>{' '}
             {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
           </Link>
-          <div className="dropdownDos">
-            {/* ENTRAR A PERFIL DE USUARIO */}
-            <Link to="/login">
-              <p className="botonDeslizableDos">
-                <FaUserAlt />{' '}
-              </p>{' '}
-            </Link>
-          </div>
+
           <div className="dropdown-content">
             <Link to="/profile/:id">
               <span>Iniciar Sesión</span>
@@ -53,7 +46,7 @@ export default function navbar() {
         </div>
         <br />
       </div>
-      <Barra />
+      {/* <Barra /> */}
     </div>
   );
 }
