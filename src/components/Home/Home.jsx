@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getNews } from '../../redux/Actions/Action';
+import { useDispatch, useSelector } from 'react-redux';
 import S from './Home.module.css';
 import Footer from '../footer/footer.jsx';
 import NavBar from '../../navbar/navbar';
@@ -7,13 +9,34 @@ import GaleriaImg from '../Galeria de imagenes/GaleriaImg';
 import News from '../News/News';
 
 export default function Home() {
+  const news = useSelector(state => state.news);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getNews());
+  }, [dispatch]);
+
   return (
     <div className={S.contenedorGeneral}>
       <NavBar /> {/* ACA VA LA NAVBAR */}
       <Barra />
       <div className={S.contenido}>
         <div className={S.contenidoCentral}>
-          <News /> {/* ACA VA EL CONTENIDO GENERAL DE LA PAGINA */}
+          {news?.map(e => {
+            return (
+              <News
+                key={e.id}
+                image={
+                  e.image
+                    ? e.image
+                    : 'https://pbs.twimg.com/profile_images/631795502665756672/fZ5AQUNF_400x400.jpg'
+                }
+                title={e.title}
+                subtitle={e.subtitle}
+              />
+            );
+          })}
+          {/* ACA VA EL CONTENIDO GENERAL DE LA PAGINA */}
         </div>
 
         <div className={S.carouselImg}>

@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { useParams } from 'react-router-dom';
 import { detailNews } from '../../redux/Actions/Action';
+import { Link } from 'react-router-dom';
 import Footer from '../footer/footer';
 
 export default function NewsDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const noticia = useSelector(state => state.detail_news);
+  const noticia = useSelector(state => state.newsDetail);
 
   useEffect(() => {
     dispatch(detailNews(id));
@@ -51,12 +53,24 @@ export default function NewsDetail() {
 
   return (
     <div>
+      <Link to={'/home'}>
+        <button>
+          <span>Volver</span>
+        </button>
+      </Link>
       <div>
         {
           <div>
-            <h2> {noticia?.title}</h2>
-            <img src={noticia.image} alt="img not found" />
-            <span>{noticia.subtitle}</span>
+            <h2> {noticia.title}</h2>
+            <img
+              src={
+                noticia.image
+                  ? noticia.image
+                  : 'https://pbs.twimg.com/profile_images/631795502665756672/fZ5AQUNF_400x400.jpg'
+              }
+              alt="img not found"
+            />
+            <h4>{noticia.subtitle}</h4>
             <p> {noticia.text} </p>
           </div>
         }
