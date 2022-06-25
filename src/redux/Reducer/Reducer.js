@@ -15,6 +15,7 @@ import {
 	// DELETE_COMMENT,
 	CLEAR_PAGE,
 	GET_PROFILE,
+	FILTER_NEWS,
 } from "../Actions/DataTypes";
 
 const initialState = {
@@ -99,7 +100,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
 				return{
 					...state,
 					//Asumiendo que la tabla tenga una columna sport que indique el tipo de deporte de la noticia
-					news: state.news.filter(news => news.sport === payload)
+					news: state.news.filter(news => news.sportId === payload)
 				}
 			
 			case CLEAR_PAGE: 

@@ -3,7 +3,6 @@ import {
 	ALL_MEMBERS,
 	ALL_IMAGES,
 	ALL_NEWS,
-	SEARCH_SEARCH,
 	DETAIL_NEWS,
 	DETAIL_MEMBER,
 	ALL_COMMENTS,
@@ -14,7 +13,9 @@ import {
 	DELETE_MEMBER,
 	DELETE_NEWS,
 	DELETE_COMMENT,
+	SEARCH_SEARCH,
 	CLEAR_PAGE,
+	FILTER_NEWS,
 } from "./DataTypes";
 
 
@@ -240,13 +241,18 @@ export function GetProfile(id){
   };
 }
 
-//Buscar ???
-export const search = (name) => {
+//Buscar
+export function search(name) {
 	return {
 		type: SEARCH_SEARCH,
 		payload: name,
 	};
 };
+
+//Filtrar noticias
+export function filterNews(name){
+	return {type: FILTER_NEWS, payload: name}
+}
 
 //Limpiar estado
 export const clearPage = () => {
