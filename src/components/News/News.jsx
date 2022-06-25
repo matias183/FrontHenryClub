@@ -5,43 +5,31 @@ import { useParams } from 'react-router-dom';
 import { getNews } from '../../redux/Actions/Action';
 import './News.css';
 
-export default function Noticias({ title, subtitle, image }) {
-  const { id } = useParams();
+export default function Noticias({ title, subtitle, image, id }) {
+  // const { id } = useParams();
   const dispatch = useDispatch();
   const noticia = useSelector(state => state.news);
 
-  // useEffect(() => {
-  //   dispatch(getNews());
-  // }, [dispatch]);
-
   return (
-    <div>
-      <div>
-        <Link to={'/home'}>
-          <button>
-            <span>Volver</span>
-          </button>
-        </Link>
-      </div>
-      <div>
-        <h1 className="titleNews">Noticias del club</h1>
-        <div className="newsContainer">
-          <div className="news" key={title}>
-            <img
-              src={
-                image
-                  ? image
-                  : 'https://pbs.twimg.com/profile_images/631795502665756672/fZ5AQUNF_400x400.jpg'
-              }
-              alt="img not found"
-              className="imgNews"
-            />
-            <h2>{title}</h2>
-            <h3>{subtitle}</h3>
-            <Link to={`/news/ ${id}`}>Leer Más...</Link>
-          </div>
-        </div>
-      </div>
+    <div className="news" key={title}>
+      <img
+        src={
+          image
+            ? image
+            : 'https://pbs.twimg.com/profile_images/631795502665756672/fZ5AQUNF_400x400.jpg'
+        }
+        alt="img not found"
+        className="imgNews"
+      />
+      <h2 className="titleNewss">{title.slice(0, 20) + '...'}</h2>
+      <h3 className="subtitleNews">
+        {subtitle.split(' ').slice(0, 10).join(' ') + ' ...'}
+      </h3>
+      <Link to={`/news/${id}`}>
+        <button>
+          <span>Leer Más...</span>
+        </button>
+      </Link>
     </div>
   );
 }

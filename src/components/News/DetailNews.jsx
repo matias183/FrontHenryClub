@@ -58,7 +58,7 @@ export default function NewsDetail() {
           <span>Volver</span>
         </button>
       </Link>
-      <div>
+      <div className="detalleNoticia">
         {
           <div>
             <h2> {noticia.title}</h2>
@@ -76,8 +76,20 @@ export default function NewsDetail() {
         }
       </div>
       <div className="seccionComentarios">
+        {/* NECESITO TENER ESTADO DE REDUX PARA MAPEAR COMENTARIOS Y QUE SE VEAN CUANDO SE SUBMITEEN, HACER UN LOCAL STATE*/}
         <section>
-          <h3>Comentarios:</h3>
+          <div className="seccionComentariosHechos">
+            <h3>Comentarios:</h3>
+            <div>
+              <div className="comentariosHechos">
+                {/* <p>{localState."algo".join('<br/> ')}</p> */}
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <hr />
+        <section className="sectionEscribirComentario">
           <div className="inputName">
             <label htmlFor="">Nombre</label>
             <input onChange={validarInputName} type="text" />
@@ -102,19 +114,6 @@ export default function NewsDetail() {
             <button onSubmit={handleSubmit} type="submit">
               <span>Enviar</span>
             </button>
-          </div>
-        </section>
-
-        {/* NECESITO TENER ESTADO DE REDUX PARA MAPEAR COMENTARIOS Y QUE SE VEAN CUANDO SE SUBMITEEN, HACER UN LOCAL STATE*/}
-        <section>
-          <div className="seccionComentariosHechos">
-            <h3>Comentarios:</h3>
-            <div>
-              <div className="comentariosHechos">
-                {/* <p>{localState."algo".join('<br/> ')}</p> */}
-                <p></p>
-              </div>
-            </div>
           </div>
         </section>
       </div>

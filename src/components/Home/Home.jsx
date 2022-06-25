@@ -19,13 +19,18 @@ export default function Home() {
   return (
     <div className={S.contenedorGeneral}>
       <NavBar /> {/* ACA VA LA NAVBAR */}
+      <div className={S.carouselImg}>
+        <GaleriaImg />
+      </div>
       <Barra />
       <div className={S.contenido}>
+        <h1 className={S.titleNews}>Últimas del club</h1>
         <div className={S.contenidoCentral}>
-          {news?.map(e => {
+          {news?.slice(0, 4).map(e => {
             return (
               <News
                 key={e.id}
+                id={e.id}
                 image={
                   e.image
                     ? e.image
@@ -36,11 +41,8 @@ export default function Home() {
               />
             );
           })}
-          {/* ACA VA EL CONTENIDO GENERAL DE LA PAGINA */}
-        </div>
 
-        <div className={S.carouselImg}>
-          <GaleriaImg />
+          {/* ACA VA EL CONTENIDO GENERAL DE LA PAGINA */}
         </div>
 
         <div className={S.iconoWsp}>{/* ACA VA EL ICONO DE WSP */}</div>
