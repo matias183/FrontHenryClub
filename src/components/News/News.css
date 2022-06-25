@@ -46,7 +46,6 @@
   background: linear-gradient(to right, #222861, rgb(255, 255, 255), #222861);
 }
 
-
 .textDescription {
   white-space: nowrap;
   overflow: hidden;
@@ -103,4 +102,3 @@
   backdrop-filter: blur(9px);
   margin-left: -20px;
 }
-

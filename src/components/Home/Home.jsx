@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className={S.contenedorGeneral}>
       <NavBar /> {/* ACA VA LA NAVBAR */}
-      <Barra/>
+      <Barra />
       <div className={S.contenido}>
         <div className={S.contenidoCentral}>
           <News /> {/* ACA VA EL CONTENIDO GENERAL DE LA PAGINA */}
