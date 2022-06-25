@@ -33,8 +33,12 @@ export function getMembers() {
 
 export function getContacts() {
 	return async (dispatch) => {
-		let { data } = await axios.get("http://localhost:3001/contact");
-		return dispatch({ type: ALL_CONTACTS, payload: data });
+		try {
+			let { data } = await axios.get("http://localhost:3001/contact");
+			return dispatch({ type: ALL_CONTACTS, payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
 	};
 }
 
@@ -74,8 +78,12 @@ export function getComments() {
 //
 export function loginMember(input) {
 	return async function () {
-		const { data } = await axios.post("ruta crear usuario", input);
-		return data;
+		try {
+			const { data } = await axios.post("ruta crear usuario", input);
+			return data;
+		} catch (error) {
+			alert(error.response.data);
+		}
 	};
 }
 
@@ -94,29 +102,41 @@ export function detailMember(id) {
 
 export function detailNews(id) {
 	return async function (dispatch) {
-		const { data } = await axios.get(`http://localhost:3001/news/${id}`);
-		dispatch({
-			type: DETAIL_NEWS,
-			payload: data,
-		});
+		try {
+			const { data } = await axios.get(`http://localhost:3001/news/${id}`);
+			dispatch({
+				type: DETAIL_NEWS,
+				payload: data,
+			});
+		} catch (error) {
+			alert(error.response.data);
+		}
 	};
 }
 
 //Post
 export function createNews(input) {
 	return async function () {
-		const { data } = await axios.post(
-			"http://localhost:3001/news/crear",
-			input
-		);
+		try {
+			const { data } = await axios.post(
+				"http://localhost:3001/news/crear",
+				input
+			);
+		} catch (error) {
+			alert(error.response.data);
+		}
 		return data;
 	};
 }
 
 export function createActivity(input) {
 	return async function () {
-		const { data } = await axios.post("ruta crear actividad", input);
-		return data;
+		try {
+			const { data } = await axios.post("ruta crear actividad", input);
+			return data;
+		} catch (error) {
+			alert(error.response.data);
+		}
 	};
 }
 export function createMember(input) {
@@ -132,11 +152,11 @@ export function createMember(input) {
 	};
 }
 
-export function createComment(input) {
+export function createComment(idNews, idUser, input) {
 	return async () => {
 		try {
 			let { data } = await axios.post(
-				"http://localhost:3001/comment/comentar",
+				`http://localhost:3001/comment/comentar/${idNews}/${idUser}`,
 				input
 			);
 			return data;
