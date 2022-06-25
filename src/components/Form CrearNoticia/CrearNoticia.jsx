@@ -9,25 +9,26 @@ import { createNews } from '../../redux/Actions/Action';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import S from '../Form CrearNoticia/CrearNoticia.module.css';
 import * as yup from 'yup';
 
-const schema = yup.object().shape({
-  foto: yup
-    .mixed()
-    .required('Necesitas subir una foto.')
-    .test('fileSize', 'El archivo es muy grande.', value => {
-      console.log(value);
-      return value && value[0].size <= 10000000;
-    })
-    .test('type', 'Solo se soporta archivos "JPG, JPEG ,PNG, SVG"', value => {
-      return (
-        (value && value[0].type === 'image/jpg') ||
-        value[0].type === 'image/jpeg' ||
-        value[0].type === 'image/png' ||
-        value[0].type === 'image/png'
-      );
-    }),
-});
+// const schema = yup.object().shape({
+//   foto: yup
+//     .mixed()
+//     .required('Necesitas subir una foto.')
+//     .test('fileSize', 'El archivo es muy grande.', value => {
+//       console.log(value);
+//       return value && value[0].size <= 10000000;
+//     })
+//     .test('type', 'Solo se soporta archivos "JPG, JPEG ,PNG, SVG"', value => {
+//       return (
+//         (value && value[0].type === 'image/jpg') ||
+//         value[0].type === 'image/jpeg' ||
+//         value[0].type === 'image/png' ||
+//         value[0].type === 'image/png'
+//       );
+//     }),
+// });
 
 export default function CrearAnuncio() {
   // estados:
@@ -43,9 +44,8 @@ export default function CrearAnuncio() {
     title: '',
     subtitle: '',
     text: '',
-    image: '',
-    sportId: '',
-    userId: '',
+    // image: '',
+
     news: [],
   });
 
@@ -55,37 +55,42 @@ export default function CrearAnuncio() {
 
   // validaciones:
   function validarNombre(e) {
-    if (/\d/.test(e.target.value)) {
+    let regTitulo = /\w/;
+    if (regTitulo.test(e.target.value) && e.target.value.length > 150) {
       //fijarse RegEx
       setError('Datos Nombre Invalidos.');
     } else {
       setError('');
+      handleChange(e);
     }
     // handleChange(e);
   }
 
   function validarSubtitulo(e) {
-    if (!/\d/.test(e.target.value)) {
+    let regSubt = /\w/;
+    if (regSubt.test(e.target.value) && e.target.value.length > 255) {
       //fijarse RegEx
       setError('Datos Subtitulos Invalidos.');
     } else {
       setError('');
     }
-    // handleChange(e);
+    handleChange(e);
   }
 
   function validarTextNoticia(e) {
-    if (/\d/.test(e.target.value) && e.target.value > 20) {
+    let regText = /\w/;
+    if (regText.test(e.target.value) && e.target.value.length < 20) {
       setError('Texto invalido.');
+      console.log(e.target.value);
     } else {
       setError('');
     }
-    // handleChange(e);
+    handleChange(e);
   }
 
   //FIJARSE COMO VALIDAR EL INPUT FILE
   // function validarImagen(e) {
-  //   if (/\d/.test(evt.target.value) && evt.target.value > 20) {
+  //   if (!/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(e.target.value)) {
   //     // fijarse RegEx que es igual a los demas PERO PARA IMAGENES DEL INPUT "FILE"
   //     setError('Formato de imagen invalido.');
   //   } else {
@@ -95,15 +100,13 @@ export default function CrearAnuncio() {
   // }
 
   async function handleSubit(e) {
+    e.preventDefault();
     if (
-      // input.news.length > 0 &&
-      // input.title.length > 0 &&
-      // typeof input.title === 'string' &&
-      // input.subtitle.length > 0 &&
-      // typeof input.subtitle === 'string' &&
-      // input.text.length > 0 &&
-      // input.image
-      true
+      input.title &&
+      typeof input.title === 'string' &&
+      input.subtitle &&
+      typeof input.subtitle === 'string' &&
+      input.text
     ) {
       dispatch(createNews(input));
       setInput({
@@ -111,58 +114,111 @@ export default function CrearAnuncio() {
         title: '',
         subtitle: '',
         text: '',
-        image: '',
+        // image: '',
 
         news: [],
       });
-      e.preventDefault();
+
       alert('Noticia Creada');
     } else {
       alert('Todos los campos deben llenarse para publicar su noticia.');
     }
   }
 
-  // async function handleChange(e) {
+  // function handleChange(e) {
   //   setInput({
   //     ...input,
   //     [e.target.title]: e.target.value,
   //   });
   // }
+  const handleChange = e => {
+    e.preventDefault();
+    setInput(prevInput => {
+      const newInput = {
+        ...prevInput,
+        [e.target.name]: e.target.value,
+      };
+
+      return newInput;
+    });
+  };
 
   return (
-    <div>
-      <Link to={'/home'}>
-        <button>
-          <span>Volver</span>
-        </button>
-      </Link>
-      <h1>Crear Noticias</h1>
-      <form onSubmit={handleSubit} id="form">
-        <label htmlFor="">Titulo de Noticia: </label>
-        <input type="text" onChange={validarNombre} />
+    <div className={S.contenedorGeneral}>
+      <h1 className={S.titulo}>Crear Noticias</h1>
+      <form onSubmit={handleSubit} id="form" className={S.form}>
+        <label className={S.labelTit}>Titulo de Noticia: </label>
+        <input
+          className={S.inputName}
+          type="text"
+          onChange={e => validarNombre(e)}
+          name="title"
+          value={input.title}
+          placeholder="Titulo Noticia"
+        />
+        <div className={S.error}>
+          <p>
+            {error !== 'Datos Nombre Invalidos.' ? null : (
+              <p>El nombre no puede superar los X caracteres.</p>
+            )}
+          </p>
+        </div>
 
-        <label htmlFor="">Subtitulo de Noticia: </label>
-        <input type="text" onChange={validarSubtitulo} />
+        <label className={S.labelSubt}>Subtitulo de Noticia: </label>
+        <input
+          className={S.inputSubt}
+          type="text"
+          onChange={validarSubtitulo}
+          name="subtitle"
+          // value={input.subtitle}
+          placeholder="Subtitulo de Noticia"
+        />
+        <div className={S.error}>
+          <p>
+            {error !== 'Datos Subtitulos Invalidos.' ? null : (
+              <p>
+                El subtitulo de la noticia no puede superar los X caracteres.
+              </p>
+            )}
+          </p>
+        </div>
 
-        <label htmlFor="">Descripción de Noticia: </label>
+        <label className={S.labelDescr}>Descripción de Noticia: </label>
         <textarea
-          name=""
-          id=""
+          className={S.textarea}
+          name="text"
+          id="text"
           cols="40"
           rows="5"
           placeholder="Escribe la noticia"
           onChange={validarTextNoticia}
         ></textarea>
+        <div className={S.error}>
+          <p>
+            {error !== 'Texto invalido.' ? null : (
+              <p>
+                La descripcion no puede estar vacia y debe tener al menos 20
+                caracteres.
+              </p>
+            )}
+          </p>
+        </div>
 
-        <label htmlFor="">Imagen de la Noticia: </label>
+        {/* <label htmlFor="">Imagen de la Noticia: </label>
         {/* HACER ONCHANGE PARA INPUT FILE */}
+        {/* <p>{'Solo se soporta archivos "JPG, JPEG ,PNG, SVG"'}</p> */}
         {/* onChange={validarImagen} */}
-        <input type="file" name="foto" />
-        {error.foto && <p>{error.foto.message}</p>}
+        {/* <input
+          type="file"
+          name="foto"
+          // onChange={validarImagen}
+          // value={input.image}
+        /> */}
+        {/* {error.foto && <p>{error.foto.message}</p>}  */}
 
         {/* onChange={getNews} */}
         <button id="boton" value="Publicar" type="submit">
-          Publicar
+          <span>Publicar</span>
         </button>
       </form>
     </div>
