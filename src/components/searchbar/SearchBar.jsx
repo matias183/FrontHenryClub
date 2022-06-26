@@ -50,7 +50,9 @@ export default function SearchBar() {
           <button className="botones" type="submit" onClick={handleSubmit}>
             <span>Buscar</span>
           </button>
-          <button onSubmit={volverATodasLasNoticias}>Recargar</button>
+          <button type="button" onClick={volverATodasLasNoticias}>
+            Recargar
+          </button>
         </form>
         <br />
         {/* <div>
