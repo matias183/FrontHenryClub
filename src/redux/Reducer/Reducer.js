@@ -15,7 +15,7 @@ import {
 	// DELETE_COMMENT,
 	CLEAR_PAGE,
 	GET_PROFILE,
-	FILTER_NEWS,
+	// FILTER_NEWS,
 } from "../Actions/DataTypes";
 
 const initialState = {
@@ -96,12 +96,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
 				};
 				return { ...state, news: buscar(payload, state.news) }; // REVISAR QUE BUSCAMOS
 
-			case FILTER_NEWS:
-				return{
-					...state,
-					//Asumiendo que la tabla tenga una columna sport que indique el tipo de deporte de la noticia
-					news: state.news.filter(news => news.sportId === payload)
-				}
+			//		El filtro se está haciendo desde el back
+			// case FILTER_NEWS:
+			// 	return{
+			// 		...state,
+			// 		//Asumiendo que la tabla tenga una columna sport que indique el tipo de deporte de la noticia
+			// 		news: state.news.filter(news => news.sportId === payload)
+			// 	}
 			
 			case CLEAR_PAGE: 
 			return {
