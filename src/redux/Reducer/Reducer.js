@@ -91,10 +91,10 @@ const rootReducer = (state = initialState, { type, payload }) => {
 			//BUSCAR
 			case SEARCH_SEARCH:
 				//functión para buscar en el estado
-				const buscar = (name, arr) => {
-					return arr.filter((e) => e.title.toLowerCase() === name.toLowerCase());
-				};
-				return { ...state, news: buscar(payload, state.news) }; // REVISAR QUE BUSCAMOS
+				return { 
+					...state, 
+					news: payload 
+				}; 
 
 			//		El filtro se está haciendo desde el back
 			// case FILTER_NEWS:
@@ -110,6 +110,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
 				memberDetail: {},
 				newsDetail: {},
 			}
+			
 			case GET_PROFILE:
 				return{
 					...state,
