@@ -65,11 +65,13 @@ export function getNews() {
 	};
 }
 
-export function getComments() {
+export function getComments(id) {
 	return async (dispatch) => {
 		try {
-			let { data } = await axios.get("http://localhost:3001/comment");
-			return dispatch({ type: ALL_COMMENTS, payload: data });
+			let { data } = await axios.get(`http://localhost:3001/comment/${id}`);
+			if(data) return dispatch({ type: ALL_COMMENTS, payload: data });
+			//Necesitamos que si no encuentra ningun comentario que el back regrese un array vacío
+			// else return dispatch({type:ALL_COMMENTS, payload:[]})
 		} catch (error) {
 			alert(error.response.data);
 		}
