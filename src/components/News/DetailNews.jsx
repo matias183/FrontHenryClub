@@ -5,7 +5,7 @@ import {
   clearPage,
   createComment,
   detailNews,
-  getComments,
+  // getComments,
 } from '../../redux/Actions/Action';
 import { Link } from 'react-router-dom';
 import Footer from '../footer/footer';
@@ -17,11 +17,14 @@ export default function NewsDetail() {
 
   const noticia = useSelector(state => state.newsDetail);
 
-  const comentario = useSelector(state => state.comments);
+  // const comentario = useSelector(state => state.comments);
 
   useEffect(() => {
     dispatch(detailNews(id));
-    dispatch(getComments());
+    // dispatch(getComments(id));
+    return () => {
+      dispatch(clearPage())
+    }
   }, []);
 
   const [error, setError] = useState('');
@@ -53,7 +56,7 @@ export default function NewsDetail() {
         comment: '',
       });
       alert('Comentario Enviado');
-      dispatch(getComments());
+      dispatch(detailNews(id));
     } else {
       alert('Todos los campos deben llenares para la enviar su comentario.');
     }
@@ -67,7 +70,7 @@ export default function NewsDetail() {
   // }
 
   return (
-    <div>
+    <div className='containerTotal'>
       <Link to={'/home'}>
         <button>
           <span>Volver</span>
@@ -76,7 +79,7 @@ export default function NewsDetail() {
       <div className="detalleNoticia">
         {
           <div>
-            <h2> {noticia.title}</h2>
+            <h2 className='noticiaTitulo'> {noticia.title}</h2>
             <img
               src={
                 noticia.image
@@ -85,22 +88,21 @@ export default function NewsDetail() {
               }
               alt="img not found"
             />
-            <h4>{noticia.subtitle}</h4>
-            <p> {noticia.text} </p>
+            <h4 className='noticiaSubtitulo'>{noticia.subtitle}</h4>
+            <p className='noticiaTexto'> {noticia.text} </p>
           </div>
         }
       </div>
       <div className="seccionComentarios">
-        {/* NECESITO TENER ESTADO DE REDUX PARA MAPEAR COMENTARIOS Y QUE SE VEAN CUANDO SE SUBMITEEN, HACER UN LOCAL STATE*/}
         <section>
           <h3>Comentarios:</h3>
           <div className="seccionComentariosHechos">
             <div>
               <div className="comentariosHechos">
-                {comentario?.map((comment, i) => (
-                  <div className="comentariosHechos" key={i}>
-                    <h3 className="nombreComentario">{comment.name} :</h3>
-                    <h4 className="comentarioEscrito">{comment.comment}</h4>
+                {noticia.comments?.map((comment,i) => (
+                  <div className='containerComment' key={i}>
+                  <h3>{comment.name}:</h3>
+                  <h4>{comment.comment}</h4>
                   </div>
                 ))}
               </div>

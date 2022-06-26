@@ -2,16 +2,16 @@ import React from 'react'
 import{Link, useParams} from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import logoHenry from '../utils/fotos/logo.gif'
+import logoHenry from '../../utils/fotos/logo.gif'
 import './Profile.css'
-import {GetProfile} from '../redux/Action.js'
+import {GetProfile } from '../../redux/Actions/Action.js'
 
 export default function Profile() {
   const dispatch = useDispatch();
   const { id } = useParams();
 
   useEffect(() => {
-    dispatch(GetProfile(id));
+    dispatch(GetProfile, (id));
   }, [dispatch, id]);
 
   const myProfile = useSelector((state) => state.detail);
