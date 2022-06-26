@@ -114,12 +114,47 @@ hr {
   text-transform: uppercase;
   text-shadow: 2px 2px 2px gray;
 }
-.comentariosHechos p {
+.seccionComentariosHechos {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  flex-wrap: wrap;
   width: 100%;
+  max-width: 800px;
   border: #000000e3 solid 1px;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.167);
+  background-color: #9a875752;
   backdrop-filter: blur(9px);
-  margin-left: -20px;
+  /* margin-left: -20px; */
+}
+/* .comentariosHechos {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  border: solid 2px red;
+  width: 80%;
+} */
+.seccionComentariosHechos .nombreComentario {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin: auto;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: underline;
+  border-top: solid 2px #28139e;
+}
+.seccionComentariosHechos .comentarioEscrito {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin: auto;
+  font-size: 15px;
+  margin-bottom: 25px;
+  text-align: end;
 }

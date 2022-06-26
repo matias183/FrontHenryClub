@@ -1,7 +1,7 @@
-import React from 'react'
-import { Route, NavLink} from 'react-router-dom';
-import Header from "../navbar/navbar"
-import Socios from './pageprueba/Socios'
+import React from 'react';
+import { Route, NavLink } from 'react-router-dom';
+import Header from '../navbar/navbar';
+import Socios from './pageprueba/Socios';
 import Home from './Home2/Home2';
 import News from './News2/News2';
 import FormActiv from '../components/Form Create Activities/NewActivity';
@@ -60,5 +60,5 @@ export default function PAdmin() {
     </div>
     </div>
     </>
-  )
+  );
 }
