@@ -112,13 +112,6 @@ export default function Socios () {
   const bodyEditar=(
     <div className={styles.modal}>
       <h3>Edit User</h3>
-      <TextField  className={styles.inputMaterial} label="Id" name="id" onChange={HandleChange} value={input&&input.id} />
-      <br />
-      <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} value={input&&input.name} />          
-      <br />
-      <TextField className={styles.inputMaterial} label="UserName" name="username" onChange={HandleChange} value={input&&input.username} />
-
-
       <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} value={input&&input.name}/>          
       <br />
         <TextField className={styles.inputMaterial} label="Surname" name="surname" onChange={HandleChange}  value={input&&input.surname}/>
