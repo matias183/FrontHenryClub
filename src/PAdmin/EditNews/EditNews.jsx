@@ -4,7 +4,7 @@ import { useEffect, useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {Table,TableContainer,TableHead,TableCell,TableBody,TableRow, Modal, Button, TextField} from "@material-ui/core";
 import {Edit, Delete} from "@material-ui/icons";
-import {getMembers,deleteMember,createMember,updateMember } from "../../redux/Actions/Action";
+import {getNews,deleteNews,updateNews } from "../../redux/Actions/Action";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -26,11 +26,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Socios () {
+export default function EditNews () {
   const styles =useStyles()
   const dispatch= useDispatch()
   const members = useSelector((state) => state.members);
-  const [insertModal, setinsertModal]= useState (false);
   const [putModal, setputModal]= useState (false);
   const [deleteModal, setdeleteModal]= useState (false);
 
@@ -38,11 +37,12 @@ export default function Socios () {
     id:"",	
     name:"",	
     username:"",
+    comentario:"",
   })
  
 
   useEffect(() => {
-    dispatch(getMembers());
+    dispatch(getNews());
   }, [dispatch]);
 
   const HandleChange = (e) => {
@@ -52,26 +52,18 @@ export default function Socios () {
   };
 
 
-  const CrearMember = () => {
-    // dispatch(createMember())
-    abricerrarMInsert()
- };
 
-  const BorrarMember = (id) => {
-    // dispatch(deleteMember(id));
+  const BorrarNews = (id) => {
+    // dispatch(deleteNews(id));
     abricerrarMEliminar()
   };
 
-  const EditarMember = (id) => {
-    // dispatch(updateMember(id))
+  const EditNews = (id) => {
+    // dispatch(updateNews(id))
     abricerrarMEdit()
  };
 
 
-
- const abricerrarMInsert=() =>{
-    setinsertModal(!insertModal)
-  };
   const abricerrarMEdit=() =>{
     setputModal(!putModal)
   };
@@ -85,21 +77,6 @@ export default function Socios () {
     (caso === "Editar")?abricerrarMEdit():abricerrarMEliminar()
    };
 
-  const bodyInsertar=(
-    <div className={styles.modal}>
-      <h3>New User</h3>
-      <TextField className={styles.inputMaterial} label="Id" name="id" onChange={HandleChange} />
-      <br />
-      <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} />          
-      <br />
-      <TextField className={styles.inputMaterial} label="UserName" name="username" onChange={HandleChange} />
-      <br /><br />
-      <div align="right">
-        <Button color="primary" onClick={CrearMember} >Insertar</Button>
-        <Button onClick={abricerrarMInsert} >Cancelar</Button>
-      </div>
-    </div>
-  )
 
   const bodyEditar=(
     <div className={styles.modal}>
@@ -110,9 +87,11 @@ export default function Socios () {
       <br />
       <TextField className={styles.inputMaterial} label="UserName" name="username" onChange={HandleChange} value={input&&input.username} />
 
-      <br /><br />
+      <br />
+      <TextField className={styles.inputMaterial} label="Comentarios" name="comentario" onChange={HandleChange} value={input&&input.comentario} />
+      <br />
       <div align="right">
-        <Button color="primary" onClick={EditarMember} >Editar</Button>
+        <Button color="primary" onClick={EditNews} >Editar</Button>
         <Button onClick={abricerrarMEdit} >Cancelar</Button>
       </div>
     </div>
@@ -122,7 +101,7 @@ export default function Socios () {
     <div className={styles.modal}>
     <p>Estas seguro que deseas eliminar al socio <b>{input&&input.name}</b>?</p>
       <div align="right">
-        <Button color="primary" onClick={BorrarMember} >SI</Button>
+        <Button color="primary" onClick={BorrarNews} >SI</Button>
         <Button onClick={abricerrarMEliminar} >NO</Button>
       </div>
     </div>
@@ -135,7 +114,7 @@ console.log(members)
   return (
     <>
     <br />
-    <Button onClick={abricerrarMInsert}> Nuevo User</Button>
+  <p>Editar News</p>
     <br />
     <br />
   <TableContainer>
@@ -144,8 +123,9 @@ console.log(members)
 
 <TableRow>
 <TableCell>Id</TableCell>
-<TableCell>Name</TableCell>
-<TableCell>Username</TableCell>
+<TableCell>Title</TableCell>
+<TableCell>Contenido</TableCell>
+<TableCell>Comentarios</TableCell>
 <TableCell>Acciones</TableCell>
 </TableRow>
 
@@ -158,6 +138,7 @@ console.log(members)
       <TableCell>{e.id}</TableCell>
       <TableCell>{e.name}</TableCell>
       <TableCell>{e.username}</TableCell>
+      <TableCell>{e.website}</TableCell>
       <TableCell>
         <Edit 
         className={styles.iconos} 
@@ -176,12 +157,6 @@ console.log(members)
 </Table>
 
   </TableContainer>
- 
-<Modal
-open={insertModal}
-onClose={abricerrarMInsert}
->{bodyInsertar}
-</Modal>
 
 <Modal
 open={putModal}
