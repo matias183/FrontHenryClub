@@ -1,51 +1,49 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { useParams } from 'react-router-dom';
-import { detailNews } from '../../redux/Actions/Action';
+import { createComment, detailNews, getComments } from '../../redux/Actions/Action';
 import { Link } from 'react-router-dom';
 import Footer from '../footer/footer';
 
 export default function NewsDetail() {
+ 
   const { id } = useParams();
+ 
   const dispatch = useDispatch();
+ 
   const noticia = useSelector(state => state.newsDetail);
+
+  const comentario = useSelector(state => state.comments)
 
   useEffect(() => {
     dispatch(detailNews(id));
-  }, [dispatch, id]);
+    dispatch(getComments())
+  }, []);
 
   const [error, setError] = useState('');
 
   const [localState, setLocalState] = useState({
     name: '',
+    comment: '',
   });
 
-  function validarInputName(e) {
-    if (localState.name > 1) {
-      error.name = 'Los datos no son validos.';
-    } else {
-      setError('');
-    }
-    handleChange(e);
-  }
-  async function handleChange(e) {
+  function handleChange(e) {
     setLocalState({
       ...localState,
       [e.target.name]: e.target.value,
     });
   }
 
-  async function handleSubmit(e) {
-    if (localState.length > 0 && typeof localState.name === 'string') {
-      // dispatch(postComentario(localState)); NECESITO LA ACTION DE POST COMENTARIOS.
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (typeof localState.name === 'string' && localState.comment.trim() !== "") {
+      dispatch(createComment(id,localState))
       setLocalState({
         name: '',
-        comentario: '',
+        comment: '',
       });
-      e.preventDefault();
-
       alert('Comentario Enviado');
+      dispatch(getComments())
     } else {
       alert('Todos los campos deben llenares para la enviar su comentario.');
     }
@@ -82,7 +80,12 @@ export default function NewsDetail() {
             <h3>Comentarios:</h3>
             <div>
               <div className="comentariosHechos">
-                {/* <p>{localState."algo".join('<br/> ')}</p> */}
+                {comentario?.map((comment,i) => (
+                  <div key={i}>
+                  <h3>{comment.name}</h3>
+                  <h4>{comment.comment}</h4>
+                  </div>
+                ))}
                 <p></p>
               </div>
             </div>
@@ -91,27 +94,30 @@ export default function NewsDetail() {
         <hr />
         <section className="sectionEscribirComentario">
           <div className="inputName">
+
             <label htmlFor="">Nombre</label>
-            <input onChange={validarInputName} type="text" />
+            <input name="name" value={localState.name} onChange={handleChange} type="text" />
             <div className="error">
               <p>
                 {error !== 'Los datos no son validos.' ? null : (
                   <p>El nombre no puede estar vacio.</p>
-                )}
+                  )}
               </p>
             </div>
           </div>
           <div>
             <textarea
-              name=""
               id=""
+              name="comment"
               cols="50"
+              value={localState.comment}
+              onChange={handleChange}
               rows="5"
               placeholder="Escribe tu comentario..."
-            ></textarea>
+              ></textarea>
           </div>
           <div className="enviarComentario">
-            <button onSubmit={handleSubmit} type="submit">
+            <button onClick={handleSubmit} type="button">
               <span>Enviar</span>
             </button>
           </div>

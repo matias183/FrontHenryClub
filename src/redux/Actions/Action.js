@@ -122,10 +122,10 @@ export function createNews(input) {
 				"http://localhost:3001/news/crear",
 				input
 			);
+			return data;
 		} catch (error) {
 			alert(error.response.data);
 		}
-		return data;
 	};
 }
 
@@ -152,14 +152,18 @@ export function createMember(input) {
 	};
 }
 
-export function createComment(idNews, idUser, input) {
-	return async () => {
+export function createComment(idNews, input) {
+	return async (dispatch) => {
 		try {
-			let { data } = await axios.post(
-				`http://localhost:3001/comment/comentar/${idNews}/${idUser}`,
+			await axios.post(
+				`http://localhost:3001/comment/comentar/${idNews}`,
 				input
 			);
-			return data;
+
+			// let {data} = await axios.get("http://localhost:3001/user")
+
+			// return dispatch({type:ALL_COMMENTS,payload:data});
+			return 
 		} catch (error) {
 			alert(error.response.data);
 		}
@@ -251,12 +255,12 @@ export function deleteMember(id) {
 export function GetProfile(id) {
 	return async function (dispatch) {
 		try {
-			const json = await axios.get(
+			const {data} = await axios.get(
 				"http://localhost:3001/profile/:id"
 			); /*"http://localhost:3001/profile/" + id lo puse asi para probar como se ve, para que funcione poner el codigo comentado*/
 			return dispatch({
 				type: "GET_PROFILE",
-				payload: json.data,
+				payload: data,
 			});
 		} catch (error) {
 			console.log(error);

@@ -15,7 +15,7 @@ import {
 	// DELETE_COMMENT,
 	CLEAR_PAGE,
 	GET_PROFILE,
-	FILTER_NEWS,
+	// FILTER_NEWS,
 } from "../Actions/DataTypes";
 
 const initialState = {
