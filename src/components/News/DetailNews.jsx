@@ -22,6 +22,9 @@ export default function NewsDetail() {
   useEffect(() => {
     dispatch(detailNews(id));
     dispatch(getComments());
+    return () => {
+      dispatch(clearPage())
+    }
   }, []);
 
   const [error, setError] = useState('');

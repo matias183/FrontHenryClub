@@ -16,6 +16,7 @@ import {
 	SEARCH_SEARCH,
 	CLEAR_PAGE,
 	FILTER_NEWS,
+	CLEAR_COMMENTS,
 } from "./DataTypes";
 
 //Get
@@ -282,6 +283,11 @@ export function filterNews(name) {
 		let {data} = axios.get(`http://localhost:3001/news?title=${name}`)
 		return dispatch({type: SEARCH_SEARCH, payload: data})
 	}
+}
+
+//Limpiar estado de comentarios (Decidir si usamos un clear para cada estado o uno general para todos los estados de detalles)
+export function clearComments(){
+	return {type:CLEAR_COMMENTS}
 }
 
 //Limpiar estado

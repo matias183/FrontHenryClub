@@ -8,7 +8,7 @@ import FormActiv from '../components/Form Create Activities/NewActivity';
 import Createnews from '../components/Form CrearNoticia/CrearNoticia'
 import Request from './Request/Request'
 import EditNews from './EditNews/EditNews'
-import PanelTrabajo from './PanelTrabajo/PaneldeTrabajo'
+// import PanelTrabajo from './PanelTrabajo/PaneldeTrabajo'
 import s from './Profile.module.css'
 
 
@@ -42,9 +42,9 @@ export default function PAdmin() {
       <li> 
       <NavLink to="/admin/request">look at requests</NavLink>
       </li>
-      <li> 
+      {/* <li> 
       <NavLink to="/admin/teamwork">Panel de Trabajo</NavLink>
-      </li>
+      </li> */}
      </ul>
     </div>
     <div className={s.mostrar}>
@@ -55,7 +55,7 @@ export default function PAdmin() {
      <Route path="/admin/createnews" component={Createnews} />
      <Route path="/admin/request" component={Request} />
      <Route path="/admin/editnews" component={EditNews} />
-     <Route path="/admin/teamwork" component={PanelTrabajo} />
+     {/* <Route path="/admin/teamwork" component={PanelTrabajo} /> */}
     
     </div>
     </div>
