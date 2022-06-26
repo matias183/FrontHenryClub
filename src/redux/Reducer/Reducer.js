@@ -7,14 +7,15 @@ import {
 	DETAIL_MEMBER,
 	ALL_COMMENTS,
 	ALL_CONTACTS,
-	UPDATE_NEWS,
-	UPDATE_COMMENT,
-	UPDATE_MEMBER,
-	DELETE_MEMBER,
-	DELETE_NEWS,
-	DELETE_COMMENT,
+	// UPDATE_NEWS,
+	// UPDATE_COMMENT,
+	// UPDATE_MEMBER,
+	// DELETE_MEMBER,
+	// DELETE_NEWS,
+	// DELETE_COMMENT,
 	CLEAR_PAGE,
 	GET_PROFILE,
+	// FILTER_NEWS,
 } from "../Actions/DataTypes";
 
 const initialState = {
@@ -94,6 +95,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
 					return arr.filter((e) => e.title.toLowerCase() === name.toLowerCase());
 				};
 				return { ...state, news: buscar(payload, state.news) }; // REVISAR QUE BUSCAMOS
+
+			//		El filtro se está haciendo desde el back
+			// case FILTER_NEWS:
+			// 	return{
+			// 		...state,
+			// 		//Asumiendo que la tabla tenga una columna sport que indique el tipo de deporte de la noticia
+			// 		news: state.news.filter(news => news.sportId === payload)
+			// 	}
 			
 			case CLEAR_PAGE: 
 			return {

@@ -3,7 +3,6 @@ import {
 	ALL_MEMBERS,
 	ALL_IMAGES,
 	ALL_NEWS,
-	SEARCH_SEARCH,
 	DETAIL_NEWS,
 	DETAIL_MEMBER,
 	ALL_COMMENTS,
@@ -14,9 +13,10 @@ import {
 	DELETE_MEMBER,
 	DELETE_NEWS,
 	DELETE_COMMENT,
+	SEARCH_SEARCH,
 	CLEAR_PAGE,
+	FILTER_NEWS,
 } from "./DataTypes";
-
 
 //Get
 
@@ -33,8 +33,12 @@ export function getMembers() {
 
 export function getContacts() {
 	return async (dispatch) => {
-		let { data } = await axios.get("http://localhost:3001/contact");
-		return dispatch({ type: ALL_CONTACTS, payload: data });
+		try {
+			let { data } = await axios.get("http://localhost:3001/contact");
+			return dispatch({ type: ALL_CONTACTS, payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
 	};
 }
 
@@ -52,7 +56,7 @@ export function getGallery() {
 export function getNews() {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.get("http://localhost:3001/news");
+			let { data } = await axios.get("http://localhost:3001/news");
 			return dispatch({ type: ALL_NEWS, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -63,7 +67,7 @@ export function getNews() {
 export function getComments() {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.get("http://localhost:3001/comment");
+			let { data } = await axios.get("http://localhost:3001/comment");
 			return dispatch({ type: ALL_COMMENTS, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -74,8 +78,12 @@ export function getComments() {
 //
 export function loginMember(input) {
 	return async function () {
-		const res = await axios.post("ruta crear usuario", input);
-		return res.data;
+		try {
+			const { data } = await axios.post("ruta crear usuario", input);
+			return data;
+		} catch (error) {
+			alert(error.response.data);
+		}
 	};
 }
 
@@ -94,30 +102,41 @@ export function detailMember(id) {
 
 export function detailNews(id) {
 	return async function (dispatch) {
-		const json = await axios.get(`http://localhost:3001/news/${id}`);
-		dispatch({
-			type: DETAIL_NEWS,
-			payload: json.data,
-		});
+		try {
+			const { data } = await axios.get(`http://localhost:3001/news/${id}`);
+			dispatch({
+				type: DETAIL_NEWS,
+				payload: data,
+			});
+		} catch (error) {
+			alert(error.response.data);
+		}
 	};
 }
-
 
 //Post
 export function createNews(input) {
 	return async function () {
-		const { data } = await axios.post(
-			"http://localhost:3001/news/crear",
-			input
-		);
-		return data;
+		try {
+			const { data } = await axios.post(
+				"http://localhost:3001/news/crear",
+				input
+			);
+			return data;
+		} catch (error) {
+			alert(error.response.data);
+		}
 	};
 }
 
 export function createActivity(input) {
 	return async function () {
-		const { data } = await axios.post("ruta crear actividad", input);
-		return data;
+		try {
+			const { data } = await axios.post("ruta crear actividad", input);
+			return data;
+		} catch (error) {
+			alert(error.response.data);
+		}
 	};
 }
 export function createMember(input) {
@@ -133,14 +152,18 @@ export function createMember(input) {
 	};
 }
 
-export function createComment(input) {
-	return async () => {
+export function createComment(idNews, input) {
+	return async (dispatch) => {
 		try {
-			let { data } = await axios.post(
-				"http://localhost:3001/comment/comentar",
+			await axios.post(
+				`http://localhost:3001/comment/comentar/${idNews}`,
 				input
 			);
-			return data;
+
+			// let {data} = await axios.get("http://localhost:3001/user")
+
+			// return dispatch({type:ALL_COMMENTS,payload:data});
+			return 
 		} catch (error) {
 			alert(error.response.data);
 		}
@@ -159,10 +182,10 @@ export function createContact(input) {
 }
 
 //PUT
-export function updateNews(id,input) {
+export function updateNews(id, input) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.put(`http://localhost:3001/news/${id}`, input);
+			let { data } = await axios.put(`http://localhost:3001/news/${id}`, input);
 			return dispatch({ type: UPDATE_NEWS, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -170,10 +193,13 @@ export function updateNews(id,input) {
 	};
 }
 
-export function updateComment(id,input) {
+export function updateComment(id, input) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.put(`http://localhost:3001/comment/${id}`, input);
+			let { data } = await axios.put(
+				`http://localhost:3001/comment/${id}`,
+				input
+			);
 			return dispatch({ type: UPDATE_COMMENT, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -181,10 +207,10 @@ export function updateComment(id,input) {
 	};
 }
 
-export function updateMember(id,input) {
+export function updateMember(id, input) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.put(`http://localhost:3001/user/${id}`, input);
+			let { data } = await axios.put(`http://localhost:3001/user/${id}`, input);
 			return dispatch({ type: UPDATE_MEMBER, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -196,7 +222,7 @@ export function updateMember(id,input) {
 export function deleteNews(id) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.delete(`http://localhost:3001/news/${id}`);
+			let { data } = await axios.delete(`http://localhost:3001/news/${id}`);
 			return dispatch({ type: DELETE_NEWS, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -207,7 +233,7 @@ export function deleteNews(id) {
 export function deleteComment(id) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.delete(`http://localhost:3001/comment/${id}`);
+			let { data } = await axios.delete(`http://localhost:3001/comment/${id}`);
 			return dispatch({ type: DELETE_COMMENT, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -218,7 +244,7 @@ export function deleteComment(id) {
 export function deleteMember(id) {
 	return async (dispatch) => {
 		try {
-			let { data } = axios.delete(`http://localhost:3001/user/${id}`);
+			let { data } = await axios.delete(`http://localhost:3001/user/${id}`);
 			return dispatch({ type: DELETE_MEMBER, payload: data });
 		} catch (error) {
 			alert(error.response.data);
@@ -226,27 +252,34 @@ export function deleteMember(id) {
 	};
 }
 //Perfil
-export function GetProfile(id){
+export function GetProfile(id) {
 	return async function (dispatch) {
-	  try {
-		const json = await axios.get("http://localhost:3001/profile/:id"); /*"http://localhost:3001/profile/" + id lo puse asi para probar como se ve, para que funcione poner el codigo comentado*/  
-		return dispatch({
-		  type: "GET_PROFILE",
-		  payload: json.data,
-		});
-	  } catch (error) {
-		console.log(error);
-	  }
-  };
+		try {
+			const {data} = await axios.get(
+				"http://localhost:3001/profile/:id"
+			); /*"http://localhost:3001/profile/" + id lo puse asi para probar como se ve, para que funcione poner el codigo comentado*/
+			return dispatch({
+				type: "GET_PROFILE",
+				payload: data,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 }
 
-//Buscar ???
-export const search = (name) => {
+//Buscar
+export function search(name) {
 	return {
 		type: SEARCH_SEARCH,
 		payload: name,
 	};
-};
+}
+
+//Filtrar noticias
+export function filterNews(name) {
+	return { type: FILTER_NEWS, payload: name };
+}
 
 //Limpiar estado
 export const clearPage = () => {

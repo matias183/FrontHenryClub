@@ -1,51 +1,61 @@
-.newsContainer {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px;
-  max-width: 1000px;
-  margin: auto;
-  font-family: monospace;
-}
-
-.imgNews {
-  height: 200px;
-  width: auto;
-  border-radius: 5px;
+.detalleNoticia {
+  margin-bottom: -18%;
 }
 
 .news {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+
+  width: 100%;
   align-items: center;
+  margin: auto;
   box-shadow: 3px 5px 9px #9a8246;
   border-radius: 5px;
   padding: 10px;
+  margin-bottom: 20px; */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  width: 40%;
+  height: 20%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+.news:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
 }
 
-.titleNews {
-  /* font-style: italic;
-    background-color: #9A8246;
-    height: 50px;
-    
-   
-   
-    color: #050744; */
+.news .titleNewss {
   display: flex;
   align-items: center;
   text-align: center;
   margin: auto;
-  margin-top: 58px;
-  margin-bottom: 18px;
+  margin-top: 0px;
   justify-content: center;
   height: 5vh;
-  width: 60vw;
-  color: #28139e;
+  width: 100%;
+  color: #000000;
   padding: 1px;
   font-weight: 100;
   position: relative;
-  background: linear-gradient(to right, #222861, rgb(255, 255, 255), #222861);
 }
-
+.news .subtitleNews {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 18px;
+  justify-content: center;
+  height: 20%;
+  width: 100%;
+  color: #000000;
+  padding: 1px;
+  font-weight: 100;
+  position: relative;
+}
 
 .textDescription {
   white-space: nowrap;
@@ -54,16 +64,26 @@
   width: 400px;
 }
 
+hr {
+  margin-top: 30px;
+  margin-bottom: -20px;
+  padding-top: 0px;
+  width: 100%;
+}
+.sectionEscribirComentario {
+  margin-top: 50px;
+  /* border-top: double 5px black; */
+  padding-top: 20px;
+  width: 100%;
+}
+
 .seccionComentarios {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
   flex-direction: column;
-  margin-top: 400px;
-  margin-bottom: 50px;
-  border-top: double 5px black;
-  border-bottom: double 5px black;
+  margin-top: 10px;
   padding-top: 5px;
   padding-bottom: 20px;
   width: 50%;
@@ -103,4 +123,3 @@
   backdrop-filter: blur(9px);
   margin-left: -20px;
 }
-
