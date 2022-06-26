@@ -56,11 +56,8 @@
   
     return (
       <div className={s.new}>
-            <div className={s.loginTitle2}> <h3 >Create New Activity</h3> </div>
-
-        
         <div className={s.wrapper}>
-      
+            <div className={s.loginTitle2}> <h3 >Create New Activity</h3> </div>
           <form className={s.Form} onSubmit={onSubmit}>
 
                 <input className={s.input}
