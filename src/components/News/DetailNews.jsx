@@ -50,7 +50,7 @@ export default function NewsDetail() {
   }
 
   return (
-    <div>
+    <div className='containerTotal'>
       <Link to={'/home'}>
         <button>
           <span>Volver</span>
@@ -59,7 +59,7 @@ export default function NewsDetail() {
       <div className="detalleNoticia">
         {
           <div>
-            <h2> {noticia.title}</h2>
+            <h2 className='noticiaTitulo'> {noticia.title}</h2>
             <img
               src={
                 noticia.image
@@ -68,8 +68,8 @@ export default function NewsDetail() {
               }
               alt="img not found"
             />
-            <h4>{noticia.subtitle}</h4>
-            <p> {noticia.text} </p>
+            <h4 className='noticiaSubtitulo'>{noticia.subtitle}</h4>
+            <p className='noticiaTexto'> {noticia.text} </p>
           </div>
         }
       </div>
@@ -81,12 +81,12 @@ export default function NewsDetail() {
             <div>
               <div className="comentariosHechos">
                 {comentario?.map((comment,i) => (
-                  <div key={i}>
-                  <h3>{comment.name}</h3>
+                  <div className='containerComment' key={i}>
+                  <h3>{comment.name}:</h3>
                   <h4>{comment.comment}</h4>
                   </div>
                 ))}
-                <p></p>
+                
               </div>
             </div>
           </div>
