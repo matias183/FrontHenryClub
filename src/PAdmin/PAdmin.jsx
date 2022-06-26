@@ -6,6 +6,9 @@ import Home from './Home2/Home2';
 import News from './News2/News2';
 import FormActiv from '../components/Form Create Activities/NewActivity';
 import Createnews from '../components/Form CrearNoticia/CrearNoticia'
+import Request from './Request/Request'
+import EditNews from './EditNews/EditNews'
+import PanelTrabajo from './PanelTrabajo/PaneldeTrabajo'
 import s from './Profile.module.css'
 
 
@@ -31,7 +34,16 @@ export default function PAdmin() {
       <NavLink to="/admin/newactivity">Crea Actividad</NavLink>
       </li>
       <li> 
+      <NavLink to="/admin/editnews">EditNews</NavLink>
+      </li>
+      <li> 
       <NavLink to="/admin/createnews">Crea Noticia</NavLink>
+      </li>
+      <li> 
+      <NavLink to="/admin/request">look at requests</NavLink>
+      </li>
+      <li> 
+      <NavLink to="/admin/teamwork">Panel de Trabajo</NavLink>
       </li>
      </ul>
     </div>
@@ -41,7 +53,9 @@ export default function PAdmin() {
      <Route path="/admin/news" component={News} />
      <Route path="/admin/newactivity" component={FormActiv} />
      <Route path="/admin/createnews" component={Createnews} />
-     
+     <Route path="/admin/request" component={Request} />
+     <Route path="/admin/editnews" component={EditNews} />
+     <Route path="/admin/teamwork" component={PanelTrabajo} />
     
     </div>
     </div>
