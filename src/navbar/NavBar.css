@@ -29,6 +29,12 @@
   /* box-shadow: 0 0 10px 10px gray; */
 }
 
+.botonAdmin {
+  position: absolute;
+  top: 2vh;
+  left: 8%;
+}
+
 .searchbar {
   top: 0;
   right: 18vw;
@@ -101,6 +107,6 @@
 }
 
 /* cambiiar el color del boton cuando se muestra el contenido */
-.dropdown:hover .botonDeslizable {
-  /* background-image: linear-gradient(#434c9a, #9c824a); */
-}
+/* .dropdown:hover .botonDeslizable {
+  background-image: linear-gradient(#434c9a, #9c824a);
+} */

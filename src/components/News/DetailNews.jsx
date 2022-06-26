@@ -1,23 +1,27 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { createComment, detailNews, getComments } from '../../redux/Actions/Action';
+import {
+  clearPage,
+  createComment,
+  detailNews,
+  getComments,
+} from '../../redux/Actions/Action';
 import { Link } from 'react-router-dom';
 import Footer from '../footer/footer';
 
 export default function NewsDetail() {
- 
   const { id } = useParams();
- 
+
   const dispatch = useDispatch();
- 
+
   const noticia = useSelector(state => state.newsDetail);
 
-  const comentario = useSelector(state => state.comments)
+  const comentario = useSelector(state => state.comments);
 
   useEffect(() => {
     dispatch(detailNews(id));
-    dispatch(getComments())
+    dispatch(getComments());
   }, []);
 
   const [error, setError] = useState('');
@@ -36,18 +40,31 @@ export default function NewsDetail() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (typeof localState.name === 'string' && localState.comment.trim() !== "") {
-      dispatch(createComment(id,localState))
+    if (
+      localState.name &&
+      typeof localState.name === 'string' &&
+      localState.comment &&
+      localState.comment.trim() !== '' &&
+      typeof localState.comment === 'string'
+    ) {
+      dispatch(createComment(id, localState));
       setLocalState({
         name: '',
         comment: '',
       });
       alert('Comentario Enviado');
-      dispatch(getComments())
+      dispatch(getComments());
     } else {
       alert('Todos los campos deben llenares para la enviar su comentario.');
     }
   }
+
+  // function handleDelete(e) {
+  //   setLocalState({
+  //     ...localState,
+  //     comentario: localState.comentario.filter(comment => comment !== e),
+  //   });
+  // }
 
   return (
     <div className='containerTotal'>
@@ -76,8 +93,8 @@ export default function NewsDetail() {
       <div className="seccionComentarios">
         {/* NECESITO TENER ESTADO DE REDUX PARA MAPEAR COMENTARIOS Y QUE SE VEAN CUANDO SE SUBMITEEN, HACER UN LOCAL STATE*/}
         <section>
+          <h3>Comentarios:</h3>
           <div className="seccionComentariosHechos">
-            <h3>Comentarios:</h3>
             <div>
               <div className="comentariosHechos">
                 {comentario?.map((comment,i) => (
@@ -86,22 +103,38 @@ export default function NewsDetail() {
                   <h4>{comment.comment}</h4>
                   </div>
                 ))}
-                
               </div>
             </div>
           </div>
         </section>
+
+        {/* BOTON PARA BORRAR COMENTARIO */}
+        {/* <div>
+          {localState.comentario.map((el, index) => (
+            <div key={index}>
+              <div>
+                <p>{el}</p>
+                <button onClick={() => handleDelete(el)}>X</button>
+              </div>
+            </div>
+          ))}
+        </div> */}
         <hr />
         <section className="sectionEscribirComentario">
+          <h3>Escribe un comentario:</h3>
           <div className="inputName">
-
             <label htmlFor="">Nombre</label>
-            <input name="name" value={localState.name} onChange={handleChange} type="text" />
+            <input
+              name="name"
+              value={localState.name}
+              onChange={handleChange}
+              type="text"
+            />
             <div className="error">
               <p>
                 {error !== 'Los datos no son validos.' ? null : (
                   <p>El nombre no puede estar vacio.</p>
-                  )}
+                )}
               </p>
             </div>
           </div>
@@ -114,7 +147,7 @@ export default function NewsDetail() {
               onChange={handleChange}
               rows="5"
               placeholder="Escribe tu comentario..."
-              ></textarea>
+            ></textarea>
           </div>
           <div className="enviarComentario">
             <button onClick={handleSubmit} type="button">
