@@ -1,50 +1,45 @@
-import React from 'react'
-import { Route, NavLink} from 'react-router-dom';
-import Header from "../navbar/navbar"
-import Socios from './pageprueba/Socios'
+import React from 'react';
+import { Route, NavLink } from 'react-router-dom';
+import Header from '../navbar/navbar';
+import Socios from './pageprueba/Socios';
 import Home from './Home2/Home2';
 import News from './News2/News2';
 import FormActiv from '../components/Form Create Activities/NewActivity';
-import Createnews from '../components/Form CrearNoticia/CrearNoticia'
-import s from './Profile.module.css'
-
+import Createnews from '../components/Form CrearNoticia/CrearNoticia';
+import s from './Profile.module.css';
 
 export default function PAdmin() {
   return (
-    <> 
-  <div className={s.header}>
-  <Header/>
-  </div>
-  <div className={s.container}>
-   <div className={s.barralateral}>
-     <ul>
-      <li>
-        <NavLink to="/admin/news">News</NavLink>
-      </li>
-      <li>
-        <NavLink to="/admin/socios">Socios</NavLink>
-      </li>
-      <li> 
-      <NavLink to="/admin/home">Home</NavLink>
-      </li>
-      <li> 
-      <NavLink to="/admin/newactivity">Crea Actividad</NavLink>
-      </li>
-      <li> 
-      <NavLink to="/admin/createnews">Crea Noticia</NavLink>
-      </li>
-     </ul>
-    </div>
-    <div className={s.mostrar}>
-     <Route path="/admin/socios" component={Socios} />
-     <Route path="/admin/home" component={Home} />
-     <Route path="/admin/news" component={News} />
-     <Route path="/admin/newactivity" component={FormActiv} />
-     <Route path="/admin/createnews" component={Createnews} />
-     
-    
-    </div>
-    </div>
+    <>
+      <div className={s.header}>
+        <Header />
+      </div>
+      <div className={s.container}>
+        <div className={s.barralateral}>
+          <ul>
+            <li>
+              <NavLink to="/admin/socios">Socios</NavLink>
+            </li>
+
+            <li>
+              <NavLink to="/admin/newactivity">Crea Actividad</NavLink>
+            </li>
+            <li>
+              <NavLink to="/admin/createnews">Crea Noticia</NavLink>
+            </li>
+            <li>
+              <NavLink to="/home">Home User</NavLink>
+            </li>
+          </ul>
+        </div>
+        <div className={s.mostrar}>
+          <Route path="/admin/socios" component={Socios} />
+          <Route path="/admin/home" component={Home} />
+          <Route path="/admin/news" component={News} />
+          <Route path="/admin/newactivity" component={FormActiv} />
+          <Route path="/admin/createnews" component={Createnews} />
+        </div>
+      </div>
     </>
-  )
+  );
 }

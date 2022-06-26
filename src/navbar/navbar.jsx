@@ -45,6 +45,13 @@ export default function navbar() {
           </div>
         </div>
         <br />
+        <div className="botonAdmin">
+          <Link to={'/admin'}>
+            <button>
+              <span>Admin</span>
+            </button>
+          </Link>
+        </div>
       </div>
       {/* <Barra /> */}
     </div>
