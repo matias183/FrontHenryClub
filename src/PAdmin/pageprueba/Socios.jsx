@@ -35,12 +35,9 @@ export default function Socios () {
   const [deleteModal, setdeleteModal]= useState (false);
 
   const [input,setInput]= useState({
-    id:"",	
-    name:"",	
-    username:"",
+    name: "", surname: "", address: "", phone: "", email: "", username: "", dni: "", password: "",
   })
  
-
   useEffect(() => {
     dispatch(getMembers());
   }, [dispatch]);
@@ -88,12 +85,23 @@ export default function Socios () {
   const bodyInsertar=(
     <div className={styles.modal}>
       <h3>New User</h3>
-      <TextField className={styles.inputMaterial} label="Id" name="id" onChange={HandleChange} />
-      <br />
       <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} />          
       <br />
+        <TextField className={styles.inputMaterial} label="Surname" name="surname" onChange={HandleChange} />
+      <br />
+      <TextField className={styles.inputMaterial} label="Address" name="address" onChange={HandleChange} />
+      <br />
+      <TextField className={styles.inputMaterial} label="Phone" name="phone" onChange={HandleChange} />
+      <br />
+      <TextField className={styles.inputMaterial} label="Email" name="email" onChange={HandleChange} />          
+      <br />
       <TextField className={styles.inputMaterial} label="UserName" name="username" onChange={HandleChange} />
-      <br /><br />
+      <br />
+      <TextField className={styles.inputMaterial} label="Dni" name="dni" onChange={HandleChange} />
+      <br />
+      <TextField className={styles.inputMaterial} label="Password" name="password" onChange={HandleChange} />          
+      <br />   
+      <br />
       <div align="right">
         <Button color="primary" onClick={CrearMember} >Insertar</Button>
         <Button onClick={abricerrarMInsert} >Cancelar</Button>
@@ -104,11 +112,23 @@ export default function Socios () {
   const bodyEditar=(
     <div className={styles.modal}>
       <h3>Edit User</h3>
-      <TextField  className={styles.inputMaterial} label="Id" name="id" onChange={HandleChange} value={input&&input.id} />
+      <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} value={input&&input.name}/>          
       <br />
-      <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} value={input&&input.name} />          
+        <TextField className={styles.inputMaterial} label="Surname" name="surname" onChange={HandleChange}  value={input&&input.surname}/>
       <br />
-      <TextField className={styles.inputMaterial} label="UserName" name="username" onChange={HandleChange} value={input&&input.username} />
+      <TextField className={styles.inputMaterial} label="Address" name="address" onChange={HandleChange} value={input&&input.address} />
+      <br />
+      <TextField className={styles.inputMaterial} label="Phone" name="phone" onChange={HandleChange} value={input&&input.phone} />
+      <br />
+      <TextField className={styles.inputMaterial} label="Email" name="email" onChange={HandleChange}  value={input&&input.email}/>          
+      <br />
+      <TextField className={styles.inputMaterial} label="UserName" name="username" onChange={HandleChange} value={input&&input.username}/>
+      <br />
+      <TextField className={styles.inputMaterial} label="Dni" name="dni" onChange={HandleChange} value={input&&input.dni}/>
+      <br />
+      <TextField className={styles.inputMaterial} label="Password" name="password" onChange={HandleChange} value={input&&input.password}/>          
+      <br />   
+
 
       <br /><br />
       <div align="right">
@@ -143,9 +163,14 @@ console.log(members)
 <TableHead>
 
 <TableRow>
-<TableCell>Id</TableCell>
 <TableCell>Name</TableCell>
-<TableCell>Username</TableCell>
+<TableCell>surname</TableCell>
+<TableCell>address</TableCell>
+<TableCell>phone</TableCell>
+<TableCell>email</TableCell>
+<TableCell>username</TableCell>
+<TableCell>dni</TableCell>
+<TableCell>password</TableCell>
 <TableCell>Acciones</TableCell>
 </TableRow>
 
