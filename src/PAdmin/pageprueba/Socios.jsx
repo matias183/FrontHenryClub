@@ -180,9 +180,15 @@ console.log(members)
 <TableBody>
     {members.map( e=>(
       <TableRow key={e.id}> 
-      <TableCell>{e.id}</TableCell>
       <TableCell>{e.name}</TableCell>
+      <TableCell>{e.surname}</TableCell>
+      <TableCell>{e.address}</TableCell>
+      <TableCell>{e.phone}</TableCell>
+      <TableCell>{e.email}</TableCell>
       <TableCell>{e.username}</TableCell>
+      <TableCell>{e.dni}</TableCell>
+      <TableCell>{e.password}</TableCell>
+      
       <TableCell>
         <Edit 
         className={styles.iconos} 
