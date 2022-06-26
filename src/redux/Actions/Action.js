@@ -278,7 +278,10 @@ export function search(name) {
 
 //Filtrar noticias
 export function filterNews(name) {
-	return { type: FILTER_NEWS, payload: name };
+	return async (dispatch) => {
+		let {data} = axios.get(`http://localhost:3001/news?title=${name}`)
+		return dispatch({type: SEARCH_SEARCH, payload: data})
+	}
 }
 
 //Limpiar estado
