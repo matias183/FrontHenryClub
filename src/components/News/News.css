@@ -6,11 +6,10 @@
   background-color: rgb(201, 207, 206);
   width: 50%;
   height: 50%;
- margin-left: auto;
- margin-right: auto;
-  
+  margin-left: auto;
+  margin-right: auto;
 }
-.noticiaTitulo{
+.noticiaTitulo {
   color: #000000;
   padding: 1px;
   font-size: 40px;
@@ -18,23 +17,21 @@
   text-transform: uppercase;
   text-shadow: 2px 2px 2px grey;
 }
-.noticiaSubtitulo{
+.noticiaSubtitulo {
   color: #161515;
   padding: 1px;
   font-size: 30px;
   font-weight: 700;
 }
-.noticiaTexto{
+.noticiaTexto {
   color: #272020;
   padding: 1px;
   font-size: 20px;
   font-weight: 700;
-  
 }
-   .containerTotal{
-    background-color: #3b3a3a;
-   }
-
+.containerTotal {
+  background-color: #3b3a3a;
+}
 
 .news {
   /* display: flex;
@@ -73,7 +70,6 @@
   padding: 1px;
   font-weight: 100;
   position: relative;
- 
 }
 .news .subtitleNews {
   display: flex;
@@ -110,30 +106,30 @@ hr {
   padding-top: 20px;
   width: 100%;
 }
-.sectionEscribirComentario input{
+.sectionEscribirComentario input {
   display: flex;
   margin-left: 25%;
   width: 30%;
   height: 30%;
 }
-.sectionEscribirComentario label{
+.sectionEscribirComentario label {
   display: flex;
   margin-left: 25%;
   width: 30%;
   height: 30%;
 }
-.sectionEscribirComentario textarea{
+.sectionEscribirComentario textarea {
   display: flex;
   margin-left: 20%;
   width: 50%;
   height: 60%;
   transition: all 0.3s ease;
 }
-.sectionEscribirComentario textarea:focus{
+/* .sectionEscribirComentario textarea:focus{
   width: 70%;
   height: 15vh;
   transition: all 0.3s ease;
-}
+} */
 
 .seccionComentarios {
   display: flex;
@@ -145,7 +141,7 @@ hr {
   padding-top: 5px;
   padding-bottom: 20px;
   width: 50%;
-  background-color:rgb(216, 201, 201);
+  background-color: rgb(216, 201, 201);
 }
 .seccionComentarios h3 {
   font-size: 25px;
@@ -175,8 +171,6 @@ hr {
   margin-bottom: 1%;
   display: flex;
   flex-direction: row;
-  
-  
 }
 .comentariosHechos p {
   width: 100%;
@@ -189,7 +183,7 @@ hr {
   font-size: 18px;
   font-weight: 700;
 }
-.containerComment{
+.containerComment {
   width: 100%;
   border: #000000e3 solid 1px;
   border-radius: 10px;
@@ -197,5 +191,4 @@ hr {
   background-color: rgba(255, 255, 255, 0.167);
   backdrop-filter: blur(9px);
   margin-left: -20px;
- 
 }
