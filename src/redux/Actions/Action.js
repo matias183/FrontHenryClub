@@ -1,23 +1,28 @@
 import axios from 'axios';
 import {
-  ALL_MEMBERS,
-  ALL_IMAGES,
-  ALL_NEWS,
-  DETAIL_NEWS,
-  DETAIL_MEMBER,
-  ALL_COMMENTS,
-  ALL_CONTACTS,
-  UPDATE_NEWS,
-  UPDATE_COMMENT,
-  UPDATE_MEMBER,
-  DELETE_MEMBER,
-  DELETE_NEWS,
-  DELETE_COMMENT,
-  SEARCH_SEARCH,
-  CLEAR_PAGE,
-  FILTER_NEWS,
-  CLEAR_COMMENTS,
-} from './DataTypes';
+
+	ALL_MEMBERS,
+	ALL_IMAGES,
+	ALL_NEWS,
+	DETAIL_NEWS,
+	DETAIL_MEMBER,
+	ALL_COMMENTS,
+	ALL_CONTACTS,
+	UPDATE_NEWS,
+	UPDATE_COMMENT,
+	UPDATE_MEMBER,
+	DELETE_MEMBER,
+	DELETE_NEWS,
+	DELETE_COMMENT,
+	SEARCH_SEARCH,
+	CLEAR_PAGE,
+	FILTER_NEWS,
+	CLEAR_COMMENTS,
+	DETAIL_EVENTO,
+	ALL_EVENTO,
+	GET_SPORT,
+} from "./DataTypes";
+
 
 //Get
 
@@ -78,6 +83,32 @@ export function getComments(id) {
   };
 }
 
+export function getEvents() {
+	return async (dispatch) => {
+		try {
+			let { data } = await axios.get("http://localhost:3001/calendar");
+			return dispatch({ 
+				type: ALL_EVENTO, 
+				payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
+
+	}
+}
+
+export function getSport() {
+	return async function(dispatch) {
+        const json = await axios.get('http://localhost:3001/sport')
+        dispatch({
+            type:GET_SPORT,
+            payload: json.data
+        })
+    }
+}
+
+
+
 //
 export function loginMember(input) {
   return async function () {
@@ -115,6 +146,20 @@ export function detailNews(id) {
       alert(error.response.data);
     }
   };
+}
+
+export function detailEvento(id) {
+	return async function(dispatch) {
+		try {
+			const json = await axios.get(`http://localhost:3001/calendar/${id}`)
+			dispatch({
+				type: DETAIL_EVENTO,
+				payload: json.data
+			})
+		} catch (error) {
+			alert(error.response.data)
+		}
+	}
 }
 
 //Post
@@ -182,6 +227,13 @@ export function createContact(input) {
       alert(error.response.data);
     }
   };
+}
+
+export function postEvento(payload) {
+	return async function() {
+		const json = await axios.post('http://localhost:3001/calendar', payload)
+		return json
+	}
 }
 
 //PUT
