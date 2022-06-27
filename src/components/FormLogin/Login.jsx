@@ -53,9 +53,6 @@ export default function Login() {
           <div className={s.loginButtonfacebook}>
             <img src={Facebook} alt="Facebook" className={s.icon} />
             Facebook </div>
-          <div className={s.loginButtongithub}>
-            <img src={Github} alt="Github" className={s.icon}/>
-            Github</div>
         </div>
 
         <div className={s.center}>
