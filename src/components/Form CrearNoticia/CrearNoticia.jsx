@@ -81,7 +81,6 @@ export default function CrearAnuncio() {
     let regText = /\w/;
     if (regText.test(e.target.value) && e.target.value.length < 20) {
       setError('Texto invalido.');
-      console.log(e.target.value);
     } else {
       setError('');
     }
@@ -89,15 +88,15 @@ export default function CrearAnuncio() {
   }
 
   //FIJARSE COMO VALIDAR EL INPUT FILE
-  // function validarImagen(e) {
-  //   if (!/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(e.target.value)) {
-  //     // fijarse RegEx que es igual a los demas PERO PARA IMAGENES DEL INPUT "FILE"
-  //     setError('Formato de imagen invalido.');
-  //   } else {
-  //     setError('');
-  //   }
-  //   handleChange(e);
-  // }
+  function validarImagen(e) {
+    if (!/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(e.target.value)) {
+      // fijarse RegEx que es igual a los demas PERO PARA IMAGENES DEL INPUT "FILE"
+      setError('Formato de imagen invalido.');
+    } else {
+      setError('');
+    }
+    handleChange(e);
+  }
 
   async function handleSubit(e) {
     e.preventDefault();
@@ -131,6 +130,7 @@ export default function CrearAnuncio() {
   //     [e.target.title]: e.target.value,
   //   });
   // }
+
   const handleChange = e => {
     e.preventDefault();
     setInput(prevInput => {
@@ -140,6 +140,19 @@ export default function CrearAnuncio() {
       };
 
       return newInput;
+    });
+  };
+
+  const handleChangeFoto = e => {
+    e.preventDefault();
+
+    setInput(prevInput => {
+      const inputFoto = {
+        ...prevInput,
+        [e.target.name]: e.target.files[0],
+      };
+      console.log(e.target.files[0]);
+      return inputFoto;
     });
   };
 
@@ -163,7 +176,6 @@ export default function CrearAnuncio() {
             )}
           </p>
         </div>
-
         <label className={S.labelSubt}>Subtitulo de Noticia: </label>
         <input
           className={S.inputSubt}
@@ -182,7 +194,6 @@ export default function CrearAnuncio() {
             )}
           </p>
         </div>
-
         <label className={S.labelDescr}>Descripción de Noticia: </label>
         <textarea
           className={S.textarea}
@@ -203,19 +214,18 @@ export default function CrearAnuncio() {
             )}
           </p>
         </div>
-
-        {/* <label htmlFor="">Imagen de la Noticia: </label>
+        <label htmlFor="">Imagen de la Noticia: </label>
         {/* HACER ONCHANGE PARA INPUT FILE */}
-        {/* <p>{'Solo se soporta archivos "JPG, JPEG ,PNG, SVG"'}</p> */}
+        <p>{'Solo se soporta archivos "JPG, JPEG ,PNG, SVG"'}</p>
         {/* onChange={validarImagen} */}
-        {/* <input
+        <input
           type="file"
           name="foto"
-          // onChange={validarImagen}
-          // value={input.image}
-        /> */}
-        {/* {error.foto && <p>{error.foto.message}</p>}  */}
+          onChange={handleChangeFoto}
+          value={input.image}
+        />
 
+        {/* {error.foto && <p>{error.foto.message}</p>}  */}
         {/* onChange={getNews} */}
         <button id="boton" value="Publicar" type="submit">
           <span>Publicar</span>

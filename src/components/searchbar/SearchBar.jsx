@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { search } from '../../redux/Actions/Action';
+import { filterNews, getNews } from '../../redux/Actions/Action';
 import './SearchBar.css';
 // import S from '../../components/Home/Home.module.css';
 export default function SearchBar() {
@@ -15,11 +15,23 @@ export default function SearchBar() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (!name) {
-      return alert('Colocar un busqueda');
-    } else {
-      dispatch(search(name));
-      setName('');
+    try {
+      if (name.length) {
+        dispatch(filterNews(name));
+      } else {
+        alert('Debe escribir algo para buscar.');
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
+  }
+
+  function volverATodasLasNoticias(e) {
+    e.preventDefault();
+    try {
+      dispatch(getNews());
+    } catch (err) {
+      throw new Error(err);
     }
   }
   return (
@@ -35,16 +47,19 @@ export default function SearchBar() {
             value={name}
             onChange={handleInputChange}
           />
-          <button className="botones">
+          <button className="botones" type="submit" onClick={handleSubmit}>
             <span>Buscar</span>
+          </button>
+          <button type="button" onClick={volverATodasLasNoticias}>
+            Recargar
           </button>
         </form>
         <br />
-        <div>
+        {/* <div>
           {name.length ? (
             <div className="letrero">Estas buscando: {name}</div>
           ) : null}
-        </div>
+        </div> */}
       </div>
     </div>
   );

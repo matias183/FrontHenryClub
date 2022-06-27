@@ -1,10 +1,43 @@
 .detalleNoticia {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-bottom: -18%;
+  background-color: rgb(201, 207, 206);
+  width: 50%;
+  height: 50%;
+ margin-left: auto;
+ margin-right: auto;
+  
 }
+.noticiaTitulo{
+  color: #000000;
+  padding: 1px;
+  font-size: 40px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 2px grey;
+}
+.noticiaSubtitulo{
+  color: #161515;
+  padding: 1px;
+  font-size: 30px;
+  font-weight: 700;
+}
+.noticiaTexto{
+  color: #272020;
+  padding: 1px;
+  font-size: 20px;
+  font-weight: 700;
+  
+}
+   .containerTotal{
+    background-color: #3b3a3a;
+   }
+
 
 .news {
   /* display: flex;
-
   width: 100%;
   align-items: center;
   margin: auto;
@@ -40,6 +73,7 @@
   padding: 1px;
   font-weight: 100;
   position: relative;
+ 
 }
 .news .subtitleNews {
   display: flex;
@@ -76,6 +110,30 @@ hr {
   padding-top: 20px;
   width: 100%;
 }
+.sectionEscribirComentario input{
+  display: flex;
+  margin-left: 25%;
+  width: 30%;
+  height: 30%;
+}
+.sectionEscribirComentario label{
+  display: flex;
+  margin-left: 25%;
+  width: 30%;
+  height: 30%;
+}
+.sectionEscribirComentario textarea{
+  display: flex;
+  margin-left: 20%;
+  width: 50%;
+  height: 60%;
+  transition: all 0.3s ease;
+}
+.sectionEscribirComentario textarea:focus{
+  width: 70%;
+  height: 15vh;
+  transition: all 0.3s ease;
+}
 
 .seccionComentarios {
   display: flex;
@@ -87,11 +145,12 @@ hr {
   padding-top: 5px;
   padding-bottom: 20px;
   width: 50%;
+  background-color:rgb(216, 201, 201);
 }
 .seccionComentarios h3 {
   font-size: 25px;
   font-weight: 700;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-shadow: 2px 2px 2px gray;
 }
 .seccionComentarios input {
@@ -111,50 +170,32 @@ hr {
 .seccionComentariosHechos h3 {
   font-size: 25px;
   font-weight: 700;
-  text-transform: uppercase;
+  text-transform: capitalize;
   text-shadow: 2px 2px 2px gray;
-}
-.seccionComentariosHechos {
+  margin-bottom: 1%;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: auto;
-  flex-wrap: wrap;
-  width: 100%;
-  max-width: 800px;
-  border: #000000e3 solid 1px;
-  border-radius: 5px;
-  padding: 20px;
-  background-color: #9a875752;
-  backdrop-filter: blur(9px);
-  /* margin-left: -20px; */
-}
-/* .comentariosHechos {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: auto;
-  flex-wrap: wrap;
   flex-direction: row;
-  border: solid 2px red;
-  width: 80%;
-} */
-.seccionComentariosHechos .nombreComentario {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  margin: auto;
+  
+  
+}
+.comentariosHechos p {
+  width: 100%;
+  border: #000000e3 solid 1px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.167);
+  backdrop-filter: blur(9px);
+  margin-left: -20px;
   font-size: 18px;
   font-weight: 700;
-  text-decoration: underline;
-  border-top: solid 2px #28139e;
 }
-.seccionComentariosHechos .comentarioEscrito {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  margin: auto;
-  font-size: 15px;
-  margin-bottom: 25px;
-  text-align: end;
+.containerComment{
+  width: 100%;
+  border: #000000e3 solid 1px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.167);
+  backdrop-filter: blur(9px);
+  margin-left: -20px;
+ 
 }

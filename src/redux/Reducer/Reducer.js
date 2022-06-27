@@ -15,18 +15,29 @@ import {
 	// DELETE_COMMENT,
 	CLEAR_PAGE,
 	GET_PROFILE,
+	CLEAR_COMMENTS,
+	ALL_EVENTO,
+	DETAIL_EVENTO,
+	GET_SPORT,
+	GET_TEACHER,
+	GET_CATEGORY,
 	// FILTER_NEWS,
 } from "../Actions/DataTypes";
 
 const initialState = {
 	members: [],
-  memberDetail: {},
+	memberDetail: {},
 	images: [],
 	news: [],
-  newsDetail: {},
+	newsDetail: {},
 	activities: [],
-  comments: [],
+	comments: [],
 	contacts: [],
+	evento: [],
+	sport: [],
+	teacher: [],
+	sport: [],
+	category: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -37,44 +48,66 @@ const rootReducer = (state = initialState, { type, payload }) => {
 				...state,
 				members: payload,
 			};
-      //Aun no hay endpoint de imagenes
+		//Aun no hay endpoint de imagenes
 		case ALL_IMAGES:
-			return { 
-        ...state, 
-        images: payload 
-      };
+			return {
+				...state,
+				images: payload,
+			};
 
 		case ALL_NEWS:
-			return { 
-        ...state, 
-        news: payload
-      };
+			return {
+				...state,
+				news: payload,
+			};
 
 		case ALL_COMMENTS:
 			return {
 				...state,
-				comments: payload
-			}
+				comments: payload,
+			};
 
 		case ALL_CONTACTS:
 			return {
 				...state,
-				contacts: payload
+				contacts: payload,
+			};
+		case ALL_EVENTO:
+			return {
+				...state,
+				evento: payload,
+			}
+		case GET_SPORT:
+			return {
+				...state,
+				sport: payload,
 			}
 
+		case GET_TEACHER:
+			return {
+				...state,
+				teacher: payload,
+			}
+			
+		case GET_CATEGORY:
+			return {
+				...state,
+				category: payload
+			}	
+		
 		// ELIMINAR Y EDITAR
 		// case UPDATE_MEMBER:
-		// 	return { 
-    //     ...state,
+		// 	return {
+		//     ...state,
 		// 		memberDetail: {}
-    //   };
-    
+		//   };
+
 		// case DELETE_MEMBER:
-		// 	return { 
+		// 	return {
 		// 		...state
 		// 		members: state.members.filter(member => member.id ===)
 		// 	};
-		
+
 		//DETALLES
 		case DETAIL_NEWS:
 			return {
@@ -86,38 +119,53 @@ const rootReducer = (state = initialState, { type, payload }) => {
 			return {
 				...state,
 				memberDetail: payload,
+			};
+		case DETAIL_EVENTO:
+			return {
+				...state,
+				evento: payload
 			}
-			
-			//BUSCAR
-			case SEARCH_SEARCH:
-				//functión para buscar en el estado
-				return { 
-					...state, 
-					news: payload 
-				}; 
+		//BUSCAR
+		case SEARCH_SEARCH:
+			//functión para buscar en el estado
+			return {
+				...state,
+				news: payload,
+			};
 
-			//		El filtro se está haciendo desde el back
-			// case FILTER_NEWS:
-			// 	return{
-			// 		...state,
-			// 		//Asumiendo que la tabla tenga una columna sport que indique el tipo de deporte de la noticia
-			// 		news: state.news.filter(news => news.sportId === payload)
-			// 	}
-			
-			case CLEAR_PAGE: 
+
+
+		case CLEAR_PAGE:
 			return {
 				...state,
 				memberDetail: {},
 				newsDetail: {},
-			}
-			
-			case GET_PROFILE:
-				return{
-					...state,
-					profile:payload,
-				}
+				comments: [],
+			};
 
-			default:
+		//Reducers pendientes de ver si se usan
+
+		case CLEAR_COMMENTS:
+			return {
+				...state,
+				comments: [],
+			};
+
+		case GET_PROFILE:
+			return {
+				...state,
+				profile: payload,
+			};
+
+					//		El filtro se está haciendo desde el back
+		// case FILTER_NEWS:
+		// 	return{
+		// 		...state,
+		// 		//Asumiendo que la tabla tenga una columna sport que indique el tipo de deporte de la noticia
+		// 		news: state.news.filter(news => news.sportId === payload)
+		// 	}
+
+		default:
 			return state;
 	}
 };

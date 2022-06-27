@@ -71,3 +71,12 @@
   background-image: url('../../utils/fotos/fondoHenry.jpg');
   background-image: linear-gradient(to right,  rgb(255, 255, 255),#222861, #ffffff);;
 } */
+
+
+/*noticias*/
+
+.titleNews{
+  text-transform: uppercase;
+  text-shadow: 5px 10px 5px gray;
+}
+
