@@ -88,15 +88,15 @@ export default function CrearAnuncio() {
   }
 
   //FIJARSE COMO VALIDAR EL INPUT FILE
-  function validarImagen(e) {
-    if (!/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(e.target.value)) {
-      // fijarse RegEx que es igual a los demas PERO PARA IMAGENES DEL INPUT "FILE"
-      setError('Formato de imagen invalido.');
-    } else {
-      setError('');
-    }
-    handleChange(e);
-  }
+  // function validarImagen(e) {
+  //   if (!/\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(e.target.value)) {
+  //     // fijarse RegEx que es igual a los demas PERO PARA IMAGENES DEL INPUT "FILE"
+  //     setError('Formato de imagen invalido.');
+  //   } else {
+  //     setError('');
+  //   }
+  //   handleChange(e);
+  // }
 
   async function handleSubit(e) {
     e.preventDefault();
@@ -214,16 +214,16 @@ export default function CrearAnuncio() {
             )}
           </p>
         </div>
-        <label htmlFor="">Imagen de la Noticia: </label>
+        {/* <label htmlFor="">Imagen de la Noticia: </label> */}
         {/* HACER ONCHANGE PARA INPUT FILE */}
-        <p>{'Solo se soporta archivos "JPG, JPEG ,PNG, SVG"'}</p>
+        {/* <p>{'Solo se soporta archivos "JPG, JPEG ,PNG, SVG"'}</p> */}
         {/* onChange={validarImagen} */}
-        <input
+        {/* <input
           type="file"
           name="foto"
           onChange={handleChangeFoto}
           value={input.image}
-        />
+        /> */}
 
         {/* {error.foto && <p>{error.foto.message}</p>}  */}
         {/* onChange={getNews} */}
