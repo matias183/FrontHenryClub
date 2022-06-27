@@ -16,3 +16,6 @@ export const FILTER_NEWS = "FILTER_NEWS"
 export const GET_PROFILE="GET_PROFILE";
 export const CLEAR_PAGE = "CLEAR_PAGE";
 export const CLEAR_COMMENTS = "CLEAR_COMMENTS"
+export const DETAIL_EVENTO = 'DETAIL_EVENTO'
+export const ALL_EVENTO = 'ALL_EVENTO'
+export const GET_SPORT = 'GET_SPORT'

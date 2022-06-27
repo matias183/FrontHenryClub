@@ -16,6 +16,9 @@ import {
 	CLEAR_PAGE,
 	GET_PROFILE,
 	CLEAR_COMMENTS,
+	ALL_EVENTO,
+	DETAIL_EVENTO,
+	GET_SPORT,
 	// FILTER_NEWS,
 } from "../Actions/DataTypes";
 
@@ -28,6 +31,8 @@ const initialState = {
 	activities: [],
 	comments: [],
 	contacts: [],
+	evento: [],
+	sport: []
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -62,7 +67,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
 				...state,
 				contacts: payload,
 			};
-
+		case ALL_EVENTO:
+			return {
+				...state,
+				evento: payload,
+			}
+		case GET_SPORT:
+			return {
+				...state,
+				sport: payload,
+			}
 		// ELIMINAR Y EDITAR
 		// case UPDATE_MEMBER:
 		// 	return {
@@ -88,7 +102,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
 				...state,
 				memberDetail: payload,
 			};
-
+		case DETAIL_EVENTO:
+			return {
+				...state,
+				evento: payload
+			}
 		//BUSCAR
 		case SEARCH_SEARCH:
 			//functión para buscar en el estado
