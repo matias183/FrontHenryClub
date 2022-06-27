@@ -19,6 +19,8 @@ import {
 	ALL_EVENTO,
 	DETAIL_EVENTO,
 	GET_SPORT,
+	GET_TEACHER,
+	GET_CATEGORY,
 	// FILTER_NEWS,
 } from "../Actions/DataTypes";
 
@@ -32,7 +34,10 @@ const initialState = {
 	comments: [],
 	contacts: [],
 	evento: [],
-	sport: []
+	sport: [],
+	teacher: [],
+	sport: [],
+	category: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -77,6 +82,19 @@ const rootReducer = (state = initialState, { type, payload }) => {
 				...state,
 				sport: payload,
 			}
+
+		case GET_TEACHER:
+			return {
+				...state,
+				teacher: payload,
+			}
+			
+		case GET_CATEGORY:
+			return {
+				...state,
+				category: payload
+			}	
+		
 		// ELIMINAR Y EDITAR
 		// case UPDATE_MEMBER:
 		// 	return {
