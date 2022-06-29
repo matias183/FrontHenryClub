@@ -5,6 +5,8 @@
 }
 .calendario{
     z-index: 1;
+    position: relative;
+    overflow-y:visible
 }
 
 .formCalendario {
