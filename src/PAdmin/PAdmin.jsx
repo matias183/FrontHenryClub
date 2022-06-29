@@ -8,7 +8,7 @@ import FormActiv from '../components/Form Create Activities/NewActivity';
 import Createnews from '../components/Form CrearNoticia/CrearNoticia';
 import Request from './Request/Request';
 import EditNews from './EditNews/EditNews';
-// import PanelTrabajo from './PanelTrabajo/PaneldeTrabajo'
+import Empleados from './Empleados/Empleados'
 import s from './Profile.module.css';
 
 export default function PAdmin() {
@@ -20,33 +20,33 @@ export default function PAdmin() {
       <div className={s.container}>
         <div className={s.barralateral}>
           <ul>
-            {/* <li>
-        <NavLink to="/admin/news">News</NavLink>
-      </li> */}
             <li>
-              <NavLink to="/admin/socios">Socios</NavLink>
+        <NavLink to="/admin/news">VISTA DE NOTICIAS</NavLink>
+      </li>
+            <li>
+              <NavLink to="/admin/socios">VISTA SOCIOS</NavLink>
             </li>
-            {/* <li>
+            <li>
               <NavLink to="/admin/home">Home</NavLink>
-            </li> */}
+            </li>
             <li>
               <NavLink to="/admin/newactivity">Crea Actividad</NavLink>
             </li>
-            {/* <li>
-              <NavLink to="/admin/editnews">EditNews</NavLink>
-            </li> */}
+            <li>
+              <NavLink to="/admin/editnews">EDITAR NOTICIAS</NavLink>
+            </li>
             <li>
               <NavLink to={'/calendario'}>Calendario</NavLink>
             </li>
             <li>
               <NavLink to="/admin/createnews">Crea Noticia</NavLink>
             </li>
-            {/* <li>
-              <NavLink to="/admin/request">look at requests</NavLink>
-            </li> */}
-            {/* <li> 
-      <NavLink to="/admin/teamwork">Panel de Trabajo</NavLink>
-      </li> */}
+            <li>
+              <NavLink to="/admin/request">MENSAJES</NavLink>
+            </li> 
+            <li> 
+      <NavLink to="/admin/empleados">Panel de Trabajo</NavLink>
+      </li>
           </ul>
         </div>
         <div className={s.mostrar}>
@@ -57,9 +57,9 @@ export default function PAdmin() {
           <Route path="/admin/createnews" component={Createnews} />
           <Route path="/admin/request" component={Request} />
           <Route path="/admin/editnews" component={EditNews} />
-          {/* <Route path="/admin/teamwork" component={PanelTrabajo} /> */}
+          <Route path="/admin/empleados" component={Empleados} />
         </div>
       </div>
     </>
-  );
+  )
 }
