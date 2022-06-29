@@ -3,34 +3,17 @@ import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+import interactionPlugin from '@fullcalendar/interaction';
 import './Calendario.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSport, postEvento } from '../../redux/Actions/Action';
-import { Link } from 'react-router-dom';
-// import Modal from 'react-bootstrap/Modal'
-// import ModalTitle from 'react-bootstrap/ModalTitle'
-// import ModalBody from 'react-bootstrap/ModalBody'
-// import ModalHeader from 'react-bootstrap/ModalHeader'
-// import ModalFooter from 'react-bootstrap/ModalFooter'
+import { getSport, postEvento, getEvents, detailEvento, clearPage } from '../../redux/Actions/Action';
+import { Link, useParams } from 'react-router-dom';
+import styled from 'styled-components';
+import Modal from './Modal';
 
 export default function MyCalendar() {
-  // const sport = [
-  //   {
-  //     "id": 1,
-  //     "name": "Futbol"
-  //   },
-  //   {
-  //     "id": 2,
-  //     "name": "Natacion"
-  //   },
-  //   {
-  //     "id": 3,
-  //     "name": "Hockey"
-  //   }
-  // ]
-  // si user.role === admi => (mostrar formulario para evento)
   const sport = useSelector(state => state.sport);
-  console.log(sport);
+  const event = useSelector(state => state.evento)
   const [myEvents, setMyEvents] = useState([]);
   const dispatch = useDispatch();
   const [newEvent, setNewEvent] = useState({
@@ -43,10 +26,28 @@ export default function MyCalendar() {
     daysOfWeek: [],
   });
   const [modal, setModal] = useState(false);
+  const [detail, setDetail] = useState(false)
+  // const {id} = useParams()
+  // console.log(id)
+  // const detailEvent = useSelector(state => state.eventDetail)
+  // console.log(detailEvent)
+
+  // useEffect(() => {
+  //   dispatch(detailEvento(id));
+  //   return () => {
+  //     dispatch(clearPage())
+  //   }
+  // }, []);
 
   useEffect(() => {
     dispatch(getSport());
+    dispatch(getEvents())
   }, [dispatch]);
+
+  useEffect(() => {
+    setMyEvents(event)
+  }, [event])
+
 
   const handleChangeInput = e => {
     if (e.target.name === 'daysOfWeek') {
@@ -64,25 +65,9 @@ export default function MyCalendar() {
 
   const handleSubmit = () => {
     setMyEvents([...myEvents, newEvent]);
-  };
-
-  const handleChangeEvent = () => {
-    setModal(true);
-  };
-
-  const handleSubmit2 = e => {
-    e.preventDefault();
-    const eventNew = {
-      title: newEvent.title,
-      startTime: newEvent.startTime,
-      endTime: newEvent.endTime,
-      startRecur: newEvent.startRecur,
-      endRecur: newEvent.endRecur,
-      calendarId: newEvent.calendarId,
-      daysOfWeek: newEvent.daysOfWeek,
-    };
-    dispatch(postEvento(eventNew));
     alert('Evento Creado');
+    console.log(newEvent)
+    dispatch(postEvento(newEvent))
     setNewEvent({
       title: '',
       startTime: '',
@@ -93,6 +78,7 @@ export default function MyCalendar() {
       daysOfWeek: [],
     });
   };
+
   const handleSelectSport = e => {
     setNewEvent({
       ...newEvent,
@@ -100,49 +86,60 @@ export default function MyCalendar() {
     });
   };
 
+  
+
   return (
     <div className="calendarioContainer">
       <div>
-        <Link to={'/admin'}>
-          <button>
-            <span>Regresar</span>
-          </button>
-        </Link>
+        <ContenedorBotones>
+          <Link to={'/admin'}>
+            <button>
+              <span>Regresar</span>
+            </button>
+          </Link>
+          {/* <Boton onClick={() => handleChangeEvent(!setModal)}>
+            Agenda
+          </Boton> */}
+        </ContenedorBotones>
       </div>
-      <button onClick={handleChangeEvent}>Crear Evento</button>
-      <div className="evento" style={{ display: !modal ? 'none' : '' }}>
-        <p>Crea un evento</p>
-        <form className="formCalendario" onSubmit={e => handleSubmit2(e)}>
+      <Modal
+        estado={modal}
+        cambiarEstado={setModal}
+      >
+        <form className="formCalendario">
           <input
             type="text"
             name="title"
             value={newEvent.title}
-            onChange={handleChangeInput}
+            onChange={e => handleChangeInput(e)}
             placeholder="Nombre del evento"
           />
+          <label>Desde las</label>
           <input
             type={'time'}
             name="startTime"
             value={newEvent.startTime}
-            onChange={handleChangeInput}
+            onChange={e => handleChangeInput(e)}
           />
+          <label>Hasta las</label>
           <input
             type={'time'}
             name="endTime"
             value={newEvent.endTime}
-            onChange={handleChangeInput}
+            onChange={e => handleChangeInput(e)}
           />
+          <label>Duración:</label>
           <input
             type={'date'}
             name="startRecur"
             value={newEvent.startRecur}
-            onChange={handleChangeInput}
+            onChange={e => handleChangeInput(e)}
           />
           <input
             type={'date'}
             name="endRecur"
             value={newEvent.endRecur}
-            onChange={handleChangeInput}
+            onChange={e => handleChangeInput(e)}
           />
           <select
             name="calendarId"
@@ -161,7 +158,7 @@ export default function MyCalendar() {
           <select
             name="daysOfWeek"
             id="daysOfWeek"
-            onChange={handleChangeInput}
+            onChange={e => handleChangeInput(e)}
           >
             <option value="">Días de la semana</option>
             {[
@@ -182,7 +179,7 @@ export default function MyCalendar() {
             {newEvent.daysOfWeek.length > 0 &&
               newEvent.daysOfWeek?.map(e =>
                 e === 1 ? (
-                  <div>Lunes</div>
+                  <div key={e}>Lunes</div>
                 ) : e === 2 ? (
                   <div>Martes</div>
                 ) : e === 3 ? (
@@ -201,13 +198,19 @@ export default function MyCalendar() {
               )}
           </div>
         </form>
-        <button type="submit" onClick={handleSubmit}>
+        <button type="submit" onClick={e =>handleSubmit(e)}>
           Agregar Evento
         </button>
-      </div>
+      </Modal>
+      {/* <Modal
+        estado={detail}
+        cambiarEstado={setDetail}
+      >
+        <h3>{detailEvent.title}</h3>
+      </Modal> */}
       <div className="calendario">
         <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, listPlugin]}
+          plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
           initialView="dayGridMonth"
           locale={'es'}
           headerToolbar={{
@@ -215,9 +218,33 @@ export default function MyCalendar() {
             center: 'title',
             right: 'dayGridMonth, timeGridWeek, listWeek',
           }}
+          dateClick={function(info){
+            setModal(!modal)
+          }}
           events={myEvents}
+          eventClick={function(info){
+            alert(info.event.title + ':' +
+                  ' empieza ' + info.event.startStr.replace('T', ' ').slice(0, -6)
+                  + ' hasta ' + info.event.endStr.replace('T', ' ').slice(0, -6)
+                  )
+            // setDetail(!detail)
+          }}
         />
       </div>
     </div>
   );
 }
+
+const ContenedorBotones = styled.div`
+  padding: 10px;
+  display: flex;
+  flew-wrap: wrap;
+  justify-content: center;
+  gap: 20px
+`
+
+const Boton = styled.button`
+  display: block,
+  padding: 10px 30px;
+  color: #fff
+`
