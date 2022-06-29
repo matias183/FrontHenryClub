@@ -1,62 +1,96 @@
-
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createMember } from "../../redux/Actions/Action";
-import validate from "./Validations/validations"
-import { Link } from 'react-router-dom'
-import style from './Register.module.css'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createMember } from '../../redux/Actions/Action';
+import validate from './Validations/validations';
+import { Link } from 'react-router-dom';
+import style from './Register.module.css';
+import { useHistory } from 'react-router-dom';
 
 export default function Register() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
+  const history = useHistory();
   const [inputs, setInputs] = useState({
-    nombre: "",
-    apellido: "",
-    correo: "",
-    telefono: "",
-    dni: "",
-    edad: "",
-    usuario: "",
-    contraseña: "",
+    name: '',
+    surname: '',
+    email: '',
+    address: '',
+    phone: '',
+    dni: '',
+    age: '',
+    username: '',
+    password: '',
+    passwordTwo: '',
   });
 
   //Para renderizar mensajes de error
-  const [error, setError] = useState({})
+  const [error, setError] = useState({});
 
   const [loading, setLoading] = useState(false);
-  const { nombre, apellido, correo, telefono, dni, edad, usuario, contraseña } = inputs;
+  const {
+    name,
+    surname,
+    email,
+    address,
+    phone,
+    dni,
+    age,
+    username,
+    password,
+    passwordTwo,
+  } = inputs;
 
-  const HandleChange = (e) => {
+  const HandleChange = e => {
     setInputs({
       ...inputs,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleReset = () => {
-
     setInputs({
-      nombre: "",
-      apellido: "",
-      correo: "",
-      telefono: "",
-      dni: "",
-      edad: "",
-      usuario: "",
-      contraseña: "",
+      name: '',
+      surname: '',
+      email: '',
+      address: '',
+      phone: '',
+      dni: '',
+      age: '',
+      username: '',
+      password: '',
     });
-
   };
 
-  const onSubmit = (e) => {
+  function handlePasswordEqual(e) {
+    setInputs({
+      ...inputs,
+      passwordTwo: e.target.value,
+    });
+  }
+
+  const onSubmit = e => {
     e.preventDefault();
     setError(validate(inputs));
     if (Object.keys(error).length > 0) {
-      alert(`falta ${Object.keys(error)}`)
-    } else if (nombre && apellido && correo && telefono && dni && edad && usuario && contraseña) {
-      alert("Succes")
+      alert(`falta ${Object.keys(error)}`);
+    } else if (
+      name &&
+      surname &&
+      email &&
+      address &&
+      phone &&
+      // ver validacion de telefono
+      dni &&
+      age &&
+      username &&
+      password &&
+      passwordTwo
+    ) {
+      alert('¡username Creado!');
       setLoading(true);
-      dispatch(createMember())
+      dispatch(createMember(inputs));
       setLoading(false);
+      history.push('/home');
     }
   };
 
@@ -67,75 +101,81 @@ export default function Register() {
         <form className={style.form} onSubmit={onSubmit} onReset={handleReset}>
           <div className={style.inputContainer}>
             <div className={style.column1}>
-
-
               <div>
-                
-                {error.nombre && <p className={style.error}>{error.nombre}</p>}
-                <label className={style.tag}>Nombre</label>
+                {error.name && <p className={style.error}>{error.name}</p>}
+                <label className={style.tag}>name</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
-                  value={nombre}
-                  name="nombre"
-                  id="nombre"
+                  value={name}
+                  name="name"
+                  id="name"
                   type="text"
-                  placeholder="Nombre..."
+                  placeholder="name..."
                   autoComplete="off"
                 />
               </div>
               <div>
-              
-                {error.apellido && <p className={style.error}>{error.apellido}</p>}
-                <label className={style.tag}>Apellido</label>
+                {error.surname && (
+                  <p className={style.error}>{error.surname}</p>
+                )}
+                <label className={style.tag}>surname</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
-                  value={apellido}
-                  name="apellido"
-                  id="apellido"
+                  value={surname}
+                  name="surname"
+                  id="surname"
                   type="text"
-                  placeholder="Apellido..."
+                  placeholder="surname..."
                   autoComplete="off"
                 />
               </div>
               <div>
-                
-                {error.telefono && <p className={style.error}>{error.telefono}</p>}
-                <label className={style.tag}>Número de telefono</label>
+                {error.phone && <p className={style.error}>{error.phone}</p>}
+                <label className={style.tag}>Número de phone</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
-                  value={telefono}
-                  name="telefono"
-                  id="telefono"
+                  value={phone}
+                  name="phone"
+                  id="phone"
                   type="string"
                   placeholder="555..."
                   autoComplete="off"
                 />
               </div>
               <div>
-               
-                {error.correo && <p className={style.error}>{error.correo}</p>}
-                <label className={style.tag}>Correo</label>
+                {error.email && <p className={style.error}>{error.email}</p>}
+                <label className={style.tag}>email</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
-                  value={correo}
-                  name="correo"
-                  id="correo"
+                  value={email}
+                  name="email"
+                  id="email"
                   type="email"
-                  placeholder="Correo..."
+                  placeholder="email..."
                   autoComplete="off"
                 />
               </div>
             </div>
 
+            <div>
+              <label className={style.tag}>Dirección</label>
+              <input
+                className={style.input}
+                onChange={HandleChange}
+                type="text"
+                name="address"
+                id="address"
+                value={address}
+                placeholder="Escribe tu dirección"
+              />
+            </div>
+
             <div className={style.column2}>
-
-
               <div>
-                
                 {error.dni && <p className={style.error}>{error.dni}</p>}
                 <label className={style.tag}>DNI</label>
                 <input
@@ -150,51 +190,76 @@ export default function Register() {
                 />
               </div>
               <div>
-                {error.edad && <p className={style.error}>{error.edad}</p>}
-                <label className={style.tag}>Edad</label>
+                {error.age && <p className={style.error}>{error.age}</p>}
+                <label className={style.tag}>age</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
-                  value={edad}
-                  name="edad"
-                  id="edad"
+                  value={age}
+                  name="age"
+                  id="age"
                   type="number"
-                  placeholder="edad"
+                  placeholder="age"
                   autoComplete="off"
                 />
               </div>
               <div>
-                {error.usuario && <p className={style.error}>{error.usuario}</p>}
-                <label className={style.tag}>Nombre de usuario</label>
+                {error.username && (
+                  <p className={style.error}>{error.username}</p>
+                )}
+                <label className={style.tag}>name de username</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
-                  value={usuario}
-                  name="usuario"
-                  id="usuario"
+                  value={username}
+                  name="username"
+                  id="username"
                   type="string"
-                  placeholder="Usuario..."
+                  placeholder="username..."
                   autoComplete="off"
                 />
               </div>
               <div>
                 <p>Al menos 1 letra y 1 número</p>
-                {error.contraseña && <p className={style.error}>{error.contraseña}</p>}
-                <label className={style.tag}>Contraseña</label>
+                {error.password && (
+                  <p className={style.error}>{error.password}</p>
+                )}
+                <label className={style.tag}>password</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
-                  value={contraseña}
-                  name="contraseña"
-                  id="contraseña"
+                  value={password}
+                  name="password"
+                  id="password"
                   type="password"
-                  placeholder="Contraseña..."
+                  placeholder="password..."
+                  autoComplete="off"
+                />
+              </div>
+
+              <div>
+                <p>Al menos 1 letra y 1 número</p>
+                {error.passwordTwo && (
+                  <p className={style.error}>{error.passwordTwo}</p>
+                )}
+                <label className={style.tag}>Repite tu password</label>
+                <input
+                  className={style.input}
+                  onChange={handlePasswordEqual}
+                  value={passwordTwo}
+                  name="passwordTwo"
+                  id="passwordTwo"
+                  type="password"
+                  placeholder="Repite tu password..."
                   autoComplete="off"
                 />
               </div>
             </div>
           </div>
-          <button className={style.button} type="submit"> {loading ? "Cargando..." : "Registrarme"}</button>
+          <button className={style.button} type="submit">
+            {' '}
+            {loading ? 'Cargando...' : 'Registrarme'}
+          </button>
         </form>
         <p>
           Ya tienes una cuenta?
@@ -203,6 +268,4 @@ export default function Register() {
       </div>
     </div>
   );
-};
-
-
+}
