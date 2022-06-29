@@ -25,33 +25,33 @@ export default function navbar() {
             <Search />
           </h2>
         </div>
-        {/* <div className="dropdown">
+        <div className="dropdown">
           <Link to="/login">
             <p className="botonDeslizable">
-              <FaArrowCircleRight />{' '} */}
-        {/* </p>{' '} */}
-        {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
-        {/* </Link> */}
-        {/* 
+              <FaArrowCircleRight />{' '}
+            </p>{' '}
+            {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
+          </Link>
+
           <div className="dropdown-content">
-            <Link to="/profile/:id"> */}
-        {/* <span>Iniciar Sesión</span> */}
-        {/* </Link>{' '} */}
-        {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
-        {/* <Link to="/profile/:id"> */}
-        {/* <span>Registrate</span> */}
-        {/* </Link>{' '} */}
-        {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
-        {/* </div>
-        </div> */}
+            <Link to="/login">
+              <span>Iniciar Sesión</span>
+            </Link>{' '}
+            {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
+            <Link to="/registrate">
+              <span>Registrate</span>
+            </Link>{' '}
+            {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
+          </div>
+        </div>
         <br />
-        <div className="botonAdmin">
+        {/* <div className="botonAdmin">
           <Link to={'/admin'}>
             <button>
               <span>Admin</span>
             </button>
           </Link>
-        </div>
+        </div> */}
       </div>
       {/* <Barra /> */}
     </div>
