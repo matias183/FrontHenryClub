@@ -22,7 +22,7 @@ export default function Home() {
       <div className={S.carouselImg}>
         <GaleriaImg />
       </div>
-      <Barra />
+      {/* <Barra /> */}
       <div className={S.contenido}>
         <h1 className={S.titleNews}>Últimas del club</h1>
         <div className={S.contenidoCentral}>

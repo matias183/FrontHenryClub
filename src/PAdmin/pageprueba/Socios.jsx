@@ -2,9 +2,13 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {Table,TableContainer,TableHead,TableCell,TableBody,TableRow, Modal, Button, TextField} from "@material-ui/core";
+import {Table,TableContainer,TableSortLabel,TableCell,TableBody,TableRow, Modal, Button, TextField} from "@material-ui/core";
 import {Edit, Delete} from "@material-ui/icons";
-import {getMembers,deleteMember,createMember,updateMember } from "../../redux/Actions/Action";
+import TableHeader from "./tableheader";
+import TablePagination from '@material-ui/core/TablePagination';
+import {
+  getMembers,
+  deleteMember,createMember,updateMember } from "../../redux/Actions/Action";
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -29,7 +33,11 @@ const useStyles = makeStyles((theme) => ({
 export default function Socios () {
   const styles =useStyles()
   const dispatch= useDispatch()
+  const [valueToOrderBy,  setValueToOrderBy]= useState ("asc");
+  const [orderDirection, setOrderDirection]= useState ("name");
   const members = useSelector((state) => state.members);
+  const [page, setPage] =useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
   const [insertModal, setinsertModal]= useState (false);
   const [putModal, setputModal]= useState (false);
   const [deleteModal, setdeleteModal]= useState (false);
@@ -38,6 +46,14 @@ export default function Socios () {
     name: "", surname: "", address: "", phone: "", email: "", username: "", dni: "", password: "",
   })
  
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
   useEffect(() => {
     dispatch(getMembers());
   }, [dispatch]);
@@ -47,25 +63,18 @@ export default function Socios () {
     const{name, value}=e.target;
     setInput({...input,[name]:value})
   };
-
-
   const CrearMember = () => {
     // dispatch(createMember())
     abricerrarMInsert()
  };
-
   const BorrarMember = (id) => {
     // dispatch(deleteMember(id));
     abricerrarMEliminar()
   };
-
   const EditarMember = (id) => {
     // dispatch(updateMember(id))
     abricerrarMEdit()
  };
-
-
-
  const abricerrarMInsert=() =>{
     setinsertModal(!insertModal)
   };
@@ -80,10 +89,13 @@ export default function Socios () {
   const selectAction = (e, caso) => {
     setInput(e);
     (caso === "Editar")?abricerrarMEdit():abricerrarMEliminar()
-   };
-
+  };
   const bodyInsertar=(
     <div className={styles.modal}>
+          <button 
+                  className="btn btn-sm btn-warning float-right"
+                  
+                >Editar</button>
       <h3>New User</h3>
       <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} />          
       <br />
@@ -108,7 +120,6 @@ export default function Socios () {
       </div>
     </div>
   )
-
   const bodyEditar=(
     <div className={styles.modal}>
       <h3>Edit User</h3>
@@ -137,7 +148,6 @@ export default function Socios () {
       </div>
     </div>
   )
-
   const bodyEliminar=(
     <div className={styles.modal}>
     <p>Estas seguro que deseas eliminar al socio <b>{input&&input.name}</b>?</p>
@@ -147,9 +157,14 @@ export default function Socios () {
       </div>
     </div>
   )
-  
 
- 
+const handleRequestSort = (event, property) =>{
+  const isAscending = (valueToOrderBy === property && orderDirection === "asc")
+  setValueToOrderBy(property) 
+  setOrderDirection(isAscending? "desc":"asc")
+
+} 
+
 console.log(members)
 
   return (
@@ -157,28 +172,18 @@ console.log(members)
     <br />
     <Button onClick={abricerrarMInsert}> Nuevo User</Button>
     <br />
+   
     <br />
   <TableContainer>
 <Table>
-<TableHead>
-
-<TableRow>
-<TableCell>Name</TableCell>
-<TableCell>surname</TableCell>
-<TableCell>address</TableCell>
-<TableCell>phone</TableCell>
-<TableCell>email</TableCell>
-<TableCell>username</TableCell>
-<TableCell>dni</TableCell>
-<TableCell>password</TableCell>
-<TableCell>Acciones</TableCell>
-</TableRow>
-
-</TableHead>
-
+<TableHeader
+valueToOrdeBy={valueToOrderBy}
+orderDirection={orderDirection}
+handleRequestSort={handleRequestSort}
+/>
 
 <TableBody>
-    {members.map( e=>(
+    {members.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map( e=>(
       <TableRow key={e.id}> 
       <TableCell>{e.name}</TableCell>
       <TableCell>{e.surname}</TableCell>
@@ -201,13 +206,20 @@ console.log(members)
       </TableRow>
     )
     )}
-
 </TableBody>
 
 </Table>
 
   </TableContainer>
- 
+  <TablePagination
+        rowsPerPageOptions={[10, 25, 100]}
+        component="div"
+        count={members.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
 <Modal
 open={insertModal}
 onClose={abricerrarMInsert}

@@ -34,24 +34,24 @@ export default function navbar() {
           </Link>
 
           <div className="dropdown-content">
-            <Link to="/profile/:id">
+            <Link to="/login">
               <span>Iniciar Sesión</span>
             </Link>{' '}
             {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
-            <Link to="/profile/:id">
+            <Link to="/registrate">
               <span>Registrate</span>
             </Link>{' '}
             {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
           </div>
         </div>
         <br />
-        <div className="botonAdmin">
+        {/* <div className="botonAdmin">
           <Link to={'/admin'}>
             <button>
               <span>Admin</span>
             </button>
           </Link>
-        </div>
+        </div> */}
       </div>
       {/* <Barra /> */}
     </div>
