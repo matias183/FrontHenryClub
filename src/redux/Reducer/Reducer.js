@@ -22,6 +22,14 @@ import {
 	GET_TEACHER,
 	GET_CATEGORY,
 	// FILTER_NEWS,
+	ALL_PAYS,
+	DETAIL_TEACHER,
+	// DELETE_TEACHER,
+	UPDATE_TEACHER,
+	UPDATE_CATEGORY,
+	DELETE_CATEGORY,
+	ALL_ROLES,
+	ALL_INSCRIPTIONS,
 } from "../Actions/DataTypes";
 
 const initialState = {
@@ -36,8 +44,11 @@ const initialState = {
 	evento: [],
 	sport: [],
 	teacher: [],
-	sport: [],
+	teacherDetail:[],
 	category: [],
+	pago:[],
+	roles:[],
+	inscriptions:[],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -125,6 +136,23 @@ const rootReducer = (state = initialState, { type, payload }) => {
 				...state,
 				evento: payload
 			}
+		case DETAIL_TEACHER:
+				return{
+					...state,
+					teacherDetail: payload
+				}
+		// case DELETE_TEACHER:
+		// 	return{
+		// 			...state,
+		// 			teacher: state.teacher.filter(teacher => teacher.id ===)
+		// 	}
+		case UPDATE_TEACHER:
+		 	return {
+		     ...state,
+		 		teacherDetail: {}
+		   };
+		   
+
 		//BUSCAR
 		case SEARCH_SEARCH:
 			//functión para buscar en el estado
@@ -164,6 +192,35 @@ const rootReducer = (state = initialState, { type, payload }) => {
 		// 		//Asumiendo que la tabla tenga una columna sport que indique el tipo de deporte de la noticia
 		// 		news: state.news.filter(news => news.sportId === payload)
 		// 	}
+		case ALL_PAYS:
+		return{
+			...state,
+			pago:payload,
+		};
+
+		case  UPDATE_CATEGORY:
+		return {
+			...state, 
+			category:payload,
+		};
+		case DELETE_CATEGORY:     // lo deje asi nomas pero hay que hacer que borre
+			return {
+				...state, 
+				category:payload
+			};
+
+		case ALL_ROLES:
+			return{
+				...state,
+				roles:payload
+			};
+
+		case ALL_INSCRIPTIONS:
+			return{
+				...state,
+				inscriptions:payload
+				
+			}
 
 		default:
 			return state;

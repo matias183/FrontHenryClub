@@ -31,11 +31,7 @@ export default function Home() {
               <News
                 key={e.id}
                 id={e.id}
-                image={
-                  e.image
-                    ? e.image
-                    : 'https://pbs.twimg.com/profile_images/631795502665756672/fZ5AQUNF_400x400.jpg'
-                }
+                image={e.image}
                 title={e.title}
                 subtitle={e.subtitle}
               />
