@@ -1,14 +1,15 @@
 import React from 'react';
 import { Route, NavLink } from 'react-router-dom';
-import Header from '../navbar/navbar';
-import Socios from './pageprueba/Socios';
+import Header from './headerAdmin/haaderAdmin';
+import Socios from './Socios/Socios';
 import Home from './Home2/Home2';
 import News from './News2/News2';
 import FormActiv from '../components/Form Create Activities/NewActivity';
 import Createnews from '../components/Form CrearNoticia/CrearNoticia';
 import Request from './Request/Request';
 import EditNews from './EditNews/EditNews';
-import Empleados from './Empleados/Empleados'
+import Empleados from './Empleados/Empleados';
+import Calendario from '../components/Calendario/Calendario'
 import s from './Profile.module.css';
 
 export default function PAdmin() {
@@ -36,7 +37,7 @@ export default function PAdmin() {
               <NavLink to="/admin/editnews">EDITAR NOTICIAS</NavLink>
             </li>
             <li>
-              <NavLink to={'/calendario'}>Calendario</NavLink>
+              <NavLink to="/admin/calendario">Calendario</NavLink>
             </li>
             <li>
               <NavLink to="/admin/createnews">Crea Noticia</NavLink>
@@ -58,6 +59,7 @@ export default function PAdmin() {
           <Route path="/admin/request" component={Request} />
           <Route path="/admin/editnews" component={EditNews} />
           <Route path="/admin/empleados" component={Empleados} />
+          <Route path="/admin/calendario" component={Calendario} />
         </div>
       </div>
     </>

@@ -2,7 +2,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {Table,TableContainer,TableSortLabel,TableCell,TableBody,TableRow, Modal, Button, TextField} from "@material-ui/core";
+import {Table,TableContainer,TableCell,TableBody,TableRow, Modal, Button, TextField} from "@material-ui/core";
 import {Edit, Delete} from "@material-ui/icons";
 import TableHeader from "./tableheader";
 import TablePagination from '@material-ui/core/TablePagination';
@@ -30,22 +30,75 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
+function descendingComparator(a,b,orderBy){
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+}
+
+
+function getComparator(order, orderBy) {
+  return order === 'desc'
+  ? (a, b) => descendingComparator(a, b, orderBy)
+  : (a, b) => -descendingComparator(a, b, orderBy);
+}
+
+
+// const sortedRowInformation = (rowArray, comparator) =>{
+//   const stabilizedRowArray = rowArray.map((e,index)=>[e,index])
+//   stabilizedRowArray.sort((a,b)=>{ 
+//     const order = comparator(a[0], b[0])
+//   if(order !== 0) return order
+//   return a[1] - b[1]
+//   })
+//   return stabilizedRowArray.map(e => e[0]) 
+//} 
+const sortedRowInformation = (array, comparator)=> {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) return order;
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map((el) => el[0]);
+}
+
+
+
+
 export default function Socios () {
   const styles =useStyles()
   const dispatch= useDispatch()
-  const [valueToOrderBy,  setValueToOrderBy]= useState ("asc");
-  const [orderDirection, setOrderDirection]= useState ("name");
+  const [valueToOrderBy,  setValueToOrderBy]= useState("asc");
+  const [orderDirection, setOrderDirection]= useState("name");
   const members = useSelector((state) => state.members);
   const [page, setPage] =useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [insertModal, setinsertModal]= useState (false);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [insertModal, setinsertModal]= useState(false);
   const [putModal, setputModal]= useState (false);
   const [deleteModal, setdeleteModal]= useState (false);
 
   const [input,setInput]= useState({
-    name: "", surname: "", address: "", phone: "", email: "", username: "", dni: "", password: "",
+    name: "", 
+    surname: "",
+     address: "",
+      phone: "", 
+      email: "",
+       username: "",
+        dni: "",
+         edad: "",
+         password:"123456"
   })
  
+ 
+ 
+
+  
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -63,16 +116,22 @@ export default function Socios () {
     const{name, value}=e.target;
     setInput({...input,[name]:value})
   };
-  const CrearMember = () => {
-    // dispatch(createMember())
+  console.log(members)
+
+  const CrearMember = (e) => {
+    e.preventDefault()
+     alert("Socio Creado!!");
+  dispatch(createMember(input))
+  dispatch(getMembers());
+ 
     abricerrarMInsert()
  };
   const BorrarMember = (id) => {
-    // dispatch(deleteMember(id));
+ dispatch(deleteMember(id));
     abricerrarMEliminar()
   };
-  const EditarMember = (id) => {
-    // dispatch(updateMember(id))
+  const EditarMember = (id,input) => {
+   dispatch(updateMember(id, input))
     abricerrarMEdit()
  };
  const abricerrarMInsert=() =>{
@@ -92,11 +151,7 @@ export default function Socios () {
   };
   const bodyInsertar=(
     <div className={styles.modal}>
-          <button 
-                  className="btn btn-sm btn-warning float-right"
-                  
-                >Editar</button>
-      <h3>New User</h3>
+      <h3>Nuevo Socio</h3>
       <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} />          
       <br />
         <TextField className={styles.inputMaterial} label="Surname" name="surname" onChange={HandleChange} />
@@ -111,7 +166,7 @@ export default function Socios () {
       <br />
       <TextField className={styles.inputMaterial} label="Dni" name="dni" onChange={HandleChange} />
       <br />
-      <TextField className={styles.inputMaterial} label="Password" name="password" onChange={HandleChange} />          
+      <TextField className={styles.inputMaterial} label="Edad" name="edad" onChange={HandleChange} />          
       <br />   
       <br />
       <div align="right">
@@ -122,7 +177,7 @@ export default function Socios () {
   )
   const bodyEditar=(
     <div className={styles.modal}>
-      <h3>Edit User</h3>
+      <h3>Editar Socio</h3>
       <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} value={input&&input.name}/>          
       <br />
         <TextField className={styles.inputMaterial} label="Surname" name="surname" onChange={HandleChange}  value={input&&input.surname}/>
@@ -137,10 +192,6 @@ export default function Socios () {
       <br />
       <TextField className={styles.inputMaterial} label="Dni" name="dni" onChange={HandleChange} value={input&&input.dni}/>
       <br />
-      <TextField className={styles.inputMaterial} label="Password" name="password" onChange={HandleChange} value={input&&input.password}/>          
-      <br />   
-
-
       <br /><br />
       <div align="right">
         <Button color="primary" onClick={EditarMember} >Editar</Button>
@@ -158,21 +209,17 @@ export default function Socios () {
     </div>
   )
 
-const handleRequestSort = (event, property) =>{
-  const isAscending = (valueToOrderBy === property && orderDirection === "asc")
+const handleRequestSort= (event, property) =>{
+  const isAscending = valueToOrderBy === property && orderDirection === "asc";
   setValueToOrderBy(property) 
-  setOrderDirection(isAscending? "desc":"asc")
-
+  setOrderDirection(isAscending? "desc" : "asc")
 } 
-
-console.log(members)
 
   return (
     <>
     <br />
-    <Button onClick={abricerrarMInsert}> Nuevo User</Button>
+    <Button onClick={abricerrarMInsert}> Nuevo Socio</Button>
     <br />
-   
     <br />
   <TableContainer>
 <Table>
@@ -183,17 +230,19 @@ handleRequestSort={handleRequestSort}
 />
 
 <TableBody>
-    {members.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map( e=>(
+    {sortedRowInformation(members,getComparator(orderDirection,valueToOrderBy))
+    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    .map((e) => (
       <TableRow key={e.id}> 
-      <TableCell>{e.name}</TableCell>
+      <TableCell>{e.membershipNumber}</TableCell>
+      <TableCell>{e.name} </TableCell>
       <TableCell>{e.surname}</TableCell>
+      <TableCell>{e.username}</TableCell>
       <TableCell>{e.address}</TableCell>
       <TableCell>{e.phone}</TableCell>
       <TableCell>{e.email}</TableCell>
-      <TableCell>{e.username}</TableCell>
+      <TableCell>{e.role}</TableCell>
       <TableCell>{e.dni}</TableCell>
-      <TableCell>{e.password}</TableCell>
-      
       <TableCell>
         <Edit 
         className={styles.iconos} 
@@ -205,14 +254,16 @@ handleRequestSort={handleRequestSort}
       </TableCell>
       </TableRow>
     )
-    )}
+    )
+    
+    }
 </TableBody>
 
 </Table>
 
   </TableContainer>
   <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[5,10, 15, 100]}
         component="div"
         count={members.length}
         rowsPerPage={rowsPerPage}

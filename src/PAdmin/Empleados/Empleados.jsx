@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import {Table,TableContainer,TableHead,TableCell,TableBody,TableRow, Modal, Button, TextField} from "@material-ui/core";
 import {Edit, Delete} from "@material-ui/icons";
 import {
-  // getInstructor ,
+  getTeacher ,
   deleteInstructor,createInstructor,updateIntructor
 } from "../../redux/Actions/Action";
 
@@ -49,7 +49,7 @@ export default function EquipodeTrabajo() {
 
   useEffect(() => {
     dispatch(
-      // getInstructor()
+      getTeacher()
       );
   }, [dispatch]);
 
