@@ -5,8 +5,18 @@ import { Link } from 'react-router-dom';
 import logoHenry from '../utils/fotos/logo.gif';
 import { FaArrowCircleRight, FaUserAlt } from 'react-icons/fa';
 import './NavBar.css';
+import { useState } from 'preact/hooks';
+import { loginMember } from '../redux/Actions/Action';
+import { useSelector } from 'react-redux';
 
-export default function navbar() {
+export default function Navbar() {
+  const logOut = e => {
+    // e.preventDefault();
+    window.localStorage.removeItem('data');
+    window.localStorage.removeItem('token');
+    alert('Adios!');
+  };
+
   return (
     <div>
       <div className="header">
@@ -25,6 +35,7 @@ export default function navbar() {
             <Search />
           </h2>
         </div>
+        {/* <div>{usuario ? usuario.username : 'nadie'}</div> */}
         <div className="dropdown">
           <Link to="/login">
             <p className="botonDeslizable">
@@ -34,13 +45,31 @@ export default function navbar() {
           </Link>
 
           <div className="dropdown-content">
-            <Link to="/login">
+            <ul>
+              <li>
+                <Link to="/login">
+                  <span>Iniciar Sesión</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/registrate">
+                  <span>Registrate</span>
+                </Link>
+              </li>
+
+              <li>
+                <Link to="/login">
+                  <button onClick={logOut}>Cerrar Sesión</button>
+                </Link>
+              </li>
+            </ul>
+            {/* <Link to="/login">
               <span>Iniciar Sesión</span>
-            </Link>{' '}
+            </Link>{' '} */}
             {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
-            <Link to="/registrate">
+            {/* <Link to="/registrate">
               <span>Registrate</span>
-            </Link>{' '}
+            </Link>{' '} */}
             {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
           </div>
         </div>
