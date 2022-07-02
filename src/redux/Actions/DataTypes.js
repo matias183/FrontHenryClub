@@ -1,3 +1,4 @@
+
 export const ALL_MEMBERS = 'ALL_MEMBERS';
 export const DETAIL_MEMBER = 'DETAIL_MEMBER';
 export const UPDATE_MEMBER = 'UPDATE_MEMBER';
@@ -21,4 +22,13 @@ export const ALL_EVENTO = 'ALL_EVENTO';
 export const GET_SPORT = 'GET_SPORT';
 export const GET_TEACHER = 'GET_TEACHER';
 export const GET_CATEGORY = 'GET_CATEGORY';
+export const  UPDATE_CATEGORY = " UPDATE_CATEGORY"
+export const ALL_PAYS = "ALL_PAYS";
+export const DETAIL_TEACHER = "DETAIL_TEACHER";
+export const DELETE_TEACHER = "DELETE_TEACHER";
+export const UPDATE_TEACHER = "UPDATE_TEACHER";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
+export const ALL_ROLES = "ALL_ROLES";
+export const ALL_INSCRIPTIONS ="ALL_INSCRIPTIONS";
 export const JWT = 'JWT';
+

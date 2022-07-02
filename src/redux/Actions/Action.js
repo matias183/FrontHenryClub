@@ -1,31 +1,40 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 import {
-  ALL_MEMBERS,
-  ALL_IMAGES,
-  ALL_NEWS,
-  DETAIL_NEWS,
-  DETAIL_MEMBER,
-  ALL_COMMENTS,
-  ALL_CONTACTS,
-  UPDATE_NEWS,
-  UPDATE_COMMENT,
-  UPDATE_MEMBER,
-  DELETE_MEMBER,
-  DELETE_NEWS,
-  DELETE_COMMENT,
-  SEARCH_SEARCH,
-  CLEAR_PAGE,
-  FILTER_NEWS,
-  CLEAR_COMMENTS,
-  DETAIL_EVENTO,
-  ALL_EVENTO,
-  GET_SPORT,
-  GET_PROFILE,
-  GET_CATEGORY,
-  GET_TEACHER,
-  JWT,
-} from './DataTypes';
+
+	ALL_MEMBERS,
+	ALL_IMAGES,
+	ALL_NEWS,
+	DETAIL_NEWS,
+	DETAIL_MEMBER,
+	DETAIL_TEACHER,
+	ALL_COMMENTS,
+	ALL_CONTACTS,
+	UPDATE_NEWS,
+	UPDATE_COMMENT,
+	UPDATE_MEMBER,
+	DELETE_MEMBER,
+	DELETE_NEWS,
+	DELETE_COMMENT,
+	DELETE_CONTACT,
+	SEARCH_SEARCH,
+	CLEAR_PAGE,
+	FILTER_NEWS,
+	CLEAR_COMMENTS,
+	DETAIL_EVENTO,
+	ALL_EVENTO,
+	GET_SPORT,
+	GET_PROFILE,
+	GET_CATEGORY,
+	UPDATE_CATEGORY,
+  	GET_TEACHER,
+  	ALL_PAYS,
+  	DELETE_TEACHER,
+	DELETE_CATEGORY,
+	ALL_ROLES,
+	ALL_INSCRIPTIONS,
+} from "./DataTypes";
+
 
 //Get
 
@@ -76,6 +85,28 @@ export function getNews() {
   };
 }
 
+export function getRoles() {
+	return async (dispatch) => {
+		try {
+			let { data } = await axios.get("http://localhost:3001/role");
+			return dispatch({ type: ALL_ROLES, payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+}
+
+export function getInscription() {
+	return async (dispatch) => {
+		try {
+			let { data } = await axios.get("http://localhost:3001/inscription");
+			return dispatch({ type: ALL_INSCRIPTIONS, payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+}
+
 export function getComments(id) {
   return async dispatch => {
     try {
@@ -113,6 +144,19 @@ export function getSport() {
   };
 }
 
+export function createSport(userId, input) {
+	return async function () {
+		try {
+			const { data } = await axios.post(`http://localhost:3001/sport/${userId}`,
+				input
+			);
+			return data;
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+}
+
 export function getTeacher() {
   return async function (dispatch) {
     const { data } = await axios.get('http://localhost:3001/teacher');
@@ -133,18 +177,54 @@ export function getCategory() {
   };
 }
 
+export function createCategory(userId, input) {
+	return async function () {
+		try {
+			const { data } = await axios.post(
+				`http://localhost:3001/category/${userId}`,
+				input
+			);
+			return data;
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+}
+
+export function updateCategory(id, input) {
+	return async (dispatch) => {
+		try {
+			let { data } = await axios.put(`http://localhost:3001/category/${id}`, input);
+			return dispatch({ type: UPDATE_CATEGORY, payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+}
+
+export function deleteCategory(id) {
+	return async (dispatch) => {
+		try {
+			let { data } = await axios.delete(`http://localhost:3001/category/${id}`);
+			return dispatch({ type: DELETE_CATEGORY, payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+}
+
 //
 export function loginMember(input) {
-  return async function () {
-    try {
-      const { data } = await axios.post('http://localhost:3001/login', input);
-      //guardar info en el localstorage
 
-      return data;
-    } catch (error) {
-      alert(error.response.data);
-    }
-  };
+	return async function () {
+		try {
+			const { data } = await axios.post("http://localhost:3001/user", input);
+			return data;
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+
 }
 
 //Detail
@@ -188,19 +268,46 @@ export function detailEvento(id) {
   };
 }
 
+export function detailTeacher(id) {
+	return async function (dispatch) {
+		try {
+			const json = await axios.get(`http://localhost:3001/teacher/${id}`);
+			dispatch({
+				type: DETAIL_TEACHER,
+				payload: json.data,
+			});
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+}
+
 //Post
-export function createNews(input) {
-  return async function () {
-    try {
-      const { data } = await axios.post(
-        'http://localhost:3001/news/crear',
-        input
-      );
-      return data;
-    } catch (error) {
-      alert(error.response.data);
-    }
-  };
+
+export function createNews(userId, input) {
+	return async function () {
+		try {
+			const { data } = await axios.post(
+				`http://localhost:3001/news/crear/${userId}`,
+				input
+			);
+			return data;
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+
+}
+
+export function createInscription(userId, input) {
+	return async function () {
+		try {
+			const { data } = await axios.post(`http://localhost:3001/inscription/${userId}`, input);
+			return data;
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
 }
 
 export function createActivity(input) {
@@ -213,42 +320,45 @@ export function createActivity(input) {
     }
   };
 }
-export function createMember(input) {
-  return async () => {
-    console.log(input);
-    try {
-      if (input.edad >= 18) {
-        input.isOlder = true;
-      } else {
-        input.isOlder = false;
-      }
 
-      let { data } = await axios.post('http://localhost:3001/user', input);
-      //Despachar accion o regresar mensaje?
-      // return dispatch({type: })
-      return data;
-    } catch (error) {
-      alert(error.response.data);
-    }
-  };
-}
+export function createMember(userId, input) {
+	return async () => {
+	  console.log(input);
+	  try {
+		if (input.edad >= 18) {
+		  input.isOlder = true;
+		} else {
+		  input.isOlder = false;
+		}
+  
+		let { data } = await axios.post(`http://localhost:3001/user/${userId}`, input);
+		//Despachar accion o regresar mensaje?
+		// return dispatch({type: })
+		return data;
+	  } catch (error) {
+		alert(error.response.data);
+	  }
+	};
+  }
 
-export function createComment(idNews, input) {
-  return async dispatch => {
-    try {
-      await axios.post(
-        `http://localhost:3001/comment/comentar/${idNews}`,
-        input
-      );
 
-      // let {data} = await axios.get("http://localhost:3001/user")
+export function createComment(newsId, userId) {
+	return async (dispatch) => {
+		try {
+			await axios.post(
+				`http://localhost:3001/comment/comentar/${newsId}/${userId}`,
+				
+			);
 
-      // return dispatch({type:ALL_COMMENTS,payload:data});
-      return;
-    } catch (error) {
-      alert(error.response.data);
-    }
-  };
+			// let {data} = await axios.get("http://localhost:3001/user")
+
+			// return dispatch({type:ALL_COMMENTS,payload:data});
+			return;
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+
 }
 
 export function createContact(input) {
@@ -318,6 +428,17 @@ export function deleteNews(id) {
   };
 }
 
+export function deleteTeacher(id) {
+	return async (dispatch) => {
+		try {
+			let { data } = await axios.delete(`http://localhost:3001/news/${id}`);
+			return dispatch({ type: DELETE_TEACHER, payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+}
+
 export function deleteComment(id) {
   return async dispatch => {
     try {
@@ -330,15 +451,27 @@ export function deleteComment(id) {
 }
 
 export function deleteMember(id) {
-  return async dispatch => {
-    try {
-      let { data } = await axios.delete(`http://localhost:3001/user/${id}`);
-      return dispatch({ type: DELETE_MEMBER, payload: data });
-    } catch (error) {
-      alert(error.response.data);
-    }
-  };
-}
+
+	return async (dispatch) => {
+		try {
+			let { data } = await axios.delete(`http://localhost:3001/user/${id}`);
+			return dispatch({ type: DELETE_MEMBER, payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+	}
+	export function deleteContact(id) {
+		return async (dispatch) => {
+			try {
+				let { data } = await axios.delete(`http://localhost:3001/contact/${id}`);
+				return dispatch({ type: DELETE_CONTACT, payload: data });
+			} catch (error) {
+				alert(error.response.data);
+			}
+		};
+	}
+
 //Perfil
 export function GetProfile(id) {
   return async function (dispatch) {
@@ -364,14 +497,34 @@ export function search(name) {
   };
 }
 
-//Filtrar noticias
-export function filterNews(name) {
-  return async dispatch => {
-    let { data } = await axios.get(`http://localhost:3001/news?title=${name}`);
-    return dispatch({ type: SEARCH_SEARCH, payload: data });
-  };
+
+//Pago
+export function getPay() {
+	return async (dispatch) => {
+		try {
+			let { data } = await axios.get("http://localhost:3001/pay");
+			return dispatch({ type: ALL_PAYS, payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
 }
 
+//Filtrar noticias
+
+export function filterNews(title) {
+	return async (dispatch) => {
+		let { data } = await axios.get(`http://localhost:3001/news?title=${title}`);
+		return dispatch({ type: SEARCH_SEARCH, payload: data });
+	};
+}
+export function filterNewsByName(name) {
+	return async (dispatch) => {
+		let { data } = await axios.get(`http://localhost:3001/news?name=${name}`);
+		return dispatch({ type: SEARCH_SEARCH, payload: data });
+	};
+
+}
 //Limpiar estado de comentarios (Decidir si usamos un clear para cada estado o uno general para todos los estados de detalles)
 export function clearComments() {
   return { type: CLEAR_COMMENTS };
@@ -383,6 +536,7 @@ export const clearPage = () => {
     type: CLEAR_PAGE,
   };
 };
+
 
 export function jasonWebToken(input) {
   return async dispatch => {
@@ -473,3 +627,4 @@ export function jasonWebToken(input) {
 // GET: http://localhost:3001/inscription
 // POST: http://localhost:3001/inscription/{userId}
 // ESPECIFICACIONES TECNICAS: Sujeto a cambios, mantenerse actualizados antes de escribir codigos
+

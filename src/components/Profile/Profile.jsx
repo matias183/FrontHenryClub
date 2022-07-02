@@ -39,7 +39,6 @@ export default function Profile() {
         
             <h4 className="">Contactos: {myProfile.phone} </h4>
             <Link to="/reserve">
-          <button>Hace una reserva </button>
          </Link>   
           <button>Darse de baja</button>
           <Link to="/home">
