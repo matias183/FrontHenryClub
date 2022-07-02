@@ -1,4 +1,4 @@
-import {
+
 	ALL_MEMBERS,
 	ALL_IMAGES,
 	ALL_NEWS,
@@ -30,6 +30,7 @@ import {
 	DELETE_CATEGORY,
 	ALL_ROLES,
 	ALL_INSCRIPTIONS,
+    JWT,
 } from "../Actions/DataTypes";
 
 const initialState = {
@@ -49,6 +50,7 @@ const initialState = {
 	pago:[],
 	roles:[],
 	inscriptions:[],
+    jwt: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -105,6 +107,13 @@ const rootReducer = (state = initialState, { type, payload }) => {
 				...state,
 				category: payload
 			}	
+      
+        case JWT:
+      return {
+        ...state,
+
+        jwt: payload,
+      };
 		
 		// ELIMINAR Y EDITAR
 		// case UPDATE_MEMBER:
@@ -225,6 +234,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
 		default:
 			return state;
 	}
+
 };
 
 export default rootReducer;
