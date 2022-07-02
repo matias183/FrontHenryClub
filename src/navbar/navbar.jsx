@@ -20,8 +20,11 @@ export default function Navbar() {
   return (
     <div>
       <div className="header">
-        {' '}
-        {/* container del header  */}
+        {localStorage.getItem('data') ? (
+          <div>{JSON.parse(localStorage.getItem('data')).name}</div>
+        ) : (
+          'No hay usuario logueado'
+        )}
         <Link to="/home">
           {' '}
           <img className="logo" src={logoHenry} alt="logo" />{' '}
@@ -35,7 +38,6 @@ export default function Navbar() {
             <Search />
           </h2>
         </div>
-        {/* <div>{usuario ? usuario.username : 'nadie'}</div> */}
         <div className="dropdown">
           <Link to="/login">
             <p className="botonDeslizable">
