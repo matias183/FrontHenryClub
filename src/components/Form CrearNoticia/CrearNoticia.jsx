@@ -41,23 +41,23 @@ export default function CrearAnuncio() {
     // news: [],
   });
 
-  const uploadImage = async (e)  => {
-    const files = e.target.files
-    const data = new FormData()
-    data.append("file", files[0])
-    data.append('upload_preset', 'HenryImagenes')
+  const uploadImage = async e => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'HenryImagenes');
     const res = await fetch(
-      "https://api.cloudinary.com/v1_1/proyectohenry/upload",
+      'https://api.cloudinary.com/v1_1/proyectohenry/upload',
       {
         method: 'POST',
-        body: data
+        body: data,
       }
-    )
-    const file = await res.json()
-    console.log(file.secure_url)
-    setInput(file.secure_url)
-    setInput({...input, image: file.secure_url})
-  }
+    );
+    const file = await res.json();
+    console.log(file.secure_url);
+    setInput(file.secure_url);
+    setInput({ ...input, image: file.secure_url });
+  };
 
   // useEffect(() => {
   //   dispatch(getNews());
@@ -117,8 +117,8 @@ export default function CrearAnuncio() {
       typeof input.subtitle === 'string' &&
       input.text
     ) {
-      dispatch(createNews(input));
-      console.log(input)
+      dispatch(createNews(JSON.parse(localStorage.getItem('data')).id, input));
+      console.log(input);
       setInput({
         id: '',
         title: '',
@@ -167,9 +167,7 @@ export default function CrearAnuncio() {
   //   });
   // };
 
-  console.log('hola', input.image)
-
-
+  console.log('hola', input.image);
 
   return (
     <div className={S.contenedorGeneral}>
@@ -240,17 +238,20 @@ export default function CrearAnuncio() {
           value={input.image}
         /> */}
         <FormGroup>
-          <Label>
-            Imagen
-          </Label>
+          <Label>Imagen</Label>
           <Input
             name="file"
             type="file"
-            placeholder='Sube tu Imagen'
+            placeholder="Sube tu Imagen"
             onChange={uploadImage}
-            value=''
+            value=""
           />
-          <img src={input.image || 'https://www.yiwubazaar.com/resources/assets/images/default-product.jpg' } />
+          <img
+            src={
+              input.image ||
+              'https://www.yiwubazaar.com/resources/assets/images/default-product.jpg'
+            }
+          />
         </FormGroup>
 
         {/* {error.foto && <p>{error.foto.message}</p>}  */}
