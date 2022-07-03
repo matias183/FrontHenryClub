@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, NavLink } from 'react-router-dom';
+import { Route, NavLink, Redirect, Link } from 'react-router-dom';
 import Header from './headerAdmin/haaderAdmin';
 import Socios from './Socios/Socios';
 import Home from './Home2/Home2';
@@ -13,7 +13,10 @@ import Calendario from '../components/Calendario/Calendario'
 import s from './Profile.module.css';
 
 export default function PAdmin() {
-  return (
+
+  return(
+  JSON.parse(localStorage.getItem('data')) && JSON.parse(localStorage.getItem('data')).role.name === 'Admin' 
+  ? (
     <>
       <div className={s.header}>
         <Header />
@@ -64,4 +67,13 @@ export default function PAdmin() {
       </div>
     </>
   )
+  // : <h1>No tienes acceso a esta página</h1>)
+  : <Redirect to="/home"/>)
+  // : <div>
+  //   <h1>WoW! Such empty!</h1>
+  //   <img src='https://assets.codepen.io/342414/internal/avatars/users/default.png?fit=crop&format=auto&height=256&version=2&width=256' />
+  //   <Link to="https://c.tenor.com/Yar0zKi_W6IAAAAC/doge.gif" target="_blank">
+  //   <button>I'm scared, take me home</button>
+  //   </Link>
+  // </div>)
 }
