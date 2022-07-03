@@ -84,8 +84,8 @@ export default function EditNews () {
   <br />
   <TextField className={styles.inputMaterial} label="UserName" name="username" onChange={HandleChange} value={input&&input.subtitle} />
   <br />
-  <TextField className={styles.inputMaterial} label="Comentarios" name="comentario" onChange={HandleChange} value={input&&input.image} />
-  <br />
+  {/* <TextField className={styles.inputMaterial} label="Comentarios" name="comentario" onChange={HandleChange} value={input&&input.image} /> */}
+  {/* <br /> */}
       <div align="right">
         <Button color="primary" onClick={EditNews} >Editar</Button>
         <Button onClick={abricerrarMEdit} >Cancelar</Button>
@@ -118,10 +118,10 @@ console.log(neews)
 <TableHead>
 
 <TableRow>
-<TableCell>Id</TableCell>
+{/* <TableCell>Id</TableCell> */}
 <TableCell>Title</TableCell>
 <TableCell>Subtitle</TableCell>
-<TableCell>Image</TableCell>
+{/* <TableCell>Image</TableCell> */}
 <TableCell>Acciones</TableCell>
 </TableRow>
 
@@ -131,7 +131,7 @@ console.log(neews)
       <TableRow key={e.id}> 
       <TableCell>{e.title}</TableCell>
       <TableCell>{e.subtitle}</TableCell>
-      <TableCell>{e.image}</TableCell>
+      {/* <TableCell>{e.image}</TableCell> */}
       <TableCell>
         <Edit className={styles.iconos} onClick={()=>selectAction(e,"Editar")}/>
       &nbsp;&nbsp;&nbsp; 

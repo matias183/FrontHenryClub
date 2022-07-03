@@ -5,7 +5,6 @@ export default function validate(input) {
   const phoneRegExp = /\d{7-14}/;
   const dniRegExp = /^\d{7}\d?/; //Revisa que contenga 7 u 8 números
   const passRegExp = /(?=.*[0-9])/; //al menos 1 letra y 1 número
-  console.log(typeof input.edad);
   if (input.name === '') {
     err.name = 'No puede estar vacío';
   }
