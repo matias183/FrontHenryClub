@@ -1,16 +1,8 @@
-//
-//
-//
-// ESCRIBIR EN CONSOLA "npm i"
-//
-//
-//
 import { createNews } from '../../redux/Actions/Action';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import S from '../Form CrearNoticia/CrearNoticia.module.css';
-import * as yup from 'yup';
+import { FormGroup, Label, Input } from 'reactstrap';
 
 // const schema = yup.object().shape({
 //   foto: yup
@@ -44,10 +36,28 @@ export default function CrearAnuncio() {
     title: '',
     subtitle: '',
     text: '',
-    // image: '',
+    image: '',
 
-    news: [],
+    // news: [],
   });
+
+  const uploadImage = async e => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'HenryImagenes');
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/proyectohenry/upload',
+      {
+        method: 'POST',
+        body: data,
+      }
+    );
+    const file = await res.json();
+    console.log(file.secure_url);
+    setInput(file.secure_url);
+    setInput({ ...input, image: file.secure_url });
+  };
 
   // useEffect(() => {
   //   dispatch(getNews());
@@ -107,15 +117,16 @@ export default function CrearAnuncio() {
       typeof input.subtitle === 'string' &&
       input.text
     ) {
-      dispatch(createNews(input));
+      dispatch(createNews(JSON.parse(localStorage.getItem('data')).id, input));
+      console.log(input);
       setInput({
         id: '',
         title: '',
         subtitle: '',
         text: '',
-        // image: '',
+        image: '',
 
-        news: [],
+        // news: [],
       });
 
       alert('Noticia Creada');
@@ -143,18 +154,20 @@ export default function CrearAnuncio() {
     });
   };
 
-  const handleChangeFoto = e => {
-    e.preventDefault();
+  // const handleChangeFoto = e => {
+  //   e.preventDefault();
 
-    setInput(prevInput => {
-      const inputFoto = {
-        ...prevInput,
-        [e.target.name]: e.target.files[0],
-      };
-      console.log(e.target.files[0]);
-      return inputFoto;
-    });
-  };
+  //   setInput(prevInput => {
+  //     const inputFoto = {
+  //       ...prevInput,
+  //       [e.target.name]: e.target.files[0],
+  //     };
+  //     console.log(e.target.files[0]);
+  //     return inputFoto;
+  //   });
+  // };
+
+  console.log('hola', input.image);
 
   return (
     <div className={S.contenedorGeneral}>
@@ -224,6 +237,22 @@ export default function CrearAnuncio() {
           onChange={handleChangeFoto}
           value={input.image}
         /> */}
+        <FormGroup>
+          <Label>Imagen</Label>
+          <Input
+            name="file"
+            type="file"
+            placeholder="Sube tu Imagen"
+            onChange={uploadImage}
+            value=""
+          />
+          <img
+            src={
+              input.image ||
+              'https://www.yiwubazaar.com/resources/assets/images/default-product.jpg'
+            }
+          />
+        </FormGroup>
 
         {/* {error.foto && <p>{error.foto.message}</p>}  */}
         {/* onChange={getNews} */}

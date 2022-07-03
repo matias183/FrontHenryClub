@@ -21,10 +21,10 @@ export default function NewsDetail() {
 
   useEffect(() => {
     dispatch(detailNews(id));
-    // dispatch(getComments(id));
+
     return () => {
-      dispatch(clearPage())
-    }
+      dispatch(clearPage());
+    };
   }, []);
 
   const [error, setError] = useState('');
@@ -44,13 +44,17 @@ export default function NewsDetail() {
   function handleSubmit(e) {
     e.preventDefault();
     if (
-      localState.name &&
-      typeof localState.name === 'string' &&
       localState.comment &&
       localState.comment.trim() !== '' &&
       typeof localState.comment === 'string'
     ) {
-      dispatch(createComment(id, localState));
+      dispatch(
+        createComment(
+          id,
+          JSON.parse(localStorage.getItem('data')).id,
+          localState
+        )
+      );
       setLocalState({
         name: '',
         comment: '',
@@ -70,7 +74,7 @@ export default function NewsDetail() {
   // }
 
   return (
-    <div className='containerTotal'>
+    <div className="containerTotal">
       <Link to={'/home'}>
         <button>
           <span>Volver</span>
@@ -79,7 +83,7 @@ export default function NewsDetail() {
       <div className="detalleNoticia">
         {
           <div>
-            <h2 className='noticiaTitulo'> {noticia.title}</h2>
+            <h2 className="noticiaTitulo"> {noticia.title}</h2>
             <img
               src={
                 noticia.image
@@ -88,8 +92,8 @@ export default function NewsDetail() {
               }
               alt="img not found"
             />
-            <h4 className='noticiaSubtitulo'>{noticia.subtitle}</h4>
-            <p className='noticiaTexto'> {noticia.text} </p>
+            <h4 className="noticiaSubtitulo">{noticia.subtitle}</h4>
+            <p className="noticiaTexto"> {noticia.text} </p>
           </div>
         }
       </div>
@@ -99,10 +103,15 @@ export default function NewsDetail() {
           <div className="seccionComentariosHechos">
             <div>
               <div className="comentariosHechos">
-                {noticia.comments?.map((comment,i) => (
-                  <div className='containerComment' key={i}>
-                  <h3>{comment.name}:</h3>
-                  <h4>{comment.comment}</h4>
+                {noticia.comments?.map((comment, i) => (
+                  <div className="containerComment" key={i}>
+                    <h3>
+                      {comment.user && comment.user.hasOwnProperty('username')
+                        ? comment.user.username
+                        : comment.user.name}
+                      :
+                    </h3>
+                    <h4>{comment.comment}</h4>
                   </div>
                 ))}
               </div>
@@ -124,38 +133,34 @@ export default function NewsDetail() {
         <hr />
         <section className="sectionEscribirComentario">
           <h3>Escribe un comentario:</h3>
-          <div className="inputName">
-            <label htmlFor="">Nombre</label>
-            <input
-              name="name"
-              value={localState.name}
-              onChange={handleChange}
-              type="text"
-            />
-            <div className="error">
-              <p>
-                {error !== 'Los datos no son validos.' ? null : (
-                  <p>El nombre no puede estar vacio.</p>
-                )}
-              </p>
+
+          {localStorage.getItem('data') ? (
+            <div>
+              {JSON.parse(localStorage.getItem('data')).name}
+
+              <div>
+                <textarea
+                  id=""
+                  name="comment"
+                  cols="50"
+                  value={localState.comment}
+                  onChange={handleChange}
+                  rows="5"
+                  placeholder="Escribe tu comentario..."
+                ></textarea>
+              </div>
+              <div className="enviarComentario">
+                <button onClick={handleSubmit} type="button">
+                  <span>Enviar</span>
+                </button>
+              </div>
             </div>
-          </div>
-          <div>
-            <textarea
-              id=""
-              name="comment"
-              cols="50"
-              value={localState.comment}
-              onChange={handleChange}
-              rows="5"
-              placeholder="Escribe tu comentario..."
-            ></textarea>
-          </div>
-          <div className="enviarComentario">
-            <button onClick={handleSubmit} type="button">
-              <span>Enviar</span>
-            </button>
-          </div>
+          ) : (
+            <span>
+              <Link to={'/register'}>Registrate </Link> o
+              <Link to={'/login'}> Inicia Sesión</Link>
+            </span>
+          )}
         </section>
       </div>
       <div className="footer">

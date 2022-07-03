@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginMember } from '../../redux/Actions/Action';
+import { loginMember, jasonWebToken } from '../../redux/Actions/Action';
 import { Link } from 'react-router-dom';
 import { useLocalStorage } from '../../custom/useLocalStorage';
 import Google from './google.png';
@@ -8,39 +8,45 @@ import Facebook from './facebook.png';
 import Github from './github.png';
 import s from './Login.module.css';
 import validate from './validate';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+// aca
 
 export default function Login() {
+  //defino lo que va en los inputs
+  const history = useHistory();
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
-  const [input, setInput] = useLocalStorage('input', {
+  const [datos, setDatos] = useState({
     email: '',
     password: '',
   });
-  const { email, password } = input;
-  const [errors, setErrors] = useState({});
 
-  const HandleChange = e => {
-    e.preventDefault();
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-    setErrors(
-      validate({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
+  const [cargandoUsuario, setCargandoUsuario] = useState(true);
+  const [token, setToken] = useState();
+
+  //manejo de cambios para ir guardando lo que voy escribiendo
+  const handleInputChange = e => {
+    let { name, value } = e.target;
+    let newDatos = { ...datos, [name]: value };
+    setDatos(newDatos);
   };
 
-  const onSubmit = async e => {
+  //manejar el envio del formulario
+  const handleSubmit = e => {
     e.preventDefault();
-    if (email !== '' && password !== '');
-    else if (input.email && input.password && !Object.keys(errors).length) {
-      setLoading(true);
-      dispatch(loginMember());
-      setInput({ email: '', password: '' });
-      setLoading(false);
+    if (!e.target.checkValidity()) {
+      console.log('no enviar');
+    } else {
+      // console.log(jasonWebToken(datos));
+      dispatch(jasonWebToken(datos)).then(res => {
+        console.log(localStorage.getItem('data'));
+        if (JSON.parse(localStorage.getItem('data')).role.name === 'Admin') {
+          history.push('/admin');
+        } else {
+          history.push('/home');
+        }
+      });
     }
   };
 
@@ -66,36 +72,36 @@ export default function Login() {
           <div className={s.or}>OR</div>
         </div>
 
-        <form className={s.right} onSubmit={onSubmit}>
+        <form className={s.right} onSubmit={handleSubmit}>
           <input
             className={s.input}
-            onChange={HandleChange}
-            value={email}
+            onChange={handleInputChange}
+            value={datos.email}
             name="email"
             id="email"
             type="email"
             placeholder="E-mail..."
             autoComplete="off"
           />
-          {errors.email && <p className={s.errors}>{errors.email}</p>}
+          {/* {errors.email && <p className={s.errors}>{errors.email}</p>} */}
           <input
             className={s.input}
-            onChange={HandleChange}
-            value={password}
+            onChange={handleInputChange}
+            value={datos.password}
             name="password"
             id="password"
             type="password"
             placeholder="Password..."
             autoComplete="off"
           />
-          {errors.password && <p className={s.errors}>{errors.password}</p>}
+          {/* {errors.password && <p className={s.errors}>{errors.password}</p>} */}
 
           {/* HACER RENDERIZADO CONDICIONAL PARA USER O ADMIN */}
-          <Link to={'/admin'}>
-            <button className={s.submit} type="submit">
-              Iniciar Sesión
-            </button>
-          </Link>
+
+          <button className={s.submit} type="submit">
+            Iniciar Sesión
+          </button>
+
           <br />
           <p>
             Aun no tienes cuenta? <Link to="/register">Registrate!</Link>

@@ -5,13 +5,21 @@ import { Link } from 'react-router-dom';
 import logoHenry from '../utils/fotos/logo.gif';
 import { FaArrowCircleRight, FaUserAlt } from 'react-icons/fa';
 import './NavBar.css';
+import { useState } from 'preact/hooks';
+import { loginMember } from '../redux/Actions/Action';
+import { useSelector } from 'react-redux';
 
-export default function navbar() {
+export default function Navbar() {
+  const logOut = e => {
+    // e.preventDefault();
+    window.localStorage.removeItem('data');
+    window.localStorage.removeItem('token');
+    alert('Adios!');
+  };
+
   return (
     <div>
       <div className="header">
-        {' '}
-        {/* container del header  */}
         <Link to="/home">
           {' '}
           <img className="logo" src={logoHenry} alt="logo" />{' '}
@@ -25,35 +33,68 @@ export default function navbar() {
             <Search />
           </h2>
         </div>
-        <div className="dropdown">
-          <Link to="/login">
+        {/* SECCION DE USUARIOS */}
+        {localStorage.getItem('token') ? (
+          <div className="dropdown">
             <p className="botonDeslizable">
-              <FaArrowCircleRight />{' '}
+              {localStorage.getItem('data') ? (
+                <div>{JSON.parse(localStorage.getItem('data')).name}</div>
+              ) : (
+                'No hay usuario logueado'
+              )}
             </p>{' '}
             {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
-          </Link>
+            <div className="dropdown-content">
+              <ul>
+                <li>
+                  <Link>
+                    <p>Perfil</p>
+                  </Link>
+                </li>
+                {localStorage.getItem('data') &&
+                JSON.parse(localStorage.getItem('data')).role.name ===
+                  'Admin' ? (
+                  <li>
+                    <Link to="/admin">
+                      <p>Panel Admin</p>
+                    </Link>
+                  </li>
+                ) : null}
 
-          <div className="dropdown-content">
-            <Link to="/login">
-              <span>Iniciar Sesión</span>
-            </Link>{' '}
-            {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
-            <Link to="/registrate">
-              <span>Registrate</span>
-            </Link>{' '}
-            {/* aca tengo la duda si estan bien las rutas, si alguien las revisa joya */}
+                <li>
+                  <Link to="/login">
+                    <p onClick={logOut}>Cerrar Sesión</p>
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
-        <br />
-        {/* <div className="botonAdmin">
-          <Link to={'/admin'}>
-            <button>
-              <span>Admin</span>
-            </button>
-          </Link>
-        </div> */}
+        ) : (
+          <div className="dropdown">
+            <Link to="/login">
+              <p className="botonDeslizable">
+                <FaArrowCircleRight />{' '}
+              </p>{' '}
+              {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
+            </Link>
+
+            <div className="dropdown-content">
+              <ul>
+                <li>
+                  <Link to="/login">
+                    <span>Iniciar Sesión</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/registrate">
+                    <span>Registrate</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
       </div>
-      {/* <Barra /> */}
     </div>
   );
 }

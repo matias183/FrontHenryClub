@@ -29,15 +29,14 @@ const useStyles = makeStyles((theme) => ({
 export default function EditNews () {
   const styles =useStyles()
   const dispatch= useDispatch()
-  const members = useSelector((state) => state.members);
+  const neews = useSelector((state) => state.news);
   const [putModal, setputModal]= useState (false);
   const [deleteModal, setdeleteModal]= useState (false);
 
   const [input,setInput]= useState({
-    id:"",	
-    name:"",	
-    username:"",
-    comentario:"",
+    title:"",	
+    subtitle:"",	
+    image:"",
   })
  
 
@@ -79,17 +78,14 @@ export default function EditNews () {
 
 
   const bodyEditar=(
-    <div className={styles.modal}>
-      <h3>Edit User</h3>
-      <TextField  className={styles.inputMaterial} label="Id" name="id" onChange={HandleChange} value={input&&input.id} />
-      <br />
-      <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} value={input&&input.name} />          
-      <br />
-      <TextField className={styles.inputMaterial} label="UserName" name="username" onChange={HandleChange} value={input&&input.username} />
-
-      <br />
-      <TextField className={styles.inputMaterial} label="Comentarios" name="comentario" onChange={HandleChange} value={input&&input.comentario} />
-      <br />
+  <div className={styles.modal}>
+      <h3>Edit News</h3>
+  <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} value={input&&input.title} />          
+  <br />
+  <TextField className={styles.inputMaterial} label="UserName" name="username" onChange={HandleChange} value={input&&input.subtitle} />
+  <br />
+  <TextField className={styles.inputMaterial} label="Comentarios" name="comentario" onChange={HandleChange} value={input&&input.image} />
+  <br />
       <div align="right">
         <Button color="primary" onClick={EditNews} >Editar</Button>
         <Button onClick={abricerrarMEdit} >Cancelar</Button>
@@ -99,7 +95,7 @@ export default function EditNews () {
 
   const bodyEliminar=(
     <div className={styles.modal}>
-    <p>Estas seguro que deseas eliminar al socio <b>{input&&input.name}</b>?</p>
+    <p>Are you sure to delete the News <b>{input&&input.title}</b>?</p>
       <div align="right">
         <Button color="primary" onClick={BorrarNews} >SI</Button>
         <Button onClick={abricerrarMEliminar} >NO</Button>
@@ -109,7 +105,7 @@ export default function EditNews () {
   
 
  
-console.log(members)
+console.log(neews)
 
   return (
     <>
@@ -124,52 +120,30 @@ console.log(members)
 <TableRow>
 <TableCell>Id</TableCell>
 <TableCell>Title</TableCell>
-<TableCell>Contenido</TableCell>
-<TableCell>Comentarios</TableCell>
+<TableCell>Subtitle</TableCell>
+<TableCell>Image</TableCell>
 <TableCell>Acciones</TableCell>
 </TableRow>
 
 </TableHead>
-
-
 <TableBody>
-    {members.map( e=>(
+    {neews.map( e=>(
       <TableRow key={e.id}> 
-      <TableCell>{e.id}</TableCell>
-      <TableCell>{e.name}</TableCell>
-      <TableCell>{e.username}</TableCell>
-      <TableCell>{e.website}</TableCell>
+      <TableCell>{e.title}</TableCell>
+      <TableCell>{e.subtitle}</TableCell>
+      <TableCell>{e.image}</TableCell>
       <TableCell>
-        <Edit 
-        className={styles.iconos} 
-       onClick={()=>selectAction(e,"Editar")}
-        />
+        <Edit className={styles.iconos} onClick={()=>selectAction(e,"Editar")}/>
       &nbsp;&nbsp;&nbsp; 
-      <Delete className={styles.iconos} onClick={()=> selectAction( e,"Eliminar")}
-      />
+      <Delete className={styles.iconos} onClick={()=> selectAction( e,"Eliminar")}/>
       </TableCell>
-      </TableRow>
-    )
-    )}
-
+      </TableRow> ) )}
 </TableBody>
-
 </Table>
-
   </TableContainer>
 
-<Modal
-open={putModal}
-onClose={abricerrarMEdit}
->{bodyEditar}
-</Modal>
-
-<Modal
-open={deleteModal}
-onClose={abricerrarMEliminar}
->{bodyEliminar}
-</Modal>
-
+<Modal open={putModal} onClose={abricerrarMEdit}>{bodyEditar}</Modal>
+<Modal open={deleteModal} onClose={abricerrarMEliminar} >{bodyEliminar}</Modal>
     </>
   );
 
