@@ -325,7 +325,7 @@ export function createActivity(input) {
   };
 }
 
-export function createMember(userId, input) {
+export function createMember(input) {
   return async () => {
     console.log(input);
     try {
@@ -336,7 +336,7 @@ export function createMember(userId, input) {
       }
 
       let { data } = await axios.post(
-        `http://localhost:3001/user/${userId}`,
+        `http://localhost:3001/user`,
         input
       );
       //Despachar accion o regresar mensaje?

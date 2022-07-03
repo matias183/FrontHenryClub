@@ -127,9 +127,9 @@ console.log(state)
           <div>
             <select className={s.select} onChange={handleSelect} name="teacher">
               <option value=""> Select Instructor</option>
-             {/* {state.teacher&&state.teacher.map((teacher) => (
+             {state.teacher&&state.teacher.map((teacher) => (
                   <option key={teacher.id} value={teacher.id}>{teacher.name}</option>
-                ))}  */}
+                ))} 
             </select>
           </div>
 

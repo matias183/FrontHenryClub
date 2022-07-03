@@ -9,7 +9,6 @@ export default function TableHeader(props) {
   handleRequestSort(event, property);
  };
 
-console.log(valueToOrderBy)
   return (
 
  <TableHead>

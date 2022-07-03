@@ -24,15 +24,15 @@ export default function PAdmin() {
       <div className={s.container}>
         <div className={s.barralateral}>
           <ul>
-            <li>
+            {/* <li>
               <NavLink to="/admin/news">VISTA DE NOTICIAS</NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/admin/socios">VISTA SOCIOS</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/admin/home">Home</NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/admin/newactivity">Crea Actividad</NavLink>
             </li>
@@ -45,21 +45,21 @@ export default function PAdmin() {
             <li>
               <NavLink to="/admin/createnews">Crea Noticia</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/admin/request">MENSAJES</NavLink>
             </li>
             <li>
               <NavLink to="/admin/empleados">Panel de Trabajo</NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div className={s.mostrar}>
           <Route path="/admin/socios" component={Socios} />
-          <Route path="/admin/home" component={Home} />
-          <Route path="/admin/news" component={News} />
+          {/* <Route path="/admin/home" component={Home} /> */}
+          {/* <Route path="/admin/news" component={News} /> */}
           <Route path="/admin/newactivity" component={FormActiv} />
           <Route path="/admin/createnews" component={Createnews} />
-          <Route path="/admin/request" component={Request} />
+          {/* <Route path="/admin/request" component={Request} /> */}
           <Route path="/admin/editnews" component={EditNews} />
           <Route path="/admin/empleados" component={Empleados} />
           <Route path="/admin/calendario" component={Calendario} />

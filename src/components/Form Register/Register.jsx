@@ -47,20 +47,6 @@ export default function Register() {
     });
   };
 
-  const handleReset = () => {
-    setInputs({
-      name: '',
-      surname: '',
-      email: '',
-      address: '',
-      phone: '',
-      dni: '',
-      age: '',
-      username: '',
-      password: '',
-    });
-  };
-
   function handlePasswordEqual(e) {
     setInputs({
       ...inputs,
@@ -88,6 +74,7 @@ export default function Register() {
     ) {
       alert('¡username Creado!');
       setLoading(true);
+      console.log("hola")
       dispatch(createMember(inputs));
       setLoading(false);
       history.push('/home');
@@ -98,7 +85,7 @@ export default function Register() {
     <div className={style.container}>
       <h3>Logo</h3>
       <div className={style.formContainer}>
-        <form className={style.form} onSubmit={onSubmit} onReset={handleReset}>
+        <form className={style.form} onSubmit={onSubmit}>
           <div className={style.inputContainer}>
             <div className={style.column1}>
               <div>
