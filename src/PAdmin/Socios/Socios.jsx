@@ -8,7 +8,7 @@ import TableHeader from "./tableheader";
 import TablePagination from '@material-ui/core/TablePagination';
 import {
   getMembers,
-  deleteMember, createMember, updateMember
+  deleteMember, createMember, updateMember, getRoles
 } from "../../redux/Actions/Action";
 
 const useStyles = makeStyles((theme) => ({
@@ -78,12 +78,13 @@ export default function Socios() {
   const [valueToOrderBy, setValueToOrderBy] = useState("asc");
   const [orderDirection, setOrderDirection] = useState("name");
   const members = useSelector((state) => state.members);
+  const roles = useSelector((state) => state.roles)
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [insertModal, setinsertModal] = useState(false);
   const [putModal, setputModal] = useState(false);
   const [deleteModal, setdeleteModal] = useState(false);
-  const [deleteId,setDeleteId] = useState("")
+  const [deleteId, setDeleteId] = useState("")
   const [editId, setEditId] = useState("")
 
   const [input, setInput] = useState({
@@ -95,10 +96,16 @@ export default function Socios() {
     username: "",
     dni: "",
     edad: "",
-    password: "123456"
+    password: "123456",
+    roleId: ""
   })
 
-
+  const handleSelect = (e) => {
+    setInput({
+      ...input,
+      [e.target.name]: e.target.value
+    })
+  }
 
 
 
@@ -112,6 +119,7 @@ export default function Socios() {
   };
   useEffect(() => {
     dispatch(getMembers());
+    dispatch(getRoles())
   }, [dispatch]);
 
   const HandleChange = (e) => {
@@ -122,30 +130,31 @@ export default function Socios() {
 
   const CrearMember = (e) => {
     e.preventDefault()
-    dispatch(createMember(input)).then( res =>
-    dispatch(getMembers())
-    ).then(res=>
+    dispatch(createMember(input)).then(res =>
+      dispatch(getMembers())
+    ).then(res =>
       alert("Socio Creado!!")
-      )
+    )
 
     abricerrarMInsert()
   };
   const BorrarMember = (e) => {
-    dispatch(deleteMember(deleteId)).then( res =>
+    dispatch(deleteMember(deleteId)).then(res =>
       dispatch(getMembers())
-      ).then(res => 
-        abricerrarMEliminar()
-        )
+    ).then(res =>
+      abricerrarMEliminar()
+    )
   };
-  const EditarMember = (id) => { 
+  const EditarMember = (id) => {
     console.log(input)
-    dispatch(updateMember(editId, input)).then( res =>
+    dispatch(updateMember(editId, input)).then(res =>
       dispatch(getMembers())
     )
-    .then(res => 
-     { abricerrarMEdit()
-      alert("usuario editado")}
-    )
+      .then(res => {
+        abricerrarMEdit()
+        alert("usuario editado")
+      }
+      )
   };
   const abricerrarMInsert = () => {
     setinsertModal(!insertModal)
@@ -206,6 +215,18 @@ export default function Socios() {
       <TextField className={styles.inputMaterial} label="UserName" name="username" onChange={HandleChange} value={input && input.username} />
       <br />
       <TextField className={styles.inputMaterial} label="Dni" name="dni" onChange={HandleChange} value={input && input.dni} />
+      <br />
+      <br />
+      <label>Rol</label>
+      <select className={styles.select} onChange={handleSelect} name="roleId">
+        <option value=""> Rol </option>
+        {roles &&
+          roles.map((role) => (
+            <option key={role.id} value={role.id}>
+              {role.name}
+            </option>
+          ))}
+      </select>
       <br />
       <br /><br />
       <div align="right">

@@ -29,9 +29,10 @@ const useStyles = makeStyles((theme) => ({
 export default function EditNews () {
   const styles =useStyles()
   const dispatch= useDispatch()
-  const neews = useSelector((state) => state.news);
+  const news = useSelector((state) => state.news);
   const [putModal, setputModal]= useState (false);
   const [deleteModal, setdeleteModal]= useState (false);
+  const [id, setId] = useState("")
 
   const [input,setInput]= useState({
     title:"",	
@@ -52,14 +53,19 @@ export default function EditNews () {
 
 
 
-  const BorrarNews = (id) => {
-    // dispatch(deleteNews(id));
-    abricerrarMEliminar()
+  const BorrarNews = () => {
+
+    dispatch(deleteNews(id)).then(res => dispatch(getNews())).then(res => {
+      alert("Noticia eliminada")
+      abricerrarMEliminar()
+    });
   };
 
-  const EditNews = (id) => {
-    // dispatch(updateNews(id))
-    abricerrarMEdit()
+  const EditNews = () => {
+    dispatch(updateNews(id, input)).then(res => dispatch(getNews())).then(res => {
+      alert("Noticia modificada")
+      abricerrarMEdit()
+    })
  };
 
 
@@ -72,6 +78,8 @@ export default function EditNews () {
   };
 
   const selectAction = (e, caso) => {
+
+    setId(e.id)
     setInput(e);
     (caso === "Editar")?abricerrarMEdit():abricerrarMEliminar()
    };
@@ -80,9 +88,9 @@ export default function EditNews () {
   const bodyEditar=(
   <div className={styles.modal}>
       <h3>Edit News</h3>
-  <TextField className={styles.inputMaterial} label="Name" name="name" onChange={HandleChange} value={input&&input.title} />          
+  <TextField className={styles.inputMaterial} label="Title" name="title" onChange={HandleChange} value={input&&input.title} />          
   <br />
-  <TextField className={styles.inputMaterial} label="UserName" name="username" onChange={HandleChange} value={input&&input.subtitle} />
+  <TextField className={styles.inputMaterial} label="Subtitle" name="subtitle" onChange={HandleChange} value={input&&input.subtitle} />
   <br />
   {/* <TextField className={styles.inputMaterial} label="Comentarios" name="comentario" onChange={HandleChange} value={input&&input.image} /> */}
   {/* <br /> */}
@@ -105,7 +113,7 @@ export default function EditNews () {
   
 
  
-console.log(neews)
+console.log(news)
 
   return (
     <>
@@ -127,7 +135,7 @@ console.log(neews)
 
 </TableHead>
 <TableBody>
-    {neews.map( e=>(
+    {news.map( e=>(
       <TableRow key={e.id}> 
       <TableCell>{e.title}</TableCell>
       <TableCell>{e.subtitle}</TableCell>
