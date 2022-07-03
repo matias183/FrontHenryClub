@@ -9,7 +9,7 @@ import Createnews from '../components/Form CrearNoticia/CrearNoticia';
 import Request from './Request/Request';
 import EditNews from './EditNews/EditNews';
 import Empleados from './Empleados/Empleados';
-import Calendario from '../components/Calendario/Calendario'
+import Calendario from '../components/Calendario/Calendario';
 import s from './Profile.module.css';
 
 export default function PAdmin() {
@@ -22,8 +22,8 @@ export default function PAdmin() {
         <div className={s.barralateral}>
           <ul>
             <li>
-        <NavLink to="/admin/news">VISTA DE NOTICIAS</NavLink>
-      </li>
+              <NavLink to="/admin/news">VISTA DE NOTICIAS</NavLink>
+            </li>
             <li>
               <NavLink to="/admin/socios">VISTA SOCIOS</NavLink>
             </li>
@@ -44,10 +44,10 @@ export default function PAdmin() {
             </li>
             <li>
               <NavLink to="/admin/request">MENSAJES</NavLink>
-            </li> 
-            <li> 
-      <NavLink to="/admin/empleados">Panel de Trabajo</NavLink>
-      </li>
+            </li>
+            <li>
+              <NavLink to="/admin/empleados">Panel de Trabajo</NavLink>
+            </li>
           </ul>
         </div>
         <div className={s.mostrar}>
@@ -63,5 +63,5 @@ export default function PAdmin() {
         </div>
       </div>
     </>
-  )
+  );
 }

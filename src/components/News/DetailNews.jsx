@@ -106,7 +106,7 @@ export default function NewsDetail() {
                 {noticia.comments?.map((comment, i) => (
                   <div className="containerComment" key={i}>
                     <h3>
-                      {comment.user.username
+                      {comment.user && comment.user.hasOwnProperty('username')
                         ? comment.user.username
                         : comment.user.name}
                       :
