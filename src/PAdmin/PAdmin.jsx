@@ -13,10 +13,8 @@ import Calendario from '../components/Calendario/Calendario';
 import s from './Profile.module.css';
 
 export default function PAdmin() {
-
-  return(
-  JSON.parse(localStorage.getItem('data')) && JSON.parse(localStorage.getItem('data')).role.name === 'Admin' 
-  ? (
+  return JSON.parse(localStorage.getItem('data')) &&
+    JSON.parse(localStorage.getItem('data')).role.name === 'Admin' ? (
     <>
       <div className={s.header}>
         <Header />
@@ -33,9 +31,9 @@ export default function PAdmin() {
             {/* <li>
               <NavLink to="/admin/home">Home</NavLink>
             </li> */}
-            <li>
+            {/* <li>
               <NavLink to="/admin/newactivity">Crea Actividad</NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/admin/editnews">EDITAR NOTICIAS</NavLink>
             </li>
@@ -66,10 +64,10 @@ export default function PAdmin() {
         </div>
       </div>
     </>
-
-  )
-  // : <h1>No tienes acceso a esta página</h1>)
-  : <Redirect to="/home"/>)
+  ) : (
+    // : <h1>No tienes acceso a esta página</h1>)
+    <Redirect to="/home" />
+  );
   // : <div>
   //   <h1>WoW! Such empty!</h1>
   //   <img src='https://assets.codepen.io/342414/internal/avatars/users/default.png?fit=crop&format=auto&height=256&version=2&width=256' />
@@ -77,5 +75,4 @@ export default function PAdmin() {
   //   <button>I'm scared, take me home</button>
   //   </Link>
   // </div>)
-
 }
