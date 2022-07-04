@@ -33,7 +33,7 @@
 .botonAdmin {
   position: absolute;
   top: 2vh;
-  left: 8%;
+  left: 45vw;
 }
 
 .searchbar {
@@ -45,18 +45,19 @@
 .botonDeslizable {
   position: absolute;
 
-  color: #222861;
+  color: rgb(0, 0, 0);
   padding: 20px;
   font-size: 30px;
   border: none;
   border-radius: 50%;
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
+
 .botonDeslizableDos {
   position: absolute;
 
-  color: #222861;
   padding: 20px;
   font-size: 30px;
   border: none;
@@ -69,6 +70,7 @@
   display: inline-block;
   top: -2vh;
   left: 40vw;
+  color: red;
 }
 .dropdownDos {
   position: relative;
@@ -80,7 +82,7 @@
 .dropdown-content {
   display: none;
   position: absolute;
-
+  color: red;
   background-color: #f1f1f1;
   /* min-width: 160px; */
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);

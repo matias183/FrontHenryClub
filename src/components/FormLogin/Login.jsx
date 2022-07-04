@@ -5,11 +5,13 @@ import { Link } from 'react-router-dom';
 import { useLocalStorage } from '../../custom/useLocalStorage';
 import Google from './google.png';
 import Facebook from './facebook.png';
+import logoHenry from '../../utils/fotos/LOGODIA.png';
 import Github from './github.png';
 import s from './Login.module.css';
 import validate from './validate';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { FaArrowRight } from 'react-icons/fa';
 import jwt_decode from 'jwt-decode';
 // aca
 
@@ -56,20 +58,13 @@ export default function Login() {
       <h3 className={s.loginTitle2}>Choose a Login Method</h3>
 
       <div className={s.wrapper}>
-        <div className={s.left}>
-          <div className={s.loginButtongoogle}>
-            <img src={Google} alt="Google" className={s.icon} />
-            Google
-          </div>
-          <div className={s.loginButtonfacebook}>
-            <img src={Facebook} alt="Facebook" className={s.icon} />
-            Facebook{' '}
-          </div>
-        </div>
+        <img src={logoHenry} width="450px" height="450px" alt="" />
 
         <div className={s.center}>
           <div className={s.line} />
-          <div className={s.or}>OR</div>
+          <div className={s.or}>
+            <FaArrowRight />
+          </div>
         </div>
 
         <form className={s.right} onSubmit={handleSubmit}>

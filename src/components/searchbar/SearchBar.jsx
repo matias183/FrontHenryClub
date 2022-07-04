@@ -48,7 +48,7 @@ export default function SearchBar() {
             onChange={handleInputChange}
           />
           <button className="botones" type="submit" onClick={handleSubmit}>
-            <span>Buscar</span>
+            Buscar
           </button>
           <button type="button" onClick={volverATodasLasNoticias}>
             Recargar
