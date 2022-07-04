@@ -31,3 +31,4 @@ export const DELETE_CONTACT = 'DELETE_CONTACT';
 export const ALL_ROLES = 'ALL_ROLES';
 export const ALL_INSCRIPTIONS = 'ALL_INSCRIPTIONS';
 export const JWT = 'JWT';
+export const CLEAR_MEMBER_DETAIL = "CLEAR_MEMBER_DETAIL"
