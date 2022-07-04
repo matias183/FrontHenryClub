@@ -1,53 +1,86 @@
 .container {
+  background-image: url('../../utils/fotos/fondoLanding.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin: auto;
   width: 100%;
-  background-color: black;
-  color: white;
-  height: 100vh;
+  background-color: #fff;
+  color: black;
+  height: 120vh;
+}
+.container img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 20px;
+
+  border-radius: 5px;
+}
+.abajo {
+  width: 100%;
+  height: 50px;
 }
 
 .formContainer {
   display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
+  align-items: center;
+  justify-content: space-around;
   flex-direction: column;
-  margin-bottom: 10px;
+  flex-wrap: wrap;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.294);
   font-size: medium;
-  border: 2px;
-  border-style: solid;
-  border-radius: 45px;
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  width: 40%;
+  height: 95vh;
+  border: solid rgba(0, 0, 0, 0) 2px;
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
 }
 
 .inputContainer {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
   flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-evenly;
+  margin: auto;
+  /* background-color: rgba(255, 255, 255, 0.294); */
+  font-size: medium;
+  width: 100%;
+  border: solid rgba(0, 0, 0, 0) 2px;
+  backdrop-filter: blur(5px);
+  margin-top: 10px;
+  border-radius: 5px;
+}
+.inputContainer label {
+  text-transform: uppercase;
 }
 
 .column1 {
-  margin: 0 5px;
+  margin: 0 5%;
 }
 
 .column2 {
-  margin: 0 5px;
+  margin: 0 10%;
 }
 
 .input {
   line-height: 28px;
   border: 2px solid transparent;
   border-bottom-color: #777;
-  padding: 0.2rem 0;
+  padding: 0.5rem 2rem;
   outline: none;
   background-color: transparent;
   /* color: #0d0c22; */
-  color: white;
+  color: rgb(75, 75, 75);
   transition: 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  font-weight: 700;
+  text-align: center;
 }
 
 .input:focus,
@@ -68,8 +101,8 @@ input:hover {
 }
 
 .button {
-  margin-top: 20px;
-  padding: 1.3em 3em;
+  margin-top: 10px;
+  /* padding: 1.3em 3em; */
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2.5px;
