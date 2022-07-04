@@ -5,6 +5,7 @@ import validate from './Validations/validations';
 import { Link } from 'react-router-dom';
 import style from './Register.module.css';
 import { useHistory } from 'react-router-dom';
+import logoHenry from '../../utils/fotos/LOGODIA.png';
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ export default function Register() {
     ) {
       alert('¡username Creado!');
       setLoading(true);
-      console.log("hola")
+      console.log('hola');
       dispatch(createMember(inputs));
       setLoading(false);
       history.push('/home');
@@ -83,7 +84,7 @@ export default function Register() {
 
   return (
     <div className={style.container}>
-      <h3>Logo</h3>
+      <img src={logoHenry} width="150px" height="150px" alt="" />
       <div className={style.formContainer}>
         <form className={style.form} onSubmit={onSubmit}>
           <div className={style.inputContainer}>
@@ -146,9 +147,7 @@ export default function Register() {
                   autoComplete="off"
                 />
               </div>
-            </div>
 
-            <div>
               <label className={style.tag}>Dirección</label>
               <input
                 className={style.input}
@@ -243,15 +242,13 @@ export default function Register() {
               </div>
             </div>
           </div>
-          <button className={style.button} type="submit">
-            {' '}
-            {loading ? 'Cargando...' : 'Registrarme'}
-          </button>
+          <button type="submit">Registrarme</button>
         </form>
         <p>
-          Ya tienes una cuenta?
-          <Link to="/login">Inicia Sesión!</Link>
+          ¿Ya tienes una cuenta?<span> </span>
+          <Link to="/login">¡Inicia Sesión!</Link>
         </p>
+        <div className="abajo"></div>
       </div>
     </div>
   );

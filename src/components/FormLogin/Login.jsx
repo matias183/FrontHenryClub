@@ -58,7 +58,7 @@ export default function Login() {
       <h3 className={s.loginTitle2}>Choose a Login Method</h3>
 
       <div className={s.wrapper}>
-        <img src={logoHenry} width="450px" height="450px" alt="" />
+        <img src={logoHenry} width="350px" height="350px" alt="" />
 
         <div className={s.center}>
           <div className={s.line} />
