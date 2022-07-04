@@ -2,7 +2,7 @@ import React from 'react';
 import Search from '../components/searchbar/SearchBar';
 // import Barra from '../Barra/Barra';
 import { Link } from 'react-router-dom';
-import logoHenry from '../utils/fotos/logo.gif';
+import logoHenry from '../utils/fotos/LOGODIA.png';
 import { FaArrowCircleRight, FaUserAlt } from 'react-icons/fa';
 import './NavBar.css';
 import { useState } from 'preact/hooks';
@@ -47,7 +47,7 @@ export default function Navbar() {
             <div className="dropdown-content">
               <ul>
                 <li>
-                  <Link>
+                  <Link to={'/profile'}>
                     <p>Perfil</p>
                   </Link>
                 </li>
