@@ -212,8 +212,8 @@ export default function CrearAnuncio() {
           className={S.textarea}
           name="text"
           id="text"
-          cols="40"
-          rows="5"
+          cols="70"
+          rows="10"
           placeholder="Escribe la noticia"
           onChange={validarTextNoticia}
         ></textarea>

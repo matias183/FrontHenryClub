@@ -42,13 +42,13 @@ export default function Navbar() {
               ) : (
                 'No hay usuario logueado'
               )}
-            </p>{' '}
-            {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
+            </p>
+
             <div className="dropdown-content">
               <ul>
                 <li>
                   <Link to={'/profile'}>
-                    <p>Perfil</p>
+                    <p>PERFIL</p>
                   </Link>
                 </li>
                 {localStorage.getItem('data') &&
@@ -56,14 +56,14 @@ export default function Navbar() {
                   'Admin' ? (
                   <li>
                     <Link to="/admin">
-                      <p>Panel Admin</p>
+                      <p>PANEL ADMIN</p>
                     </Link>
                   </li>
                 ) : null}
 
                 <li>
                   <Link to="/login">
-                    <p onClick={logOut}>Cerrar Sesión</p>
+                    <p onClick={logOut}>CERRAR SESIÓN</p>
                   </Link>
                 </li>
               </ul>
@@ -73,9 +73,8 @@ export default function Navbar() {
           <div className="dropdown">
             <Link to="/login">
               <p className="botonDeslizable">
-                <FaArrowCircleRight />{' '}
-              </p>{' '}
-              {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
+                <FaArrowCircleRight />
+              </p>
             </Link>
 
             <div className="dropdown-content">

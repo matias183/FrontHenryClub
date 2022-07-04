@@ -30,47 +30,32 @@
   height: 15vh;
   /* box-shadow: 0 0 10px 10px gray; */
 }
+.nombredeUsuario {
+  display: none;
+}
 
 .botonAdmin {
   position: absolute;
-  top: 2vh;
-  left: 8%;
+  top: 2.5vh;
+  float: right;
 }
 
 .searchbar {
-  top: 0;
+  top: 2.5vh;
   right: 18vw;
   position: absolute;
 }
 
 .botonDeslizable {
   position: absolute;
-  text-transform: uppercase;
-  color: #222861;
-  padding: 10px;
-  font-size: 30px;
-  border: solid 1px black;
-  border-radius: 5px;
-  width: 80px;
-  height: 40px;
-  background-image: linear-gradient(#ffffff, #c0bebe);
+  top: 0;
+  left: 45vw;
 }
-.botonDeslizableDos {
-  position: absolute;
 
-  color: #222861;
-  padding: 20px;
-  font-size: 30px;
-  border: none;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-}
 .dropdown {
-  position: relative;
-  display: inline-block;
-  top: -2vh;
-  left: 40vw;
+  position: absolute;
+  top: 0;
+  left: 43vw;
 }
 .dropdownDos {
   position: relative;
@@ -81,14 +66,13 @@
 
 .dropdown-content {
   display: none;
-  position: absolute;
 
   background-color: #f1f1f1;
   /* min-width: 160px; */
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   width: 180px;
   top: 9vh;
-  right: -7.5vw;
+  left: 43vw;
   border-radius: 5px;
 }
 
