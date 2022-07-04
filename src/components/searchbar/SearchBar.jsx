@@ -37,13 +37,13 @@ export default function SearchBar() {
   return (
     <div>
       <div>
-        <form onSubmit={handleSubmit}>
+        <form className="buscador" onSubmit={handleSubmit}>
           <input
             className="inputS"
             type="text"
             name="search"
             id="Search"
-            placeholder="Buscar..."
+            placeholder=" Buscar..."
             value={name}
             onChange={handleInputChange}
           />

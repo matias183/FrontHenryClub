@@ -1,16 +1,21 @@
+.buscador {
+  margin-right: 20vw;
+}
 .inputS {
-  margin: 15px;
-  height: 1.5vh;
-  width: 3vw;
+  margin: 5px;
+  height: 3.5vh;
+  width: 5vw;
   border-radius: 5px;
   border-color: #ffffff;
   background-color: rgb(255, 255, 255);
   font-size: 18px;
   transition: all 0.3s ease;
+  text-align: center;
 }
 .inputS:focus {
   width: 13vw;
   transition: all 0.3s ease;
+  text-align: justify;
 }
 .inputS:hover {
   border-radius: 5px;
