@@ -34,6 +34,7 @@ import {
   ALL_ROLES,
   ALL_INSCRIPTIONS,
   JWT,
+  CLEAR_MEMBER_DETAIL,
 } from './DataTypes';
 
 //Get
@@ -562,72 +563,20 @@ export function jasonWebToken(input) {
   };
 }
 
-// NEWS
-// GET: http://localhost:3001/news
-// GET DETALLES: http://localhost:3001/news/{id}
-// GET: http://localhost:3001/news?title={title} (buscar por titulo)
-// GET: http://localhost:3001/news?name={name} (buscar por deporte)
-// POST: http://localhost:3001/news/crear/{userId}
-// PUT/DELETE: http://localhost:3001/news/{id}
-// COMENTARIOS
+export function clearMemberDetail() {
+  return {type: CLEAR_MEMBER_DETAIL}
+}
 
-// GET: http://localhost:3001/comment
-// GET DETALLES: http://localhost:3001/comment/{id}
-// POST: http://localhost:3001/comment/comentar/{newId}/{userId}
-// PUT/DELETE: http://localhost:3001/comment/{id}
-// USERS
-
-// GET: http://localhost:3001/user
-// GET DETALLES: http://localhost:3001/user/{id}
-// PUT: http://localhost:3001/user/{id}
-// DELETE: http://localhost:3001/user/{id}
-// POST: http://localhost:3001/user
-// CONTACTO
-
-// POST: http://localhost:3001/contact
-// GET: http://localhost:3001/contact
-// DELETE: http://localhost:3001/contact/{id}
-// PAY (pago cuota socio)
-
-// GET: http://localhost:3001/pay
-// GET DETALLE: http://localhost:3001/pay/{id}
-// PUT: http://localhost:3001/pay/{id}
-// POST: http://localhost:3001/pay
-// TEACHER
-
-// GET: http://localhost:3001/teacher
-// GET: http://localhost:3001/teacher/{id}
-// PUT: http://localhost:3001/teacher/{id}
-// DELETE: http://localhost:3001/teacher/{id}
-// POST: http://localhost:3001/teacher
-// CATEGORY
-
-// GET / POST: http://localhost:3001/category
-// PUT / DELETE: http://localhost:3001/category/{id}
-// CATEGORY - SPORT
-
-// GET / POST: http://localhost:3001/categorysport
-// GET DETALLE / DELETE / PUT: http://localhost:3001/categorysport/{id}
-// ALBUM
-
-// GET / POST: http://localhost:3001/album
-// GET DETALLES: http://localhost:3001/album/{id}
-// PUT: http://localhost:3001/album/{id}
-// DELETE: http://localhost:3001/album/{id}
-// PHOTO
-
-// GET: http://localhost:3001/photo
-// GET DETALLES: http://localhost:3001/photo/{id}
-// POST: http://localhost:3001/photo/{albumId}
-// PUT / DELETE: http://localhost:3001/photo/{id}
-// ROLE
-
-// GET / POST / PUT / DELETE: http://localhost:3001/role
-// SPORT
-
-// GET / POST / PUT / DELETE: http://localhost:3001/sport
-// INSCRIPTION
-
-// GET: http://localhost:3001/inscription
-// POST: http://localhost:3001/inscription/{userId}
-// ESPECIFICACIONES TECNICAS: Sujeto a cambios, mantenerse actualizados antes de escribir codigos
+export function sendContact(input) {
+  return async dispatch => {
+    try {
+      const {data} = await axios.post("http://localhost:3001/Contact", input)
+      console.log(data)
+      alert("Se ha enviado los datos")
+      return data
+    } catch (error) {
+      alert("No se pudo enviar los datos, pongase en contacto con el administrador")
+      alert(error.response.data)
+    }
+  }
+}
