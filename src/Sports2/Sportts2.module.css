@@ -1,0 +1,125 @@
+.tituloencabezado{
+    /* background: url(https://previews.123rf.com/images/ratoca/ratoca1201/ratoca120100052/11822843-dise%C3%B1o-de-fondo-naranja-creativa.jpg)
+     no-repeat 50%;
+    background-size: cover; */
+    background-color: lightgray;
+    font-size: 50px;
+    padding-top: 20px;
+    text-align: center;
+    color:  #0c3d6b;
+    font-weight: bold;
+    margin: auto;
+    padding-bottom: 20px;
+}
+
+
+.encabezado2{
+    font-weight: 900;
+    text-align: center;
+}
+
+
+
+.container{
+  
+    display: flex;
+    position: relative;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    background: url(https://institutodellibertador.org/wp-content/uploads/2017/12/campo-deportivo-inst-libertador-1.jpg)
+    no-repeat 50%;
+    background-size: cover;
+    border-radius: 8px;
+    padding: 12px 6px;
+    z-index: 2000;
+   
+}
+.columa{
+    background-color: #fff;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 33.33%;
+    border: 2px solid rgb(33, 21, 21);
+    margin: 0 2rem;
+    flex-shrink: 1;
+    flex-basis: auto;
+    flex-grow: 0;
+    padding: 0 1.66%;
+
+}
+.p1{
+    font-size: 40px;
+    margin-top: 1rem;
+    padding: 10px;
+}
+.p2{
+    font-size: 16px;
+    line-height: 28px;
+    height: 24%;
+    padding: 0 10px;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+.img{
+    margin-top: 2rem;
+   padding: 10px;
+    width: 100%;
+    height: 50%;
+    background-size: cover;
+}
+.botoncontainer{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+
+}
+.btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 190px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: initial;
+    color: black;
+    border: 3px solid black;
+    padding: 6px 10px;
+ 
+ }
+ .inscibirse{ 
+    background-color: lightgray;
+}
+.title2{
+    padding-top: 40px;
+    padding-bottom: 20px;
+    font-size: 40px;
+    text-align: center;
+    color: #0c3d6b;
+    display: flex;
+    font-weight: bold;
+    justify-content: center;
+    width: 100%;
+}
+.opciones{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 70%;
+}
+.uno{
+    color: #348047;
+    font-size: 28px;
+    margin-top: 16px;
+    margin-bottom: 8px;
+}
+.dos{
+    font-size: 16px;
+    line-height: 22px;
+ 
+}
+.tres{
+    margin-bottom: 2rem;   padding-left: 30px;
+    margin-right: 2rem;
+}

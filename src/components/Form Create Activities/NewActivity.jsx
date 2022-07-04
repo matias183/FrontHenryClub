@@ -124,14 +124,14 @@ console.log(state)
           />
           {errors.fee && <p className={s.errors}>{errors.fee}</p>}
 
-          <div>
+          {/* <div>
             <select className={s.select} onChange={handleSelect} name="teacher">
               <option value=""> Select Instructor</option>
              {state.teacher&&state.teacher.map((teacher) => (
                   <option key={teacher.id} value={teacher.id}>{teacher.name}</option>
                 ))} 
             </select>
-          </div>
+          </div> */}
 
           <div>
             <select className={s.select} onChange={handleSelect} name="sport">

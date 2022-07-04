@@ -18,60 +18,66 @@ export default function navbar() {
           <img className="logo" src={logoHenry} alt="logo" />
         </Link>
         <h1 className="titulo">Club Henry</h1> <br /> {/* titulo */}
-        <div className="dropdown">
-          {localStorage.getItem('token') ? (
-            <div className="dropdown">
+        {localStorage.getItem('token') ? (
+          <div className="dropdown">
+            <p className="botonDeslizable">
+              {localStorage.getItem('data') ? (
+                <div>{JSON.parse(localStorage.getItem('data')).name}</div>
+              ) : (
+                'No hay usuario logueado'
+              )}
+            </p>{' '}
+            {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
+            <div className="dropdown-content">
+              <ul>
+                <li>
+                  <Link>
+                    <p>Perfil</p>
+                  </Link>
+                </li>
+                {localStorage.getItem('data') &&
+                JSON.parse(localStorage.getItem('data')).role.name ===
+                  'Admin' ? (
+                  <li>
+                    <Link to="/admin">
+                      <p>Panel Admin</p>
+                    </Link>
+                  </li>
+                ) : null}
+
+                <li>
+                  <Link to="/login">
+                    <p onClick={logOut}>Cerrar Sesión</p>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        ) : (
+          <div className="dropdown">
+            <Link to="/login">
               <p className="botonDeslizable">
-                {localStorage.getItem('data') ? (
-                  <div>{JSON.parse(localStorage.getItem('data')).name}</div>
-                ) : (
-                  'No hay usuario logueado'
-                )}
+                <FaArrowCircleRight />{' '}
               </p>{' '}
               {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
-              <div className="dropdown-content">
-                <ul>
-                  <li>
-                    <Link>
-                      <p>Perfil</p>
-                    </Link>
-                  </li>
+            </Link>
 
-                  <li>
-                    <Link to="/login">
-                      <p onClick={logOut}>Cerrar Sesión</p>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
+            <div className="dropdown-content">
+              <ul>
+                <li>
+                  <Link to="/login">
+                    <span>Iniciar Sesión</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/registrate">
+                    <span>Registrate</span>
+                  </Link>
+                </li>
+              </ul>
             </div>
-          ) : (
-            <div className="dropdown">
-              <Link to="/login">
-                <p className="botonDeslizable">
-                  <FaArrowCircleRight />{' '}
-                </p>{' '}
-                {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
-              </Link>
-
-              <div className="dropdown-content">
-                <ul>
-                  <li>
-                    <Link to="/login">
-                      <span>Iniciar Sesión</span>
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link to="/registrate">
-                      <span>Registrate</span>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
   );
