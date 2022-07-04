@@ -34,6 +34,7 @@ import {
   ALL_ROLES,
   ALL_INSCRIPTIONS,
   JWT,
+  GET_CATEGORY_SPORT,
 } from './DataTypes';
 
 //Get
@@ -215,6 +216,16 @@ export function deleteCategory(id) {
       alert(error.response.data);
     }
   };
+}
+
+export function getCategorySport() {
+    return async function (dispatch) {
+        const { data } = await axios.get("http://localhost:3001/categorysport");
+        return dispatch({
+            type: GET_CATEGORY_SPORT,
+            payload: data,
+        });
+    };
 }
 
 //

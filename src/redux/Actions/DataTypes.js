@@ -21,6 +21,7 @@ export const ALL_EVENTO = 'ALL_EVENTO';
 export const GET_SPORT = 'GET_SPORT';
 export const GET_TEACHER = 'GET_TEACHER';
 export const GET_CATEGORY = 'GET_CATEGORY';
+export const GET_CATEGORY_SPORT= 'GET_CATEGORY_SPORT'
 export const UPDATE_CATEGORY = ' UPDATE_CATEGORY';
 export const ALL_PAYS = 'ALL_PAYS';
 export const DETAIL_TEACHER = 'DETAIL_TEACHER';

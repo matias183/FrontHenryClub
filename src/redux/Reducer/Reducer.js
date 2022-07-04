@@ -28,6 +28,7 @@ import {
   UPDATE_TEACHER,
   UPDATE_CATEGORY,
   DELETE_CATEGORY,
+  GET_CATEGORY_SPORT,
   ALL_ROLES,
   ALL_INSCRIPTIONS,
   JWT,
@@ -51,6 +52,7 @@ const initialState = {
   roles: [],
   inscriptions: [],
   jwt: [],
+  categorySport: [],
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -107,7 +109,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         category: payload,
       };
-
+	case GET_CATEGORY_SPORT:
+		return{
+			...state,
+			categorySport: payload,
+		}
     case JWT:
       return {
         ...state,

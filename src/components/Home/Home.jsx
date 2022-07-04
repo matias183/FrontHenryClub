@@ -7,6 +7,7 @@ import NavBar from '../../navbar/navbar';
 import Barra from '../../Barra/Barra';
 import GaleriaImg from '../Galeria de imagenes/GaleriaImg';
 import News from '../News/News';
+import CardSport from '../CardSport/CardSport';
 
 export default function Home() {
   const news = useSelector(state => state.news);
@@ -21,6 +22,9 @@ export default function Home() {
       <NavBar /> {/* ACA VA LA NAVBAR */}
       <div className={S.carouselImg}>
         <GaleriaImg />
+      </div>
+      <div className='deporte'>
+        <CardSport />
       </div>
       {/* <Barra /> */}
       <div className={S.contenido}>
