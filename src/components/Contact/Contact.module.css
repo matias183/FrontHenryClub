@@ -46,3 +46,7 @@
 .contenedorGeneral .form textarea {
   resize: none;
 }
+.error{
+  text-decoration: red;
+  color: red;
+}
