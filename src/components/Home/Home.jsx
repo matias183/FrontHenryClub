@@ -8,8 +8,8 @@ import Barra from '../../Barra/Barra';
 import GaleriaImg from '../Galeria de imagenes/GaleriaImg';
 import News from '../News/News';
 import { Link } from 'react-router-dom';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel'
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import { Carousel } from 'react-responsive-carousel'
 
 export default function Home() {
   const news = useSelector(state => state.news);
