@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../footer/footer';
 import S from '../../components/Contact/Contact.module.css';
@@ -8,6 +8,8 @@ import { sendContact } from '../../redux/Actions/Action';
 import validations from "./validate"
 
 export default function Contact() {
+  const dispatch = useDispatch();
+
 
   const dispatch = useDispatch()
   const [error, setError] = useState({})
@@ -33,9 +35,11 @@ export default function Contact() {
    alert("revisa los errores e intentalo de nuevo")
   }
 
+
   return (
     <div className={S.contenedorGeneral}>
       <NavBar />
+
       <div className={S.titulo}>
         <h2>Club Henry</h2>
         <h4>Contactanos</h4>
@@ -47,6 +51,7 @@ export default function Contact() {
           <li> email: comunicaciones@clubhenry.org.ar</li>
         </ul>
       </div>
+
 
       <form onSubmit={handleSubmit} className={S.form} >
         <label htmlFor="">Nombre: </label> 
@@ -62,7 +67,8 @@ export default function Contact() {
         {error.email && (<span className={S.error}>{error.email}</span>) }
 
         <label htmlFor="">Teléfono de contacto: </label>
-        <input onChange={handleChange}
+        <input
+          onChange={handleChange}
           type="tel"
           id="phone"
           name="phone"
