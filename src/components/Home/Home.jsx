@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import S from './Home.module.css';
 import Footer from '../footer/footer.jsx';
 import NavBar from '../../navbar/navbar';
-import Barra from '../../Barra/Barra';
+// import Barra from '../../Barra/Barra';
 import GaleriaImg from '../Galeria de imagenes/GaleriaImg';
 import News from '../News/News';
 import { Link } from 'react-router-dom';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel'
+// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+// import { Carousel } from 'react-responsive-carousel'
 
 export default function Home() {
   const news = useSelector(state => state.news);
