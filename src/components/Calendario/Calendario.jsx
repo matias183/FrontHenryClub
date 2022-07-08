@@ -6,6 +6,7 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import './Calendario.css';
 import { useDispatch, useSelector } from 'react-redux';
+
 import {
   getSport,
   postEvento,
@@ -14,6 +15,7 @@ import {
   clearPage,
 } from '../../redux/Actions/Action';
 import { Link, useParams } from 'react-router-dom';
+
 import styled from 'styled-components';
 import Modal from './Modal';
 import NavBar from '../../navbar/navbar';
@@ -35,6 +37,7 @@ export default function MyCalendar() {
     daysOfWeek: [],
   });
   const [modal, setModal] = useState(false);
+
   const [detail, setDetail] = useState(false);
   // const {id} = useParams()
   // console.log(id)
@@ -47,6 +50,7 @@ export default function MyCalendar() {
   //     dispatch(clearPage())
   //   }
   // }, []);
+
 
   useEffect(() => {
     dispatch(getSport());
@@ -72,6 +76,7 @@ export default function MyCalendar() {
   };
 
   const handleSubmit = () => {
+
     setMyEvents([...myEvents, newEvent]);
     // alert('Evento Creado');
     swal({
@@ -90,6 +95,7 @@ export default function MyCalendar() {
       sportId: 0,
       daysOfWeek: [],
     });
+
   };
 
   const handleSelectSport = e => {
@@ -149,8 +155,8 @@ export default function MyCalendar() {
             onChange={e => handleChangeInput(e)}
           />
           <select
-            name="calendarId"
-            id="calendarId"
+            name="sportId"
+            id="sportId"
             onChange={e => handleSelectSport(e)}
           >
             <option value="">Elegir Actividad</option>
@@ -209,12 +215,6 @@ export default function MyCalendar() {
           Agregar Evento
         </button>
       </Modal>
-      {/* <Modal
-        estado={detail}
-        cambiarEstado={setDetail}
-      >
-        <h3>{detailEvent.title}</h3>
-      </Modal> */}
       <div className="calendario">
         <FullCalendar
           plugins={[
@@ -234,6 +234,7 @@ export default function MyCalendar() {
             setModal(!modal);
           }}
           events={myEvents}
+
           eventClick={function (info) {
             // alert(
             //   info.event.title +
@@ -274,6 +275,7 @@ export default function MyCalendar() {
             });
 
             // setDetail(!detail)
+
           }}
         />
       </div>
@@ -294,3 +296,4 @@ const Boton = styled.button`
   padding: 10px 30px;
   color: #fff
 `;
+
