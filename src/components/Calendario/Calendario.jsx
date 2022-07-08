@@ -6,8 +6,8 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import './Calendario.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSport, postEvento, getEvents, detailEvento, clearPage } from '../../redux/Actions/Action';
-import { Link, useParams } from 'react-router-dom';
+import { getSport, postEvento, getEvents } from '../../redux/Actions/Action';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import Modal from './Modal';
 
@@ -22,22 +22,10 @@ export default function MyCalendar() {
     endTime: '',
     startRecur: '',
     endRecur: '',
-    calendarId: 0,
+    sportId: 0,
     daysOfWeek: [],
   });
   const [modal, setModal] = useState(false);
-  const [detail, setDetail] = useState(false)
-  // const {id} = useParams()
-  // console.log(id)
-  // const detailEvent = useSelector(state => state.eventDetail)
-  // console.log(detailEvent)
-
-  // useEffect(() => {
-  //   dispatch(detailEvento(id));
-  //   return () => {
-  //     dispatch(clearPage())
-  //   }
-  // }, []);
 
   useEffect(() => {
     dispatch(getSport());
@@ -64,25 +52,28 @@ export default function MyCalendar() {
   };
 
   const handleSubmit = () => {
-    setMyEvents([...myEvents, newEvent]);
-    alert('Evento Creado');
-    console.log(newEvent)
-    dispatch(postEvento(newEvent))
-    setNewEvent({
-      title: '',
-      startTime: '',
-      endTime: '',
-      startRecur: '',
-      endRecur: '',
-      calendarId: 0,
-      daysOfWeek: [],
-    });
+    if(newEvent.title && newEvent.startTime && newEvent.endTime && newEvent.startRecur && newEvent.endRecur && newEvent.daysOfWeek.length > 0 && newEvent.sportId) {
+      setMyEvents([...myEvents, newEvent]);
+      alert('Evento Creado');
+      dispatch(postEvento(newEvent))
+      setNewEvent({
+        title: '',
+        startTime: '',
+        endTime: '',
+        startRecur: '',
+        endRecur: '',
+        sportId: 0,
+        daysOfWeek: [],
+      });
+    } else {
+      alert("debe llenar todos los campos")
+    }
   };
 
   const handleSelectSport = e => {
     setNewEvent({
       ...newEvent,
-      calendarId: e.target.value,
+      sportId: e.target.value,
     });
   };
 
@@ -142,8 +133,8 @@ export default function MyCalendar() {
             onChange={e => handleChangeInput(e)}
           />
           <select
-            name="calendarId"
-            id="calendarId"
+            name="sportId"
+            id="sportId"
             onChange={e => handleSelectSport(e)}
           >
             <option value="">Elegir Actividad</option>
@@ -202,12 +193,6 @@ export default function MyCalendar() {
           Agregar Evento
         </button>
       </Modal>
-      {/* <Modal
-        estado={detail}
-        cambiarEstado={setDetail}
-      >
-        <h3>{detailEvent.title}</h3>
-      </Modal> */}
       <div className="calendario">
         <FullCalendar
           plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
@@ -226,8 +211,7 @@ export default function MyCalendar() {
             alert(info.event.title + ':' +
                   ' empieza ' + info.event.startStr.replace('T', ' ').slice(0, -6)
                   + ' hasta ' + info.event.endStr.replace('T', ' ').slice(0, -6)
-                  )
-            // setDetail(!detail)
+                )
           }}
         />
       </div>
@@ -243,8 +227,3 @@ const ContenedorBotones = styled.div`
   gap: 20px
 `
 
-const Boton = styled.button`
-  display: block,
-  padding: 10px 30px;
-  color: #fff
-`
