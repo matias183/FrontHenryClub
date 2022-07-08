@@ -6,20 +6,23 @@ import logoHenry from '../../utils/fotos/logo.gif';
 import NavBar from '../../navbar/navbar';
 import './profile.css';
 import { clearMemberDetail, detailMember } from '../../redux/Actions/Action.js';
+import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 
 export default function Profile() {
-  
   const dispatch = useDispatch();
+  const history = useHistory();
 
-  const details = useSelector(state => state.memberDetail)
+  const details = useSelector(state => state.memberDetail);
 
-  const id = JSON.parse(localStorage.getItem('data')).id
+  const id = JSON.parse(localStorage.getItem('data')).id;
 
   useEffect(() => {
     dispatch(detailMember(id));
+
     return () => {
-      dispatch(clearMemberDetail())
-    }
+      dispatch(clearMemberDetail());
+    };
   }, []);
 
   // const myProfile = useSelector((state) => state.detail);
@@ -32,15 +35,25 @@ export default function Profile() {
   return (
     <div className="contenedorGeneral">
       <NavBar />
-    {!!Object.keys(details).length && console.log(details)}
-      <h1 className="tituloPerfil">Mi Perfil</h1>
-      <hr />
+
+      {!!Object.keys(details).length && console.log(details)}
+      <h1 className="tituloPerfil">¡ Hola {details.username} !</h1>
+
       <div className="contenido">
         <div className="fotoDePefil">
           <img
-            src={details.photo ? details.photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6CExBGqgGYIYYcu8ZqtcRr4dVJJCbpcbUoA&usqp=CAU"}
+            src={
+              details.photo
+                ? details.photo
+                : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6CExBGqgGYIYYcu8ZqtcRr4dVJJCbpcbUoA&usqp=CAU'
+            }
             alt="foto de perfil"
           />
+          <div className="botonesPerfil">
+            <button>Cambiar foto de perfil</button>
+            <button>Editar perfil</button>
+            <button>Eliminar perfil</button>
+          </div>
         </div>
         <div className="datosDeUsuario">
           <div className="datosUsuario">
@@ -60,17 +73,20 @@ export default function Profile() {
             <h2>Dni: </h2>
             <h4>{details.dni}</h4>
           </div>
-  
-          <div className="datosTutor">
-            <h1>DATOS DEL TUTOR:</h1>
-            <h2>Nombre: </h2>
-            <h4>{details.tutorName ? details.tutorName :"Papa de pepito"}</h4>
-            <h2>Teléfono: </h2>
-            <h4>{details.tutorPhone ? details.tutorPhone : "1152796994"}</h4>
-            <h2>E-mail: </h2>
-            <h4>{details.tutorEmail ? details.tutorEmail :"papadepepito@henry.com"}</h4>
-          </div>
 
+          {JSON.parse(localStorage.getItem('data')).isOlder === false ? (
+            <div className="datosTutor">
+              <h1>DATOS DEL TUTOR:</h1>
+              <h2>Nombre: </h2>
+              <h4>{details.tutorName}</h4>
+              <h2>Teléfono: </h2>
+              <h4>{details.tutorPhone}</h4>
+              <h2>E-mail: </h2>
+              <h4>{details.tutorEmail}</h4>
+            </div>
+          ) : (
+            <div></div>
+          )}
           <div className="inscripciones">
             <h1>Inscripciones:</h1>
             <h2>Deporte:</h2>

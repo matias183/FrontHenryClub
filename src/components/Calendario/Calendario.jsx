@@ -6,14 +6,25 @@ import listPlugin from '@fullcalendar/list';
 import interactionPlugin from '@fullcalendar/interaction';
 import './Calendario.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getSport, postEvento, getEvents } from '../../redux/Actions/Action';
-import { Link } from 'react-router-dom';
+
+import {
+  getSport,
+  postEvento,
+  getEvents,
+  detailEvento,
+  clearPage,
+} from '../../redux/Actions/Action';
+import { Link, useParams } from 'react-router-dom';
+
 import styled from 'styled-components';
 import Modal from './Modal';
+import NavBar from '../../navbar/navbar';
+import Footer from '../footer/footer.jsx';
+import swal from 'sweetalert';
 
 export default function MyCalendar() {
   const sport = useSelector(state => state.sport);
-  const event = useSelector(state => state.evento)
+  const event = useSelector(state => state.evento);
   const [myEvents, setMyEvents] = useState([]);
   const dispatch = useDispatch();
   const [newEvent, setNewEvent] = useState({
@@ -27,15 +38,28 @@ export default function MyCalendar() {
   });
   const [modal, setModal] = useState(false);
 
+  const [detail, setDetail] = useState(false);
+  // const {id} = useParams()
+  // console.log(id)
+  // const detailEvent = useSelector(state => state.eventDetail)
+  // console.log(detailEvent)
+
+  // useEffect(() => {
+  //   dispatch(detailEvento(id));
+  //   return () => {
+  //     dispatch(clearPage())
+  //   }
+  // }, []);
+
+
   useEffect(() => {
     dispatch(getSport());
-    dispatch(getEvents())
+    dispatch(getEvents());
   }, [dispatch]);
 
   useEffect(() => {
-    setMyEvents(event)
-  }, [event])
-
+    setMyEvents(event);
+  }, [event]);
 
   const handleChangeInput = e => {
     if (e.target.name === 'daysOfWeek') {
@@ -52,22 +76,26 @@ export default function MyCalendar() {
   };
 
   const handleSubmit = () => {
-    if(newEvent.title && newEvent.startTime && newEvent.endTime && newEvent.startRecur && newEvent.endRecur && newEvent.daysOfWeek.length > 0 && newEvent.sportId) {
-      setMyEvents([...myEvents, newEvent]);
-      alert('Evento Creado');
-      dispatch(postEvento(newEvent))
-      setNewEvent({
-        title: '',
-        startTime: '',
-        endTime: '',
-        startRecur: '',
-        endRecur: '',
-        sportId: 0,
-        daysOfWeek: [],
-      });
-    } else {
-      alert("debe llenar todos los campos")
-    }
+
+    setMyEvents([...myEvents, newEvent]);
+    // alert('Evento Creado');
+    swal({
+      title: '¡Evento Creado!',
+      icon: 'success',
+      button: 'Ok.',
+    });
+    console.log(newEvent);
+    dispatch(postEvento(newEvent));
+    setNewEvent({
+      title: '',
+      startTime: '',
+      endTime: '',
+      startRecur: '',
+      endRecur: '',
+      sportId: 0,
+      daysOfWeek: [],
+    });
+
   };
 
   const handleSelectSport = e => {
@@ -77,26 +105,20 @@ export default function MyCalendar() {
     });
   };
 
-  
-
   return (
     <div className="calendarioContainer">
+      <Link to={'/home'}>
+        <button>Regresar</button>
+      </Link>
       <div>
+        <h1 className="tituloCalendario">Calendario de actividades</h1>
         <ContenedorBotones>
-          <Link to={'/admin'}>
-            <button>
-              <span>Regresar</span>
-            </button>
-          </Link>
           {/* <Boton onClick={() => handleChangeEvent(!setModal)}>
             Agenda
           </Boton> */}
         </ContenedorBotones>
       </div>
-      <Modal
-        estado={modal}
-        cambiarEstado={setModal}
-      >
+      <Modal estado={modal} cambiarEstado={setModal}>
         <form className="formCalendario">
           <input
             type="text"
@@ -189,13 +211,18 @@ export default function MyCalendar() {
               )}
           </div>
         </form>
-        <button type="submit" onClick={e =>handleSubmit(e)}>
+        <button type="submit" onClick={e => handleSubmit(e)}>
           Agregar Evento
         </button>
       </Modal>
       <div className="calendario">
         <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
+          plugins={[
+            dayGridPlugin,
+            timeGridPlugin,
+            listPlugin,
+            interactionPlugin,
+          ]}
           initialView="dayGridMonth"
           locale={'es'}
           headerToolbar={{
@@ -203,15 +230,52 @@ export default function MyCalendar() {
             center: 'title',
             right: 'dayGridMonth, timeGridWeek, listWeek',
           }}
-          dateClick={function(info){
-            setModal(!modal)
+          dateClick={function (info) {
+            setModal(!modal);
           }}
           events={myEvents}
-          eventClick={function(info){
-            alert(info.event.title + ':' +
-                  ' empieza ' + info.event.startStr.replace('T', ' ').slice(0, -6)
-                  + ' hasta ' + info.event.endStr.replace('T', ' ').slice(0, -6)
-                )
+
+          eventClick={function (info) {
+            // alert(
+            //   info.event.title +
+            //     ':' +
+            //     ' empieza ' +
+            //     info.event.startStr.replace('T', ' ').slice(0, -6) +
+            //     ' hasta ' +
+            //     info.event.endStr.replace('T', ' ').slice(0, -6)
+            // );
+            // swal({
+            //   title: `${
+            //     ' El evento ' +
+            //     '"' +
+            //     info.event.title +
+            //     '"' +
+            //     ':' +
+            //     ' empieza el ' +
+            //     info.event.startStr.replace('T', ' a las ').slice(0, -6) +
+            //     ' hasta el ' +
+            //     info.event.endStr.replace('T', ' a las ').slice(0, -6)
+            //   }`,
+            //   icon: 'info',
+            //   button: 'Ok.',
+            // });
+
+            swal({
+              title: `${info.event.title}`,
+              text: `${
+                ' Empieza el día ' +
+                info.event.startStr.replace('T', ' a las ').slice(0, -6) +
+                ' horas, ' +
+                ' hasta el día ' +
+                info.event.endStr.replace('T', ' a las ').slice(0, -6) +
+                ' horas.'
+              }`,
+              icon: 'info',
+              button: 'Ok.',
+            });
+
+            // setDetail(!detail)
+
           }}
         />
       </div>
@@ -224,6 +288,12 @@ const ContenedorBotones = styled.div`
   display: flex;
   flew-wrap: wrap;
   justify-content: center;
-  gap: 20px
-`
+  gap: 20px;
+`;
+
+const Boton = styled.button`
+  display: block,
+  padding: 10px 30px;
+  color: #fff
+`;
 

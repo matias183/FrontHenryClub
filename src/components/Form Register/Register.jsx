@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import style from './Register.module.css';
 import { useHistory } from 'react-router-dom';
 import logoHenry from '../../utils/fotos/LOGODIA.png';
+import swal from 'sweetalert';
+import { boolean } from 'yup';
 
 export default function Register() {
   const dispatch = useDispatch();
@@ -22,7 +24,20 @@ export default function Register() {
     username: '',
     password: '',
     passwordTwo: '',
+    tutorName: '',
+    tutorPhone: '',
+    tutorEmail: '',
+    isOlder: '',
   });
+
+  // function isOlder(){
+  //   const input = e.target.value
+  //   if (input.edad >= 18) {
+  //     input.isOlder = true;
+  //   } else {
+  //     input.isOlder = false;
+  //   }
+  // }
 
   //Para renderizar mensajes de error
   const [error, setError] = useState({});
@@ -39,6 +54,10 @@ export default function Register() {
     username,
     password,
     passwordTwo,
+    tutorName,
+    tutorPhone,
+    tutorEmail,
+    isOlder,
   } = inputs;
 
   const HandleChange = e => {
@@ -73,7 +92,11 @@ export default function Register() {
       password &&
       passwordTwo
     ) {
-      alert('¡username Creado!');
+      swal({
+        title: '¡Usuario creado!',
+        icon: 'success',
+        button: 'Ok.',
+      });
       setLoading(true);
       console.log('hola');
       dispatch(createMember(inputs));
@@ -85,13 +108,16 @@ export default function Register() {
   return (
     <div className={style.container}>
       <img src={logoHenry} width="150px" height="150px" alt="" />
+      <Link to={'/home'}>
+        <button>Volver</button>
+      </Link>
       <div className={style.formContainer}>
         <form className={style.form} onSubmit={onSubmit}>
           <div className={style.inputContainer}>
             <div className={style.column1}>
               <div>
                 {error.name && <p className={style.error}>{error.name}</p>}
-                <label className={style.tag}>name</label>
+                <label className={style.tag}>Nombre</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
@@ -99,7 +125,7 @@ export default function Register() {
                   name="name"
                   id="name"
                   type="text"
-                  placeholder="name..."
+                  placeholder="Nombre..."
                   autoComplete="off"
                 />
               </div>
@@ -107,7 +133,7 @@ export default function Register() {
                 {error.surname && (
                   <p className={style.error}>{error.surname}</p>
                 )}
-                <label className={style.tag}>surname</label>
+                <label className={style.tag}>Apellido</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
@@ -115,13 +141,13 @@ export default function Register() {
                   name="surname"
                   id="surname"
                   type="text"
-                  placeholder="surname..."
+                  placeholder="Apellido..."
                   autoComplete="off"
                 />
               </div>
               <div>
                 {error.phone && <p className={style.error}>{error.phone}</p>}
-                <label className={style.tag}>Número de phone</label>
+                <label className={style.tag}>Número de teléfono</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
@@ -135,7 +161,7 @@ export default function Register() {
               </div>
               <div>
                 {error.email && <p className={style.error}>{error.email}</p>}
-                <label className={style.tag}>email</label>
+                <label className={style.tag}>Email/Correo</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
@@ -143,7 +169,7 @@ export default function Register() {
                   name="email"
                   id="email"
                   type="email"
-                  placeholder="email..."
+                  placeholder="Email..."
                   autoComplete="off"
                 />
               </div>
@@ -156,7 +182,7 @@ export default function Register() {
                 name="address"
                 id="address"
                 value={address}
-                placeholder="Escribe tu dirección"
+                placeholder="Escribe tu dirección..."
               />
             </div>
 
@@ -177,7 +203,7 @@ export default function Register() {
               </div>
               <div>
                 {error.age && <p className={style.error}>{error.age}</p>}
-                <label className={style.tag}>age</label>
+                <label className={style.tag}>Edad</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
@@ -185,15 +211,64 @@ export default function Register() {
                   name="age"
                   id="age"
                   type="number"
-                  placeholder="age"
+                  placeholder="Edad"
                   autoComplete="off"
                 />
+                {age < 18 ? (
+                  <div className={style.datosTutor}>
+                    <h2>Datos de tutor: </h2>
+                    <div>
+                      <label className={style.tag}>Nombre del tutor: </label>
+                      <input
+                        className={style.input}
+                        onChange={HandleChange}
+                        value={tutorName}
+                        type="text"
+                        name="tutorName"
+                        id="nameTutor"
+                        placeholder="Nombre del tutor."
+                        autoComplete="off"
+                      />
+                    </div>
+
+                    <div>
+                      <label className={style.tag}>Teléfono del tutor: </label>
+                      <input
+                        className={style.input}
+                        onChange={HandleChange}
+                        value={tutorPhone}
+                        type="string"
+                        name="tutorPhone"
+                        id="telTutor"
+                        placeholder="Teléfono del tutor."
+                        autoComplete="off"
+                      />
+                    </div>
+
+                    <div>
+                      <label className={style.tag}>Email del tutor: </label>
+                      <input
+                        className={style.input}
+                        onChange={HandleChange}
+                        value={tutorEmail}
+                        type="text"
+                        name="tutorEmail"
+                        id="emailTutor"
+                        placeholder="Email del tutor."
+                        autoComplete="off"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <div></div>
+                )}
               </div>
+
               <div>
                 {error.username && (
                   <p className={style.error}>{error.username}</p>
                 )}
-                <label className={style.tag}>name de username</label>
+                <label className={style.tag}>Nombre de usuario</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
@@ -201,7 +276,7 @@ export default function Register() {
                   name="username"
                   id="username"
                   type="string"
-                  placeholder="username..."
+                  placeholder="Nombre de usuario..."
                   autoComplete="off"
                 />
               </div>
@@ -210,7 +285,7 @@ export default function Register() {
                 {error.password && (
                   <p className={style.error}>{error.password}</p>
                 )}
-                <label className={style.tag}>password</label>
+                <label className={style.tag}>Contraseña</label>
                 <input
                   className={style.input}
                   onChange={HandleChange}
@@ -218,7 +293,7 @@ export default function Register() {
                   name="password"
                   id="password"
                   type="password"
-                  placeholder="password..."
+                  placeholder="Contraseña..."
                   autoComplete="off"
                 />
               </div>
@@ -228,7 +303,7 @@ export default function Register() {
                 {error.passwordTwo && (
                   <p className={style.error}>{error.passwordTwo}</p>
                 )}
-                <label className={style.tag}>Repite tu password</label>
+                <label className={style.tag}>Repite tu contraseña</label>
                 <input
                   className={style.input}
                   onChange={handlePasswordEqual}
@@ -236,7 +311,7 @@ export default function Register() {
                   name="passwordTwo"
                   id="passwordTwo"
                   type="password"
-                  placeholder="Repite tu password..."
+                  placeholder="Repite tu contraseña..."
                   autoComplete="off"
                 />
               </div>
