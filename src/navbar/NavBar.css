@@ -21,7 +21,7 @@
   align-items: center;
   margin: auto;
   position: relative;
-  top: 1vh;
+  top: -1vh;
   left: 0%;
   width: 500px;
 }
@@ -48,6 +48,28 @@
   transform: scale(1.2);
 }
 
+.menu ul li ul {
+  position: absolute;
+  display: none;
+  min-width: 140px;
+  transition: all 2000ms cubic-bezier(0.19, 1, 0.22, 1) 0ms;
+}
+
+.menu ul li ul li {
+  position: relative;
+  list-style: none;
+}
+
+.menu li:hover > ul {
+  position: absolute;
+  display: block;
+  min-width: 80px;
+  height: 80px;
+  background-color: #f1f1f1;
+  z-index: 11;
+  transition: all 0.5s ease;
+}
+
 .header {
   display: flex;
   flex-wrap: nowrap;
@@ -55,7 +77,7 @@
   justify-content: center;
   align-items: flex-start;
   align-content: stretch;
-  background-color: #9a8757;
+  /* background-color: #9a8757; */
   position: relatfive;
   height: 10vh;
 }
@@ -96,7 +118,7 @@
   position: absolute;
 
   color: rgb(0, 0, 0);
-  padding: 20px;
+  padding: 0px;
   font-size: 30px;
   border: none;
   border-radius: 50%;
@@ -108,7 +130,7 @@
 .botonDeslizableDos {
   position: absolute;
 
-  padding: 20px;
+  padding: 0px;
   font-size: 30px;
   border: none;
   border-radius: 50%;
@@ -118,7 +140,7 @@
 .dropdown {
   position: relative;
   display: inline-block;
-  top: -2vh;
+  top: -0vh;
   left: 40vw;
   color: red;
 }
@@ -137,7 +159,7 @@
   /* min-width: 160px; */
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   width: 160px;
-  top: 8vh;
+  top: 7vh;
   right: -3vw;
 }
 

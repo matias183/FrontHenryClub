@@ -8,6 +8,7 @@ import './NavBar.css';
 import { useState } from 'preact/hooks';
 import { loginMember } from '../redux/Actions/Action';
 import { useSelector } from 'react-redux';
+
 import swal from 'sweetalert';
 
 export default function Navbar() {
@@ -42,6 +43,17 @@ export default function Navbar() {
             </Link>
             <li>
               <a href="#deportes">Deportes/Actividades</a>
+              <ul>
+                <Link to={'/futbol'}>
+                  <li>Fútbol</li>
+                </Link>
+                <Link to={'/hockey'}>
+                  <li>Hockey</li>
+                </Link>
+                <Link to={'/natacion'}>
+                  <li>Natación</li>
+                </Link>
+              </ul>
             </li>
             <Link to={'/seccionNoticias'}>
               <li>Noticias</li>
@@ -49,9 +61,9 @@ export default function Navbar() {
             <Link to={'/galery'}>
               <li>Galería</li>
             </Link>
-            <li>
-              <a href="">Calendario</a>
-            </li>
+            <Link to={'/calendario'}>
+              <li>Calendario</li>
+            </Link>
             <Link to={'/contact-us'}>
               <li>Contacto</li>
             </Link>
