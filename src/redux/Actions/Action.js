@@ -37,6 +37,7 @@ import {
   GET_CATEGORY_SPORT,
   JWT,
   CLEAR_MEMBER_DETAIL,
+  GET_USER_SPORTS,
 } from './DataTypes';
 
 //Get
@@ -146,6 +147,18 @@ export function getSport() {
     });
   };
 }
+
+// Ruta para traerse todos los deportes relacionados a mi usuario
+export function getUserSports(userId){
+  return async function (dispatch) {
+    const { data } = await axios.get(`http://localhost:3001/sport/${userId}`);
+    return dispatch({
+      type: GET_USER_SPORTS,
+      payload: data,
+    });
+  };
+}
+
 
 export function createSport(userId, input) {
   return async function () {
@@ -354,20 +367,14 @@ export function createActivity(input) {
 
 export function createMember(input) {
   return async () => {
-    console.log(input);
     try {
-      if (input.edad >= 18) {
+      if (input.age >= 18) {
         input.isOlder = true;
       } else {
         input.isOlder = false;
       }
 
-      let { data } = await axios.post(
-        `http://localhost:3001/user`,
-        input
-      );
-      //Despachar accion o regresar mensaje?
-      // return dispatch({type: })
+      let { data } = await axios.post(`http://localhost:3001/user`, input);
       return data;
     } catch (error) {
       alert(error.response.data);
