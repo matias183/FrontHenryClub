@@ -150,6 +150,11 @@ export default function Socios() {
     dispatch(deleteMember(deleteId))
       .then(res => dispatch(getMembers()))
       .then(res => abricerrarMEliminar());
+    swal({
+      title: 'Socio eliminado.',
+      icon: 'success',
+      button: 'Ok.',
+    });
   };
   const EditarMember = id => {
     console.log(input);
