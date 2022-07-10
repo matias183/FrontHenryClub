@@ -17,9 +17,7 @@ export default function SeccionNews() {
   }, [dispatch]);
   return (
     <div className={S.contenidoCentral}>
-      <div>
-        <NavBar />
-      </div>
+      <NavBar />
 
       <SearchBar />
       <div className={S.galeria}>

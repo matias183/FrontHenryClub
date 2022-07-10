@@ -7,13 +7,15 @@
   align-content: stretch;
   background-color: #ffffff;
   position: relative;
-  border-bottom: solid 1px #e78345;
+  background-color: #e78345;
+  border-bottom: transparent 1px #e78345;
+  border-left: 0px solid #e78345;
   height: 15vh;
 }
 
 .titulo {
   position: absolute;
-  color: #e78345;
+  color: #000000;
   top: 0;
   left: 10%;
   text-transform: uppercase;

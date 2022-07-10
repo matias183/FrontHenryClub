@@ -21,9 +21,9 @@ export default function Noticias({ title, subtitle, image, id }) {
         alt="img not found"
         className="imgNews"
       />
-      <h2 className="titleNewss">{title.slice(0, 20) + '...'}</h2>
+      <h2 className="titleNewss">{title.slice(0, 60) + '...'}</h2>
       <h3 className="subtitleNews">
-        {subtitle.split(' ').slice(0, 10).join(' ') + ' ...'}
+        {subtitle.split(' ').slice(0, 19).join(' ') + ' ...'}
       </h3>
       <Link to={`/news/${id}`}>
         <button>
