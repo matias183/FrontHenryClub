@@ -5,17 +5,55 @@ import { useEffect } from 'react';
 import logoHenry from '../../utils/fotos/logo.gif';
 import NavBar from '../../navbar/navbar';
 import './profile.css';
-import { clearMemberDetail, detailMember } from '../../redux/Actions/Action.js';
+import { clearMemberDetail, detailMember, updateMember } from '../../redux/Actions/Action.js';
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
+import Modal from '../Calendario/Modal'
+import { useState } from 'react';
+import Evento from '../Calendario/Evento';
 
 export default function Profile() {
   const dispatch = useDispatch();
   const history = useHistory();
 
   const details = useSelector(state => state.memberDetail);
+  const [modal, setModal] = useState(false);
+  const [input, setInput] = useState({
+    name:'',
+    surname:'',
+    username:'',
+    photo: '',
+  })
 
   const id = JSON.parse(localStorage.getItem('data')).id;
+  const uploadImage = async e => {
+    const files = e.target.files;
+    const data = new FormData();
+    data.append('file', files[0]);
+    data.append('upload_preset', 'Usuario');
+    const res = await fetch(
+      'https://api.cloudinary.com/v1_1/proyectohenry/upload',
+      {
+        method: 'POST',
+        body: data,
+      }
+    );
+    const file = await res.json();
+    console.log(file.secure_url);
+    // setInput(file.secure_url);
+    setInput({...input, photo: file.secure_url });
+  };
+
+  const HandleChange = e => {
+    setInput({
+      ...input,
+      [e.target.name] : e.target.value
+  })
+  }
+
+  const EditarMember = () => {
+    setModal(!modal)
+  };
 
   useEffect(() => {
     dispatch(detailMember(id));
@@ -24,7 +62,19 @@ export default function Profile() {
       dispatch(clearMemberDetail());
     };
   }, []);
-
+   
+  const GuardarCambios = (id) => {
+    console.log(input)
+    if(input.name && input.surname && input.username && input.photo){
+      dispatch(updateMember(JSON.parse(localStorage.getItem('data')).id, input))
+      swal({
+        title: 'Perfil modificado',
+        icon: 'success',
+        button: 'Ok.',
+      });
+      setModal(false)
+    }
+  }
   // const myProfile = useSelector((state) => state.detail);
 
   const comprar = async () => {
@@ -37,7 +87,7 @@ export default function Profile() {
       <NavBar />
 
       {!!Object.keys(details).length && console.log(details)}
-      <h1 className="tituloPerfil">¡ Hola {details.username} !</h1>
+      <h1 className="tituloPerfil">¡ Bienvenido {details.username} !</h1>
 
       <div className="contenido">
         <div className="fotoDePefil">
@@ -49,53 +99,71 @@ export default function Profile() {
             }
             alt="foto de perfil"
           />
-          <div className="botonesPerfil">
-            <button>Cambiar foto de perfil</button>
-            <button>Editar perfil</button>
-            <button>Eliminar perfil</button>
-          </div>
+          <button onClick={EditarMember}>Editar perfil</button>
         </div>
-        <div className="datosDeUsuario">
+        {/* <div className="botonesPerfil">
+        </div> */}
+        <Modal estado={modal} cambiarEstado={setModal}>
+          <div className='modalEdit'>
+            <form>
+              <h5 className='h5'>Nombre: </h5>
+              <input
+                name='name'
+                type='text'
+                value={input.name}
+                onChange={HandleChange}
+              />
+              <h5 className='h5'>Apellido: </h5>
+              <input
+                name='surname'
+                type='text'
+                value={input.surname}
+                onChange={HandleChange}
+              />
+              <h5 className='h5'>Nombre de usuario: </h5>
+              <input
+                name='username'
+                type='text'
+                value={input.username}
+                onChange={HandleChange}
+              />
+              <input
+                name="file"
+                type="file"
+                placeholder="Sube tu Imagen"
+                onChange={uploadImage}
+                value=""
+              />
+            </form>
+            <img src={input.photo ||
+              'https://www.yiwubazaar.com/resources/assets/images/default-product.jpg'}/>
+            <button onClick={GuardarCambios}>Ok</button>
+          </div>
+        </Modal>
           <div className="datosUsuario">
             <h1>DATOS DE USUARIO:</h1>
-            <h2>Nombre: </h2>
-            <h4>{details.name}</h4>
-            <h2>Apellido: </h2>
-            <h4>{details.surname}</h4>
-            <h2>Nombre De Usuario: </h2>
-            <h4>{details.username}</h4>
-            <h2>Dirección: </h2>
-            <h4>{details.address}</h4>
-            <h2>Teléfono: </h2>
-            <h4>{details.phone}</h4>
-            <h2>E-mail: </h2>
-            <h4>{details.email}</h4>
-            <h2>Dni: </h2>
-            <h4>{details.dni}</h4>
+            <h4>Nombre: {details.name}</h4>
+            <h4>Apellido: {details.surname}</h4>
+            <h4>Nombre De Usuario: {details.username}</h4>
+            <h4>Dirección: {details.address}</h4>
+            <h4>Teléfono: {details.phone}</h4>
+            <h4>E-mail: {details.email}</h4>
+            <h4>Dni: {details.dni}</h4>
           </div>
-
+        
+        <div className="datosDeUsuario">
           {JSON.parse(localStorage.getItem('data')).isOlder === false ? (
             <div className="datosTutor">
               <h1>DATOS DEL TUTOR:</h1>
-              <h2>Nombre: </h2>
-              <h4>{details.tutorName}</h4>
-              <h2>Teléfono: </h2>
-              <h4>{details.tutorPhone}</h4>
-              <h2>E-mail: </h2>
-              <h4>{details.tutorEmail}</h4>
+              <h4>Nombre: {details.tutorName}</h4>
+              <h4>Teléfono: {details.tutorPhone}</h4>
+              <h4>E-mail: {details.tutorEmail}</h4>
             </div>
           ) : (
             <div></div>
           )}
-          <div className="inscripciones">
-            <h1>Inscripciones:</h1>
-            <h2>Deporte:</h2>
-            <ul>
-              <li>Fútbol</li>
-              <li>Tenis</li>
-              <li>Hockey</li>
-            </ul>
 
+          {/* <div className="inscripciones">
             <div className="aPagar">
               <h2 className="aranceles">Aranceles: </h2>
               <h4 className="precio">total a pagar: $900</h4>
@@ -103,7 +171,10 @@ export default function Profile() {
                 <button onClick={comprar}>Pagar</button>
               </Link>
             </div>
-          </div>
+          </div> */}
+        </div>
+        <div>
+          <Evento />
         </div>
       </div>
     </div>
