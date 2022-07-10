@@ -104,7 +104,7 @@ export function getInscription() {
   return async dispatch => {
     try {
       let { data } = await axios.get('http://localhost:3001/inscription');
-      return dispatch({ type: ALL_INSCRIPTIONS, payload: data });
+     return dispatch({ type: ALL_INSCRIPTIONS, payload: data[1] });
     } catch (error) {
       alert(error.response.data);
     }
