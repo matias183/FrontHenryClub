@@ -8,6 +8,7 @@ import {
   // getComments,
 } from '../../redux/Actions/Action';
 import { Link } from 'react-router-dom';
+import NavBar from '../../navbar/navbar';
 import Footer from '../footer/footer';
 import swal from 'sweetalert';
 
@@ -86,15 +87,17 @@ export default function NewsDetail() {
 
   return (
     <div className="containerTotal">
-      <Link to={'/home'}>
+      {/* <Link to={'/home'}>
         <button>
           <span>Volver</span>
         </button>
-      </Link>
+      </Link> */}
+      <NavBar />
       <div className="detalleNoticia">
         {
           <div>
             <h2 className="noticiaTitulo"> {noticia.title}</h2>
+            <h4 className="noticiaSubtitulo">{noticia.subtitle}</h4>
             <img
               src={
                 noticia.image
@@ -103,7 +106,7 @@ export default function NewsDetail() {
               }
               alt="img not found"
             />
-            <h4 className="noticiaSubtitulo">{noticia.subtitle}</h4>
+
             <p className="noticiaTexto"> {noticia.text} </p>
           </div>
         }

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import logoHenry from '../../utils/fotos/logo.gif';
 import NavBar from '../../navbar/navbar';
+import Footer from '../footer/footer.jsx';
 import './profile.css';
 import { clearMemberDetail, detailMember, updateMember } from '../../redux/Actions/Action.js';
 import { useHistory } from 'react-router-dom';
@@ -177,6 +178,7 @@ export default function Profile() {
           <Evento />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

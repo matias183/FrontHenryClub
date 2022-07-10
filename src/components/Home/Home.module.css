@@ -5,15 +5,28 @@
 }
 
 .contenidoCentral {
-  display: flex;
+  /* display: flex;
   justify-content: space-around;
   align-items: center;
-  /* flex-direction: row; */
-  flex-wrap: wrap;
-  /* margin: auto; */
+  flex-direction: row;
+
+  margin: auto;
   width: 100%;
   border: double 5px rgba(0, 0, 0, 0);
   margin-bottom: 50px;
+  position: relative; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0);
+  width: 100%;
+  margin-bottom: 50px;
+  background-image: url('../../utils/fotos/fondoNoticias.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 .contenido {
   margin-top: 100px;
