@@ -18,27 +18,17 @@ export default function Contact() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    setError(
-      validations({
-        ...input,
-        [e.target.name]: e.target.value,
-      })
-    );
+    // setError(
+    //   validations({
+    //     ...input,
+    //     [e.target.name]: e.target.value,
+    //   })
+    // );
   };
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (
-      input.surname !== '' &&
-      input.name !== '' &&
-      input.email !== '' &&
-      input.phone !== '' &&
-      input.message !== ''
-    );
-    else if (!Object.keys(error).length) {
-      dispatch(sendContact(input));
-    }
-    alert('revisa los errores e intentalo de nuevo');
+      dispatch(sendContact(input));  
   };
 
   return (
