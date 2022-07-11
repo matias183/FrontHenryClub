@@ -39,7 +39,7 @@ export default function Evento(){
                 return "viernes"
             } else if(newEvents[i]?.daysOfWeek[0] === 6){
                 return "sabádo"
-            } else if(newEvents[i]?.daysOfWeek[0] === 6){
+            } else if(newEvents[i]?.daysOfWeek[0] === 7){
                 return "domingo"
             }
         }
