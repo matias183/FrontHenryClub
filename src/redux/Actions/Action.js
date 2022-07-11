@@ -38,6 +38,8 @@ import {
   JWT,
   CLEAR_MEMBER_DETAIL,
   GET_USER_SPORTS,
+  PAYMENT, 
+
 } from './DataTypes';
 
 //Get
@@ -104,7 +106,7 @@ export function getInscription() {
   return async dispatch => {
     try {
       let { data } = await axios.get('http://localhost:3001/inscription');
-      return dispatch({ type: ALL_INSCRIPTIONS, payload: data });
+     return dispatch({ type: ALL_INSCRIPTIONS, payload: data[1] });
     } catch (error) {
       alert(error.response.data);
     }
@@ -548,6 +550,24 @@ export function getPay() {
       alert(error.response.data);
     }
   };
+}
+
+
+export function payment(input) {
+	return async (dispatch) => {
+		try {
+			const { data } = await axios.post(
+				`https://mp-back-last.herokuapp.com/payment`,
+				input
+			);
+      console.log(data.url)
+      return data.url
+		} catch (error) {
+			alert(
+				"No se pudo procesar la solicitud, por favor espere o si el error persiste, pongase en contacto con el administrador"
+			);
+		}
+	};
 }
 
 //Filtrar noticias

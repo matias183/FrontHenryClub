@@ -53,7 +53,7 @@ const initialState = {
 	category: [],
 	pago: [],
 	roles: [],
-	inscriptions: [],
+	inscriptions: {},
 	jwt: [],
 	categorySportDetail: [],
 	categorySport: [],
@@ -152,12 +152,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
 			return {
 				...state,
 				memberDetail: payload,
-			};
-		case DETAIL_EVENTO:
-			return {
-				...state,
-				evento: payload,
-			};
+			}
 		case DETAIL_TEACHER:
 			return {
 				...state,
