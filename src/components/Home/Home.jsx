@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { getNews } from '../../redux/Actions/Action';
+import { getNews, postNewLetters, googleLogin } from '../../redux/Actions/Action';
 import { useDispatch, useSelector } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
 import S from './Home.module.css';
+import { Link } from 'react-router-dom';
 import Footer from '../footer/footer.jsx';
+import Modal from '../Calendario/Modal';
 import NavBar from '../../navbar/navbar';
-// import Barra from '../../Barra/Barra';
 import GaleriaImg from '../Galeria de imagenes/GaleriaImg';
 import News from '../News/News';
-import GaleriaDeFotos from '../SeccionFotos/Fotos';
-import futbol from '../../utils/fotos/futbol.jpg';
-import tenis from '../../utils/fotos/tenis.jpg';
-import basket from '../../utils/fotos/basket.jpg';
-import { Link } from 'react-router-dom';
 import flyerUno from '../../utils/fotos/flyer1.png';
 import flyerDos from '../../utils/fotos/flyer2.png';
 import flyerTres from '../../utils/fotos/flayerTres.png';
 import PuffLoader from 'react-spinners/PuffLoader';
 
+// import Barra from '../../Barra/Barra';
+// import GaleriaDeFotos from '../SeccionFotos/Fotos';
+// import futbol from '../../utils/fotos/futbol.jpg';
+// import tenis from '../../utils/fotos/tenis.jpg';
+// import basket from '../../utils/fotos/basket.jpg';
 // import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 // import { Carousel } from 'react-responsive-carousel'
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
+  
+  const {user, isAuthenticated} = useAuth0()
+
+  const [modal, setModal] = useState(false)
+  const [email, setEmail] = useState('')
+
+  // console.log(user)
 
   useEffect(() => {
     setLoading(true);
@@ -33,9 +42,34 @@ export default function Home() {
   const news = useSelector(state => state.news);
 
   const dispatch = useDispatch();
+
+
   useEffect(() => {
     dispatch(getNews());
   }, [dispatch]);
+
+  useEffect(()=>{
+    console.log(isAuthenticated)
+    isAuthenticated && !localStorage.getItem('token') && dispatch(googleLogin(user))
+  },[isAuthenticated])
+
+
+  function NewLetters() {
+    setModal(!modal);
+  }
+
+  const HandleChange = e => {
+    setEmail({
+      ...email,
+      [e.target.name] : e.target.value
+    })
+  }
+
+  const HandleSubmit = () => {
+    dispatch(postNewLetters(email))
+    setEmail('')
+    setModal(false)
+  }
 
   return (
     <div>
@@ -196,7 +230,21 @@ export default function Home() {
                   {/* ACA VA EL CONTENIDO GENERAL DE LA PAGINA */}
                 </div>
               </section>
-              <section></section>
+              <section>
+              <button className={S.botonNL} onClick={NewLetters}>Suscritibe para que te lleguen nuestras novedades</button>
+            <Modal estado={modal} cambiarEstado={setModal}>
+              <form>
+                <input 
+                  name='email'
+                  type='text'
+                  value={email.email}
+                  placeholder='Ingresa tu email'
+                  onChange={HandleChange}
+                />
+                <button onClick={HandleSubmit}>Ok</button>
+              </form>
+            </Modal>
+              </section>
               <div className={S.iconoWsp}>{/* ACA VA EL ICONO DE WSP */}</div>
             </div>
             <div className={S.footer}>
