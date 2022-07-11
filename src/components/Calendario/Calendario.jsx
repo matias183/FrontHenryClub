@@ -139,7 +139,9 @@ export default function MyCalendar() {
           </Boton> */}
             </ContenedorBotones>
           </div>
-          <Modal estado={modal} cambiarEstado={setModal}>
+
+   {JSON.parse(localStorage.getItem('data')) && JSON.parse(localStorage.getItem('data')).role.name === 'Admin'? 
+    <Modal estado={modal} cambiarEstado={setModal}>
             <form className="formCalendario">
               <input
                 type="text"
@@ -235,7 +237,8 @@ export default function MyCalendar() {
             <button type="submit" onClick={e => handleSubmit(e)}>
               Agregar Evento
             </button>
-          </Modal>
+          </Modal>:null}
+
           <div className="calendario">
             <FullCalendar
               plugins={[
