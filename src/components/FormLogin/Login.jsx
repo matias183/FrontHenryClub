@@ -124,10 +124,7 @@ export default function Login() {
             Aun no tienes cuenta? <Link to="/register">Registrate!</Link>
           </p>
         <LoginButton />
-        </form>
-        {/* 
-        <br />
-        <LoginButton /> */}
+          </form>
       </div>
     </div>
   );

@@ -8,13 +8,18 @@ import './NavBar.css';
 import { useState } from 'preact/hooks';
 import { loginMember } from '../redux/Actions/Action';
 import { useSelector } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
 
 import swal from 'sweetalert';
 
 export default function Navbar() {
+
+  const {logout, isAuthenticated} = useAuth0()
+
   const alertaLogOut = () => {
     window.localStorage.removeItem('data');
     window.localStorage.removeItem('token');
+    isAuthenticated && logout({ returnTo: "http://localhost:3000/home" })
     swal({
       title: '¡Sesión Cerrada!',
       text: '¡Adios!',
