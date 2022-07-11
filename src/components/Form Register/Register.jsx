@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createMember } from '../../redux/Actions/Action';
 import validate from './Validations/validations';
 import { Link } from 'react-router-dom';
 import style from './Register.module.css';
 import { useHistory } from 'react-router-dom';
-import logoHenry from '../../utils/fotos/LOGODIA.png';
+import logoHenry from '../../utils/fotos/LOGONARANJA.png';
 import swal from 'sweetalert';
 import { boolean } from 'yup';
 

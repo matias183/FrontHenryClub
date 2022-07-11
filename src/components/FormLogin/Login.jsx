@@ -25,12 +25,11 @@ export default function Login() {
   const dispatch = useDispatch();
   // const {user, isAuthenticated, isLoading} = useAuth0()
 
-
   const [datos, setDatos] = useState({
     email: '',
     password: '',
   });
-  
+
   // console.log(user)
 
   // const [cargandoUsuario, setCargandoUsuario] = useState(true);
@@ -125,7 +124,7 @@ export default function Login() {
             Aun no tienes cuenta? <Link to="/register">Registrate!</Link>
           </p>
         </form>
-{/* 
+        {/* 
         <br />
         <LoginButton /> */}
       </div>

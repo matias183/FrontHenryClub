@@ -44,3 +44,15 @@ button span:after {
   width: 40%;
   justify-content: space-evenly;
 }
+
+/* -------------------------LOADER------------------------- */
+
+.loader {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 22%;
+}

@@ -104,6 +104,7 @@ export default function Socios() {
     edad: '',
     password: '123456',
     roleId: '',
+    membershipNumber: '',
   });
 
   const handleSelect = e => {

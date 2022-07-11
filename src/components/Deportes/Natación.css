@@ -1,9 +1,21 @@
-.encabezadoN{
-    background-image: url('https://kiroldegi.askartzaclaret.org/wp-content/uploads/2015/05/banner-escuela-de-natacion.jpg');
-    height: 150px;
-    align-items: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
+.encabezadoN {
+  background-image: url('https://kiroldegi.askartzaclaret.org/wp-content/uploads/2015/05/banner-escuela-de-natacion.jpg');
+  height: 150px;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+/* -------------------------LOADER------------------------- */
+
+.loader {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 22%;
 }
