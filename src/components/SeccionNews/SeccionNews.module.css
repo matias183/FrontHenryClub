@@ -43,3 +43,15 @@
   color: #e78345;
   transform: scale(1.2);
 }
+
+/* -------------------------LOADER------------------------- */
+
+.loader {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 22%;
+}

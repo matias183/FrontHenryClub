@@ -2,7 +2,7 @@ import React from 'react';
 import Search from '../components/searchbar/SearchBar';
 // import Barra from '../Barra/Barra';
 import { Link } from 'react-router-dom';
-import logoHenry from '../utils/fotos/LOGODIA.png';
+import logoHenry from '../utils/fotos/LOGONARANJA.png';
 import { FaArrowCircleRight, FaUserAlt } from 'react-icons/fa';
 import './NavBar.css';
 import { useState } from 'preact/hooks';
@@ -98,7 +98,7 @@ export default function Navbar() {
                 ) : null}
 
                 <li>
-                  <Link to="/login">
+                  <Link to="/home">
                     <p onClick={alertaLogOut}>CERRAR SESIÓN</p>
                   </Link>
                 </li>

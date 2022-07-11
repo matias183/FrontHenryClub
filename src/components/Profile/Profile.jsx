@@ -6,10 +6,14 @@ import logoHenry from '../../utils/fotos/logo.gif';
 import NavBar from '../../navbar/navbar';
 import Footer from '../footer/footer.jsx';
 import './profile.css';
-import { clearMemberDetail, detailMember, updateMember } from '../../redux/Actions/Action.js';
+import {
+  clearMemberDetail,
+  detailMember,
+  updateMember,
+} from '../../redux/Actions/Action.js';
 import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
-import Modal from '../Calendario/Modal'
+import Modal from '../Calendario/Modal';
 import { useState } from 'react';
 import Evento from '../Calendario/Evento';
 
@@ -20,11 +24,11 @@ export default function Profile() {
   const details = useSelector(state => state.memberDetail);
   const [modal, setModal] = useState(false);
   const [input, setInput] = useState({
-    name:'',
-    surname:'',
-    username:'',
+    name: '',
+    surname: '',
+    username: '',
     photo: '',
-  })
+  });
 
   const id = JSON.parse(localStorage.getItem('data')).id;
   const uploadImage = async e => {
@@ -42,18 +46,18 @@ export default function Profile() {
     const file = await res.json();
     console.log(file.secure_url);
     // setInput(file.secure_url);
-    setInput({...input, photo: file.secure_url });
+    setInput({ ...input, photo: file.secure_url });
   };
 
   const HandleChange = e => {
     setInput({
       ...input,
-      [e.target.name] : e.target.value
-  })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const EditarMember = () => {
-    setModal(!modal)
+    setModal(!modal);
   };
 
   useEffect(() => {
@@ -63,19 +67,21 @@ export default function Profile() {
       dispatch(clearMemberDetail());
     };
   }, []);
-   
-  const GuardarCambios = (id) => {
-    console.log(input)
-    if(input.name && input.surname && input.username && input.photo){
-      dispatch(updateMember(JSON.parse(localStorage.getItem('data')).id, input))
+
+  const GuardarCambios = id => {
+    console.log(input);
+    if (input.name || input.surname || input.photo) {
+      dispatch(
+        updateMember(JSON.parse(localStorage.getItem('data')).id, input)
+      );
       swal({
         title: 'Perfil modificado',
         icon: 'success',
         button: 'Ok.',
       });
-      setModal(false)
+      setModal(false);
     }
-  }
+  };
   // const myProfile = useSelector((state) => state.detail);
 
   const comprar = async () => {
@@ -105,30 +111,32 @@ export default function Profile() {
         {/* <div className="botonesPerfil">
         </div> */}
         <Modal estado={modal} cambiarEstado={setModal}>
-          <div className='modalEdit'>
+          <div className="modalEdit">
+            <h2>Editar Perfil:</h2>
             <form>
-              <h5 className='h5'>Nombre: </h5>
+              <h5 className="h5">Nombre: </h5>
               <input
-                name='name'
-                type='text'
+                name="name"
+                type="text"
                 value={input.name}
                 onChange={HandleChange}
               />
-              <h5 className='h5'>Apellido: </h5>
+              <h5 className="h5">Apellido: </h5>
               <input
-                name='surname'
-                type='text'
+                name="surname"
+                type="text"
                 value={input.surname}
                 onChange={HandleChange}
               />
-              <h5 className='h5'>Nombre de usuario: </h5>
+              <h5 className="h5">Nombre de usuario: </h5>
               <input
-                name='username'
-                type='text'
+                name="username"
+                type="text"
                 value={input.username}
                 onChange={HandleChange}
               />
               <input
+                className="selectPhoto"
                 name="file"
                 type="file"
                 placeholder="Sube tu Imagen"
@@ -136,22 +144,27 @@ export default function Profile() {
                 value=""
               />
             </form>
-            <img src={input.photo ||
-              'https://www.yiwubazaar.com/resources/assets/images/default-product.jpg'}/>
+            <img
+              className="fotoDefault"
+              src={
+                input.photo ||
+                'https://www.yiwubazaar.com/resources/assets/images/default-product.jpg'
+              }
+            />
             <button onClick={GuardarCambios}>Ok</button>
           </div>
         </Modal>
-          <div className="datosUsuario">
-            <h1>DATOS DE USUARIO:</h1>
-            <h4>Nombre: {details.name}</h4>
-            <h4>Apellido: {details.surname}</h4>
-            <h4>Nombre De Usuario: {details.username}</h4>
-            <h4>Dirección: {details.address}</h4>
-            <h4>Teléfono: {details.phone}</h4>
-            <h4>E-mail: {details.email}</h4>
-            <h4>Dni: {details.dni}</h4>
-          </div>
-        
+        <div className="datosUsuario">
+          <h1>DATOS DE USUARIO:</h1>
+          <h4>Nombre: {details.name}</h4>
+          <h4>Apellido: {details.surname}</h4>
+          <h4>Nombre De Usuario: {details.username}</h4>
+          <h4>Dirección: {details.address}</h4>
+          <h4>Teléfono: {details.phone}</h4>
+          <h4>E-mail: {details.email}</h4>
+          <h4>Dni: {details.dni}</h4>
+        </div>
+
         <div className="datosDeUsuario">
           {JSON.parse(localStorage.getItem('data')).isOlder === false ? (
             <div className="datosTutor">
