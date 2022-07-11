@@ -11,6 +11,7 @@ import EditNews from './EditNews/EditNews';
 import Empleados from './Empleados/Empleados';
 import Calendario from '../components/Calendario/Calendario';
 import s from './Profile.module.css';
+import Planes from './Planes/Planes'
 
 export default function PAdmin() {
   return JSON.parse(localStorage.getItem('data')) &&
@@ -43,6 +44,9 @@ export default function PAdmin() {
             <li>
               <NavLink to="/admin/createnews">Crea Noticia</NavLink>
             </li>
+            <li>
+              <NavLink to="/admin/planes">Ver Planes</NavLink>
+            </li>
             {/* <li>
               <NavLink to="/admin/request">MENSAJES</NavLink>
             </li>
@@ -61,6 +65,7 @@ export default function PAdmin() {
           <Route path="/admin/editnews" component={EditNews} />
           <Route path="/admin/empleados" component={Empleados} />
           <Route path="/admin/calendario" component={Calendario} />
+          <Route path="/admin/planes" component={Planes} />
         </div>
       </div>
     </>
