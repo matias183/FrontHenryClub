@@ -3,6 +3,7 @@ import CardSport from '../CardDeporte/CardSport';
 import { Link } from 'react-router-dom';
 import Footer from '../footer/footer.jsx';
 import NavBar from '../../navbar/navbar';
+import Barra from '../../Barra/Barra';
 import PuffLoader from 'react-spinners/PuffLoader';
 import './Hockey.css';
 
@@ -35,6 +36,7 @@ export default function Hockey() {
           <div className="encabezadoH">
             <h1 className="h2">Hockey</h1>
           </div>
+          <Barra />
           <CardSport />
           <div className="inscibirse">
             <div className="title2">¿No estas registrado? </div>

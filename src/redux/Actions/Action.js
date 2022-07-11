@@ -38,8 +38,8 @@ import {
   JWT,
   CLEAR_MEMBER_DETAIL,
   GET_USER_SPORTS,
-  PAYMENT, 
-
+  PAYMENT,
+  DEFAULT_GET_CATEGORY_SPORT,
 } from './DataTypes';
 
 //Get
@@ -106,7 +106,7 @@ export function getInscription() {
   return async dispatch => {
     try {
       let { data } = await axios.get('http://localhost:3001/inscription');
-     return dispatch({ type: ALL_INSCRIPTIONS, payload: data[1] });
+      return dispatch({ type: ALL_INSCRIPTIONS, payload: data[1] });
     } catch (error) {
       alert(error.response.data);
     }
@@ -151,7 +151,7 @@ export function getSport() {
 }
 
 // Ruta para traerse todos los deportes relacionados a mi usuario
-export function getUserSports(userId){
+export function getUserSports(userId) {
   return async function (dispatch) {
     const { data } = await axios.get(`http://localhost:3001/sport/${userId}`);
     return dispatch({
@@ -160,7 +160,6 @@ export function getUserSports(userId){
     });
   };
 }
-
 
 export function createSport(userId, input) {
   return async function () {
@@ -198,11 +197,21 @@ export function getCategory() {
 
 export function getCategorySport() {
   return async function (dispatch) {
-      const { data } = await axios.get('http://localhost:3001/categorysport')
-      return dispatch({
-          type: GET_CATEGORY_SPORT,
-          payload: data,
-      });
+    const { data } = await axios.get('http://localhost:3001/categorysport');
+    return dispatch({
+      type: GET_CATEGORY_SPORT,
+      payload: data,
+    });
+  };
+}
+
+export function defaultGetCategorySport() {
+  return async function (dispatch) {
+    const { data } = await axios.get('http://localhost:3001/categorysport');
+    return dispatch({
+      type: DEFAULT_GET_CATEGORY_SPORT,
+      payload: data,
+    });
   };
 }
 
@@ -301,7 +310,9 @@ export function detailEvento(id) {
 export function detailCategorySport(id) {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`http://localhost:3001/categorysport/${id}`);
+      const { data } = await axios.get(
+        `http://localhost:3001/categorysport/${id}`
+      );
       dispatch({
         type: DETAIL_CATEGORY_SPORT,
         payload: data,
@@ -359,7 +370,10 @@ export function createInscription(userId, input) {
 export function createActivity(input) {
   return async function () {
     try {
-      const { data } = await axios.post(`http://localhost:3001/categorysport/`, input);
+      const { data } = await axios.post(
+        `http://localhost:3001/categorysport/`,
+        input
+      );
       return data;
     } catch (error) {
       alert(error.response.data);
@@ -552,22 +566,21 @@ export function getPay() {
   };
 }
 
-
 export function payment(input) {
-	return async (dispatch) => {
-		try {
-			const { data } = await axios.post(
-				`https://mp-back-last.herokuapp.com/payment`,
-				input
-			);
-      console.log(data.url)
-      return data.url
-		} catch (error) {
-			alert(
-				"No se pudo procesar la solicitud, por favor espere o si el error persiste, pongase en contacto con el administrador"
-			);
-		}
-	};
+  return async dispatch => {
+    try {
+      const { data } = await axios.post(
+        `https://mp-back-last.herokuapp.com/payment`,
+        input
+      );
+      console.log(data.url);
+      return data.url;
+    } catch (error) {
+      alert(
+        'No se pudo procesar la solicitud, por favor espere o si el error persiste, pongase en contacto con el administrador'
+      );
+    }
+  };
 }
 
 //Filtrar noticias
@@ -589,6 +602,14 @@ export function clearComments() {
   return { type: CLEAR_COMMENTS };
 }
 
+//Filtrar por categoria:
+
+export function filterCategory(payload) {
+  return { type: 'FILTER_CATEGORY', payload: payload };
+}
+export function filterDefaultCategory(payload) {
+  return { type: 'DEFAULT_FILTER_CATEGORY', payload: payload };
+}
 //Limpiar estado
 export const clearPage = () => {
   return {
@@ -617,19 +638,21 @@ export function jasonWebToken(input) {
 }
 
 export function clearMemberDetail() {
-  return {type: CLEAR_MEMBER_DETAIL}
+  return { type: CLEAR_MEMBER_DETAIL };
 }
 
 export function sendContact(input) {
   return async dispatch => {
     try {
-      const {data} = await axios.post("http://localhost:3001/Contact", input)
-      console.log(data)
-      alert("Se ha enviado los datos")
-      return data
+      const { data } = await axios.post('http://localhost:3001/Contact', input);
+      console.log(data);
+      alert('Se ha enviado los datos');
+      return data;
     } catch (error) {
-      alert("No se pudo enviar los datos, pongase en contacto con el administrador")
-      alert(error.response.data)
+      alert(
+        'No se pudo enviar los datos, pongase en contacto con el administrador'
+      );
+      alert(error.response.data);
     }
-  }
+  };
 }

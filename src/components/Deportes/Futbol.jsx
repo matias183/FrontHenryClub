@@ -4,6 +4,7 @@ import './Futbol.css';
 import { Link } from 'react-router-dom';
 import Footer from '../footer/footer.jsx';
 import NavBar from '../../navbar/navbar';
+import Barra from '../../Barra/Barra';
 import PuffLoader from 'react-spinners/PuffLoader';
 
 export default function Futbol() {
@@ -35,6 +36,9 @@ export default function Futbol() {
           <NavBar />
           <div className="encabezadoF">
             {/* <h1 className="h2">Fútbol</h1> */}
+          </div>
+          <div>
+            <Barra />
           </div>
           <CardSport />
           <div className="inscibirse">
