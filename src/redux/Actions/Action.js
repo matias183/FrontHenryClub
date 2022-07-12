@@ -706,3 +706,10 @@ export function postNewLetters(payload){
   }
 }
 
+export function banMember(id, input){
+	return async function(){
+		const ban = {isBanned: !input.isBanned}
+		const {data} = await axios.put(`http://localhost:3001/user/${id}`, ban)
+		return data
+	}
+}
