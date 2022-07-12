@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import CardSport from '../CardDeporte/CardSport';
+// import CardSport from '../CardDeporte/CardSport';
+import SportCard from '../CardSport/SportCard';
 import './Futbol.css';
 import { Link } from 'react-router-dom';
+import { getCategorySport } from "../../redux/Actions/Action";
 import Footer from '../footer/footer.jsx';
 import NavBar from '../../navbar/navbar';
+import Barra from '../../Barra/Barra';
 import PuffLoader from 'react-spinners/PuffLoader';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function Futbol() {
   const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch()
+
+  const activities = useSelector(state => state.categorySport)
 
   useEffect(() => {
     setLoading(true);
@@ -15,6 +23,10 @@ export default function Futbol() {
       setLoading(false);
     }, 2000);
   }, []);
+
+  useEffect(() => {
+    dispatch(getCategorySport())
+  }, [dispatch])
 
   return (
     <div>
@@ -36,7 +48,17 @@ export default function Futbol() {
           <div className="encabezadoF">
             {/* <h1 className="h2">Fútbol</h1> */}
           </div>
-          <CardSport />
+          <div>
+            <Barra />
+          </div>
+          {activities?.map((activity, i) =>{
+            if(activity.sport.name === "Futbol") return (
+            <SportCard 
+            key = {i}
+            sport = {activity}
+            />
+          )})}
+          {/* <CardSport /> */}
           <div className="inscibirse">
             <div className="title2">¿No estas registrado? </div>
             <div className="opciones">

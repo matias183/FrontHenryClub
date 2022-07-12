@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import CardSport from '../CardDeporte/CardSport';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategorySport } from '../../redux/Actions/Action';
+// import CardSport from '../CardDeporte/CardSport';
+import SportCard from '../CardSport/SportCard';
 import { Link } from 'react-router-dom';
 import Footer from '../footer/footer.jsx';
 import NavBar from '../../navbar/navbar';
+import Barra from '../../Barra/Barra';
 import PuffLoader from 'react-spinners/PuffLoader';
 import './Hockey.css';
 
 export default function Hockey() {
   const [loading, setLoading] = useState(false);
+
+  const dispatch = useDispatch()
+
+  const activities = useSelector(state => state.categorySport)
 
   useEffect(() => {
     setLoading(true);
@@ -15,6 +23,11 @@ export default function Hockey() {
       setLoading(false);
     }, 2000);
   }, []);
+
+  useEffect(() => {
+    dispatch(getCategorySport())
+  }, [dispatch])
+
   return (
     <div>
       {loading ? (
@@ -35,7 +48,15 @@ export default function Hockey() {
           <div className="encabezadoH">
             <h1 className="h2">Hockey</h1>
           </div>
-          <CardSport />
+          <Barra />
+          {activities?.map((activity,i) =>{
+            if(activity.sport.name === "Hockey") return (
+            <SportCard 
+            key = {i}
+            sport = {activity}
+            />
+          )})}
+          {/* <CardSport /> */}
           <div className="inscibirse">
             <div className="title2">¿No estas registrado? </div>
             <div className="opciones">
