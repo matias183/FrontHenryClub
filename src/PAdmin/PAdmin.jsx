@@ -12,6 +12,8 @@ import Empleados from './Empleados/Empleados';
 import Calendario from '../components/Calendario/Calendario';
 import s from './Profile.module.css';
 import Planes from './Planes/Planes'
+import AddImages from './AddImages/AddImages';
+import AddAlbum from './AddImages/AddAlbum';
 
 export default function PAdmin() {
   return JSON.parse(localStorage.getItem('data')) &&
@@ -27,16 +29,16 @@ export default function PAdmin() {
               <NavLink to="/admin/news">VISTA DE NOTICIAS</NavLink>
             </li> */}
             <li>
-              <NavLink to="/admin/socios">VISTA SOCIOS</NavLink>
+              <NavLink to="/admin/socios">Socios</NavLink>
             </li>
             {/* <li>
               <NavLink to="/admin/home">Home</NavLink>
             </li> */}
             <li>
-              <NavLink to="/admin/newactivity">Crea Actividad</NavLink>
+              <NavLink to="/admin/newactivity">Crea actividad</NavLink>
             </li>
             <li>
-              <NavLink to="/admin/editnews">EDITAR NOTICIAS</NavLink>
+              <NavLink to="/admin/editnews">Editar noticias</NavLink>
             </li>
             <li>
               <NavLink to="/admin/calendario">Calendario</NavLink>
@@ -46,6 +48,12 @@ export default function PAdmin() {
             </li>
             <li>
               <NavLink to="/admin/planes">Ver Planes</NavLink>
+            </li>
+            <li>
+              <NavLink to='/admin/album'>Crea tu album de imagenes</NavLink>
+            </li>
+            <li>
+            <NavLink to='/admin/agregarImagen'>Agrega imagenes a tu album</NavLink>
             </li>
             {/* <li>
               <NavLink to="/admin/request">MENSAJES</NavLink>
@@ -66,6 +74,8 @@ export default function PAdmin() {
           <Route path="/admin/empleados" component={Empleados} />
           <Route path="/admin/calendario" component={Calendario} />
           <Route path="/admin/planes" component={Planes} />
+          <Route path='/admin/album' component={AddAlbum} />
+          <Route path="/admin/agregarImagen" component={AddImages} />
         </div>
       </div>
     </>
