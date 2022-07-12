@@ -37,6 +37,7 @@ import {
   GET_USER_SPORTS,
   FILTER_CATEGORY,
   DEFAULT_GET_CATEGORY_SPORT,
+  GET_NEW_LETTERS
 } from '../Actions/DataTypes';
 
 const initialState = {
@@ -62,6 +63,7 @@ const initialState = {
   eventoDetail: [],
   categoryFilter: [],
   defaultCategorySport: [],
+  newletters:[]
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -79,6 +81,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         images: payload,
       };
 
+      case GET_NEW_LETTERS:
+        return {
+          ...state,
+          newletters: payload,
+        };
     case ALL_NEWS:
       return {
         ...state,

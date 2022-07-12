@@ -42,6 +42,7 @@ import {
   GET_USER_SPORTS,
   PAYMENT,
   DEFAULT_GET_CATEGORY_SPORT,
+  GET_NEW_LETTERS
 } from './DataTypes';
 
 
@@ -710,6 +711,17 @@ export function postNewLetters(payload){
     return json
   }
 }
+
+export function getNewLetters() {
+	return async function (dispatch) {
+		const { data } = await axios.get("http://localhost:3001/newsletter");
+		return dispatch({
+			type: GET_NEW_LETTERS,
+			payload: data,
+		});
+	};
+}
+
 
 export function banMember(id, input){
 	return async function(){
