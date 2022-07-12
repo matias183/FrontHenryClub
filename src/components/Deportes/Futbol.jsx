@@ -16,6 +16,7 @@ export default function Futbol() {
   const dispatch = useDispatch()
 
   const activities = useSelector(state => state.categorySport)
+  const render = useSelector(state => state.defaultCategorySport)
 
   useEffect(() => {
     setLoading(true);
@@ -51,13 +52,16 @@ export default function Futbol() {
           <div>
             <Barra />
           </div>
-          {activities?.map((activity, i) =>{
-            if(activity.sport.name === "Futbol") return (
-            <SportCard 
-            key = {i}
-            sport = {activity}
-            />
-          )})}
+          <div className="sportCardContainer">
+            {render?.map((activity, i) => {
+              if (activity.sport.name === "Futbol") return (
+                <SportCard
+                  key={i}
+                  sport={activity}
+                />
+              )
+            })}
+          </div>
           {/* <CardSport /> */}
           <div className="inscibirse">
             <div className="title2">¿No estas registrado? </div>

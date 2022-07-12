@@ -249,6 +249,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         categorySport: payload,
+        defaultCategorySport: payload
       };
 
     case DEFAULT_GET_CATEGORY_SPORT:
@@ -264,14 +265,15 @@ const rootReducer = (state = initialState, { type, payload }) => {
       };
 
     case FILTER_CATEGORY:
-      const sportCategory = [...state.defaultCategorySport];
+      
+      const filterActivity = [...state.categorySport];
       const filtroPorCategoria =
         payload === 'All'
-          ? sportCategory
-          : sportCategory.filter(e => e.category.name === payload);
+          ? filterActivity
+          : filterActivity.filter(e => e.category.name === payload);
       return {
         ...state,
-        categorySport: filtroPorCategoria,
+        defaultCategorySport: filtroPorCategoria,
       };
 
     default:

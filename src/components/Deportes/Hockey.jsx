@@ -16,6 +16,7 @@ export default function Hockey() {
   const dispatch = useDispatch()
 
   const activities = useSelector(state => state.categorySport)
+  const render = useSelector(state => state.defaultCategorySport)
 
   useEffect(() => {
     setLoading(true);
@@ -49,13 +50,16 @@ export default function Hockey() {
             <h1 className="h2">Hockey</h1>
           </div>
           <Barra />
-          {activities?.map((activity,i) =>{
-            if(activity.sport.name === "Hockey") return (
-            <SportCard 
-            key = {i}
-            sport = {activity}
-            />
-          )})}
+          <div className="sportCardContainer">
+            {render?.map((activity, i) => {
+              if (activity.sport.name === "Hockey") return (
+                <SportCard
+                  key={i}
+                  sport={activity}
+                />
+              )
+            })}
+          </div>
           {/* <CardSport /> */}
           <div className="inscibirse">
             <div className="title2">¿No estas registrado? </div>
