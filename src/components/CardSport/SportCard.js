@@ -7,8 +7,6 @@ import { useState } from "react";
 
 export default function SportCard({sport}) {
 
-  console.log(sport)
-
 	const dispatch = useDispatch();
 
 	const [input, setInput] = useState({
@@ -35,26 +33,44 @@ export default function SportCard({sport}) {
 
 	useEffect(() => {
 		input.items[0].id &&
-			dispatch(payment(input)).then((url) => window.open(url, "_blank"));
+			dispatch(payment(input)).then((url) => window.open(url, "_blank")).then(setInput({
+        payer_email: localStorage.getItem("data")
+          ? JSON.parse(localStorage.getItem("data")).email
+          : "",
+        items: [
+          {
+            //id del usuario loggeado
+            id: "",
+            //id de la actividad
+            category_id: "",
+            //titulo de la actividad
+            title: "",
+            //descripción de la actividad
+            description: "",
+            //Cantidad a comprar (siempre 1 por ser inscripción)
+            quantity: 1,
+            //Precio de la inscripción
+            unit_price: 0,
+          },
+        ],
+      }));
 	}, [input]);
 
 	const handleClick = (e) => {
 		e.preventDefault();
-		// const item = view[e.target.value];
-		// setInput({
-		// 	...input,
-		// 	items: [
-		// 		{
-		// 			id: JSON.parse(localStorage.getItem("data")).id,
-		// 			category_id: item.id,
-		// 			title: item.description,
-		// 			description: item.description,
-		// 			quantity: 1,
-		// 			unit_price: item.fee,
-		// 		},
-		// 	],
-		// });
-    console.log("Hola :3")
+		setInput({
+			...input,
+			items: [
+				{
+					id: JSON.parse(localStorage.getItem("data")).id,
+					category_id: sport.id,
+					title: sport.description,
+					description: sport.description,
+					quantity: 1,
+					unit_price: sport.fee,
+				},
+			],
+		});
 	};
 
 	return (
