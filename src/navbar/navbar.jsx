@@ -11,10 +11,11 @@ import { useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 
 import swal from 'sweetalert';
+import { useHistory } from 'react-router-dom';
 
 export default function Navbar() {
-
-  const {logout, isAuthenticated} = useAuth0()
+  const history = useHistory()
+  const { logout, isAuthenticated } = useAuth0()
 
   const alertaLogOut = () => {
     window.localStorage.removeItem('data');
@@ -27,6 +28,7 @@ export default function Navbar() {
       button: 'Ok.',
       timer: '2000',
     });
+    !isAuthenticated && history.push('/home')
   };
 
   return (
@@ -93,7 +95,7 @@ export default function Navbar() {
                   </Link>
                 </li>
                 {localStorage.getItem('data') &&
-                JSON.parse(localStorage.getItem('data')).role.name ===
+                  JSON.parse(localStorage.getItem('data')).role.name ===
                   'Admin' ? (
                   <li>
                     <Link to="/admin">
@@ -103,9 +105,9 @@ export default function Navbar() {
                 ) : null}
 
                 <li>
-                  <Link to="/home">
-                    <p onClick={alertaLogOut}>CERRAR SESIÓN</p>
-                  </Link>
+
+                  <p onClick={alertaLogOut}>CERRAR SESIÓN</p>
+
                 </li>
               </ul>
             </div>
