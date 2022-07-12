@@ -8,6 +8,18 @@
   width: 100%;
 }
 
+
+.sportCardContainer{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
 /* -------------------------LOADER------------------------- */
 
 .loader {

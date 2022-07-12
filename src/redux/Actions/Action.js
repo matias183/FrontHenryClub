@@ -1,5 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import swal from "sweetalert";
 
 import {
 
@@ -385,6 +386,10 @@ export function createActivity(input) {
         `http://localhost:3001/categorysport/`,
         input
       );
+      swal({
+        title: "Actividad creada",
+        button: "Ok."
+      })
       return data;
     } catch (error) {
       alert(error.response.data);
