@@ -24,8 +24,8 @@ import PuffLoader from 'react-spinners/PuffLoader';
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
-  
-  const {user, isAuthenticated} = useAuth0()
+
+  const { user, isAuthenticated } = useAuth0()
 
   const [modal, setModal] = useState(false)
   const [email, setEmail] = useState('')
@@ -48,10 +48,10 @@ export default function Home() {
     dispatch(getNews());
   }, [dispatch]);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(isAuthenticated)
     isAuthenticated && !localStorage.getItem('token') && dispatch(googleLogin(user))
-  },[isAuthenticated])
+  }, [isAuthenticated])
 
 
   function NewLetters() {
@@ -61,7 +61,7 @@ export default function Home() {
   const HandleChange = e => {
     setEmail({
       ...email,
-      [e.target.name] : e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
@@ -129,22 +129,7 @@ export default function Home() {
                 <div className={S.deportes}>
                   <div className={S.deporte}>
                     <div className={S.futbol}>
-                      {/* <h3>Fútbol</h3>
-              <p>
-                Nuestro objetivo es desarrollar al fútbol como un deporte y
-                una cultura.
-              </p>
-              <p>Conoce más sobre nuestras categorías y planes</p>
-              <Link to="/futbol">
-                <button>Ver actividades</button>
-              </Link>
-            </div>
-            <div>
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Football_iu_1996.jpg/1200px-Football_iu_1996.jpg"
-                alt="img not found"
-                className={S.imagen}
-              /> */}
+
                       <img src={flyerUno} alt="" />
                       <Link to="/futbol">
                         <button>Ver actividades</button>
@@ -153,25 +138,7 @@ export default function Home() {
                   </div>
                   <div className={S.deporte}>
                     <div className={S.hockey}>
-                      {/* <h3>Hockey</h3>
-              <p>
-                Las clases son impartidas por instructores certificados con
-                entrenamiento personal y asesoramiento nutricional como
-                componentes clave para su viaje de acondicionamiento físico.
-                ¡Estamos comprometidos a ayudarlo a obtener la mejor
-                experiencia de acondicionamiento físico!{' '}
-              </p>
-              <p>Conoce más sobre nuestras categorías y planes</p>
-              <Link to="/hockey">
-                <button>Ver actividades</button>
-              </Link>
-            </div>
-            <div>
-              <img
-                src="https://www.casi.org.ar/wp-content/uploads/2021/12/Escuelita-hockey-5.jpg"
-                alt="img not found"
-                className={S.imagen}
-              /> */}
+
                       <img src={flyerTres} alt="" />
                       <Link to="/hockey">
                         <button>Ver actividades</button>
@@ -180,23 +147,7 @@ export default function Home() {
                   </div>
                   <div className={S.deporte}>
                     <div className={S.natacion}>
-                      {/* <h3>Natación</h3>
-              <p>
-                Te ayudaré a alcanzar tus objetivos de acondicionamiento
-                físico y sentirte lo mejor posible. ¡Nuestro objetivo es
-                ayudarte a dar lo mejor de ti!
-              </p>
-              <p>Conoce más sobre nuestras categorías y planes</p>
-              <Link to="/natacion">
-                <button>Ver actividades</button>
-              </Link>
-            </div>
-            <div>
-              <img
-                src="https://www.aquara.com.mx/wp-content/uploads/2015/04/Natacion.jpg"
-                alt="img not found"
-                className={S.imagen}
-              /> */}
+
                       <img src={flyerDos} alt="" />
                       <Link to="/natacion">
                         <button>Ver actividades</button>
@@ -230,21 +181,21 @@ export default function Home() {
                   {/* ACA VA EL CONTENIDO GENERAL DE LA PAGINA */}
                 </div>
               </section>
-              <section>
-              <button className={S.botonNL} onClick={NewLetters}>Suscritibe para que te lleguen nuestras novedades</button>
-            <Modal estado={modal} cambiarEstado={setModal}>
-              <form>
-                <input 
-                  name='email'
-                  type='text'
-                  value={email.email}
-                  placeholder='Ingresa tu email'
-                  onChange={HandleChange}
-                />
-                <button onClick={HandleSubmit}>Ok</button>
-              </form>
-            </Modal>
-              </section>
+              <div className={S.sectionNewsLetters}>
+                <button className={S.botonNL} onClick={NewLetters}>Suscríbete a nuestro <span className={S.newsletter}>NewsLetters</span></button>
+                <Modal estado={modal} cambiarEstado={setModal}>
+                  <form>
+                    <input
+                      name='email'
+                      type='text'
+                      value={email.email}
+                      placeholder='Ingresa tu email'
+                      onChange={HandleChange}
+                    />
+                    <button onClick={HandleSubmit}>Ok</button>
+                  </form>
+                </Modal>
+              </div>
               <div className={S.iconoWsp}>{/* ACA VA EL ICONO DE WSP */}</div>
             </div>
             <div className={S.footer}>
@@ -257,3 +208,4 @@ export default function Home() {
     </div>
   );
 }
+

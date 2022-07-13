@@ -9,9 +9,12 @@ import NavBar from '../../navbar/navbar';
 import Barra from '../../Barra/Barra';
 import PuffLoader from 'react-spinners/PuffLoader';
 import { useDispatch, useSelector } from 'react-redux';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function Futbol() {
   const [loading, setLoading] = useState(false);
+
+  const { user, isAuthenticated } = useAuth0()
 
   const dispatch = useDispatch()
 
@@ -54,7 +57,7 @@ export default function Futbol() {
           </div>
           <div className="sportCardContainer">
             {render?.map((activity, i) => {
-              if (activity.sport.name === "Futbol") return (
+              if (activity.name === "Futbol") return (
                 <SportCard
                   key={i}
                   sport={activity}
@@ -63,18 +66,24 @@ export default function Futbol() {
             })}
           </div>
           {/* <CardSport /> */}
-          <div className="inscibirse">
-            <div className="title2">¿No estas registrado? </div>
-            <div className="opciones">
-              <div className="tres">
-                <div className="dos">
-                  Te recordamos que para inscribirte en una actividad deportiva
-                  es requisito registrarte. Podes registrarte
-                  <Link to="/register"> AQUÍ</Link>
+          {
+            !isAuthenticated && !localStorage.getItem('token') ?
+              <div className="inscibirse">
+                <div className="title2">¿No estas registrado? </div>
+                <div className="opciones">
+                  <div className="tres">
+                    <div className="dos">
+                      Te recordamos que para inscribirte en una actividad deportiva
+                      es requisito registrarte. Podes registrarte
+                      <Link to="/register"> AQUÍ</Link>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+              :
+              null
+          }
+
           <Footer />
         </div>
       )}

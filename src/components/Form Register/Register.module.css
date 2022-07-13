@@ -143,14 +143,13 @@ input:hover {
 }
 
 .datosTutor {
-  position: absolute;
-  top: 50%;
-  left: 100%;
+  margin-top: 50px;
   background-color: #fff;
   width: 100%;
-  height: 400px;
+  height: 350px;
   border: solid 2px rgba(255, 0, 0, 0);
   transition: all 0.5s ease;
+  margin-bottom: 50px;
 }
 
 /* -------------------------LOADER------------------------- */
@@ -164,3 +163,4 @@ input:hover {
   margin: auto;
   margin-top: 22%;
 }
+

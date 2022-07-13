@@ -169,7 +169,15 @@
   width: 160px;
   top: 7vh;
   right: -3vw;
+  cursor: pointer;
+  transition: 0.3s ease all;  
 }
+
+/* .dropdown-content:hover {
+  transform: scale(1.2);
+  transition: 0.3s ease all;  
+
+} */
 
 /* links de adentro */
 .dropdown-content a {
@@ -193,3 +201,4 @@
 /* .dropdown:hover .botonDeslizable {
   background-image: linear-gradient(#434c9a, #9c824a);
 } */
+
