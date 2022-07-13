@@ -14,6 +14,7 @@ import { PermIdentity, Storefront, WorkOutline } from "@material-ui/icons";
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import Categorias from './Categorias/categorias';
 import Deportes from './Deportes/deportes';
+import AddImages from './AddImages/AddImages';
 // import Planes from './Planes/Planes'
 
 export default function PAdmin() {
@@ -72,7 +73,6 @@ export default function PAdmin() {
               </NavLink>
             </ul>
           </div>
-
           <div>
             <li>
               <NavLink to='/admin/Categorias'>Ver categorias</NavLink>
@@ -80,6 +80,13 @@ export default function PAdmin() {
             <li>
               <NavLink to='/admin/Deportes'>Ver deportes</NavLink>
             </li>
+          <div className={s.menu}>
+            <h3 className={s.titulo}>AGENDA</h3>
+            <ul className={s.lista}>
+              <NavLink to="/admin/agregarImagen" className={s.link}>
+                <li className={s.item}>  <EventNoteIcon className={s.icon} /> Imagen</li>
+              </NavLink>
+            </ul>
           </div>
 
         </div>
@@ -95,6 +102,7 @@ export default function PAdmin() {
           <Route path="/admin/calendario" component={Calendario} />
           <Route path="/admin/categorias" component={Categorias} />
           <Route path="/admin/deportes" component={Deportes} />
+          <Route path="/admin/agregarImagen" component={AddImages} />
           {/* <Route path="/admin/planes" component={Planes} /> */}
         </div>
       </div>
