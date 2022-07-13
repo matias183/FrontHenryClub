@@ -24,8 +24,7 @@
 .activityCard{
   display: flex;
   flex-direction: column;
-  border-style: solid;
-  border: 3px;
+  border: solid 3px black;
   margin: 5px;
 }
 
