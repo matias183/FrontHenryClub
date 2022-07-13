@@ -50,6 +50,12 @@ export default function PAdmin() {
               {/* <NavLink to="/admin/post" className={s.link}>
                 <li className={s.item}>  <Storefront className={s.icon} /> Post</li>
               </NavLink> */}
+              <NavLink to="/admin/Categorias" className={s.link}>
+                <li className={s.item}>  <Storefront className={s.icon} /> Categorias</li>
+              </NavLink>
+              <NavLink to="/admin/Deportes" className={s.link}>
+                <li className={s.item}>  <Storefront className={s.icon} /> Deportes</li>
+              </NavLink>
             </ul>
           </div>
 
@@ -74,23 +80,20 @@ export default function PAdmin() {
             </ul>
           </div>
           <div>
-            <li>
-              <NavLink to='/admin/Categorias'>Ver categorias</NavLink>
-            </li>
-            <li>
-              <NavLink to='/admin/Deportes'>Ver deportes</NavLink>
-            </li>
-          <div className={s.menu}>
-            <h3 className={s.titulo}>AGENDA</h3>
-            <ul className={s.lista}>
-              <NavLink to="/admin/agregarImagen" className={s.link}>
-                <li className={s.item}>  <EventNoteIcon className={s.icon} /> Imagen</li>
-              </NavLink>
-            </ul>
+
+
+            <div className={s.menu}>
+              <h3 className={s.titulo}>AGENDA</h3>
+              <ul className={s.lista}>
+                <NavLink to="/admin/agregarImagen" className={s.link}>
+                  <li className={s.item}>  <EventNoteIcon className={s.icon} /> Imagen</li>
+                </NavLink>
+              </ul>
+            </div>
+
           </div>
 
         </div>
-
         <div className={s.mostrar}>
           {/* <Route path="/admin/post" component={Post} /> */}
           <Route path="/admin/socios" component={Socios} />
@@ -108,14 +111,6 @@ export default function PAdmin() {
       </div>
     </>
   ) : (
-    // : <h1>No tienes acceso a esta página</h1>)
     <Redirect to="/home" />
   );
-  // : <div>
-  //   <h1>WoW! Such empty!</h1>
-  //   <img src='https://assets.codepen.io/342414/internal/avatars/users/default.png?fit=crop&format=auto&height=256&version=2&width=256' />
-  //   <Link to="https://c.tenor.com/Yar0zKi_W6IAAAAC/doge.gif" target="_blank">
-  //   <button>I'm scared, take me home</button>
-  //   </Link>
-  // </div>)
 }
