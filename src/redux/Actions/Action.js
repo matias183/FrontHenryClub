@@ -21,12 +21,10 @@ import {
   DELETE_CONTACT,
   SEARCH_SEARCH,
   CLEAR_PAGE,
-  FILTER_NEWS,
   CLEAR_COMMENTS,
   DETAIL_EVENTO,
   ALL_EVENTO,
   GET_SPORT,
-  GET_PROFILE,
   GET_CATEGORY,
   UPDATE_CATEGORY,
   GET_TEACHER,
@@ -42,7 +40,11 @@ import {
   GET_USER_SPORTS,
   PAYMENT,
   DEFAULT_GET_CATEGORY_SPORT,
+
   GET_NEW_LETTERS
+
+  ALL_ALBUMS,
+
 } from './DataTypes';
 
 
@@ -76,8 +78,19 @@ export function getContacts() {
 export function getGallery() {
 	return async (dispatch) => {
 		try {
-			let { data } = await axios.get("Ruta para imagenes");
+			let { data } = await axios.get("http://localhost:3001/photo");
 			return dispatch({ type: ALL_IMAGES, payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+}
+
+export function getAlbum() {
+	return async (dispatch) => {
+		try {
+			let { data } = await axios.get("http://localhost:3001/album");
+			return dispatch({ type: ALL_ALBUMS, payload: data });
 		} catch (error) {
 			alert(error.response.data);
 		}
@@ -364,6 +377,22 @@ export function createNews(userId, input) {
 		}
 	};
 }
+
+export function postAlbum(payload){
+	return async function(){
+	  const json = await axios.post('http://localhost:3001/album', payload);
+	  return json
+	}
+  }
+  
+  export async function postImages(payload){
+	// return async function() {
+	  return await axios.post(`http://localhost:3001/photo/${payload.album}`, payload)
+	  // return json
+	// }
+  }
+  
+  
 
 export function createInscription(userId, input) {
 	return async function () {

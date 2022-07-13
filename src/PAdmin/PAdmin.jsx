@@ -10,6 +10,7 @@ import Empleados from './Empleados/Empleados';
 import Calendario from '../components/Calendario/Calendario';
  import Post from './Post/Post'
 import s from './Profile.module.css';
+
 import { PermIdentity,Storefront,WorkOutline} from "@material-ui/icons";
 import EventNoteIcon from '@material-ui/icons/EventNote';
 // import Planes from './Planes/Planes'
@@ -22,6 +23,7 @@ export default function PAdmin() {
         <Header />
       </div>
       <div className={s.container}>
+
 
      <div className={s.barralateral}>
 
@@ -82,6 +84,7 @@ export default function PAdmin() {
 
 </div>
 
+
         <div className={s.mostrar}>
         <Route path="/admin/post" component={Post} />
           <Route path="/admin/socios" component={Socios} />
@@ -91,7 +94,11 @@ export default function PAdmin() {
           <Route path="/admin/editnews" component={EditNews} />
           <Route path="/admin/empleados" component={Empleados} />
           <Route path="/admin/calendario" component={Calendario} />
-          {/* <Route path="/admin/planes" component={Planes} /> */}
+
+          <Route path="/admin/planes" component={Planes} />
+          <Route path='/admin/album' component={AddAlbum} />
+          <Route path="/admin/agregarImagen" component={AddImages} />
+
         </div>
       </div>
     </>
