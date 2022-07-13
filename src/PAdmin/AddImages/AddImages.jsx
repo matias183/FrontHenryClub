@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux/es/exports";
 export default function AddImages(){
     const dispatch = useDispatch()
     // const {albumId} = useParams()
-    const album = useSelector(state => state.images);
+    const album = useSelector(state => state.albums);
     const [photo, setPhoto] = useState({
         name: "",
         image: "",
