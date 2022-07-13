@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { postAlbum } from "../../redux/Actions/Action"
 import { useDispatch } from "react-redux/es/exports"
-import './AddAlbum.css'
 
-export default function AddAlbum(){
+import './AddAlbum.css'
+import swal from "sweetalert"
+
+export default function AddAlbum() {
     const dispatch = useDispatch()
     const [album, setAlbum] = useState({
         name: '',
@@ -12,25 +14,31 @@ export default function AddAlbum(){
 
     const HandleChange = e => {
         setAlbum({
-          ...album,
-          [e.target.name] : e.target.value
+            ...album,
+            [e.target.name]: e.target.value
         })
     }
 
     const HandleSubmit = () => {
         dispatch(postAlbum(album))
+        swal({
+            title: "Album creado.",
+            icon: "success",
+            button: "Ok."
+        })
         setAlbum({
             name: '',
             description: ''
         })
+
     }
 
     return (
         <div className="album">
-            <h2>Crea tu album</h2>
+            <h2 className="tituloCrearAlbum">Crea tu album</h2>
             <div className="creaAlbum">
                 <form className="creaAlbum">
-                    <input 
+                    <input
                         name="name"
                         type='text'
                         value={album.name}
@@ -38,7 +46,8 @@ export default function AddAlbum(){
                         onChange={HandleChange}
                         className='espacio'
                     />
-                    <input 
+
+                    <input
                         name="description"
                         type='text'
                         value={album.description}

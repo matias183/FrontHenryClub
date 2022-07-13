@@ -420,9 +420,19 @@ export function postAlbum(payload){
   
   export async function postImages(payload){
 	// return async function() {
-	  return await axios.post(`http://localhost:3001/photo/${payload.album}`, payload)
-	  // return json
-	// }
+		try{
+	  return await axios.post(`http://localhost:3001/photo/${payload.album}`, payload).then(
+			swal({
+				title: "Foto agregada.",
+				icon: "success",
+				button: "Ok."
+		})
+		)
+	 
+}catch(error){
+console.log(error)
+}
+	
   }
   
   
@@ -505,7 +515,7 @@ export function createContact(input) {
 			let { data } = await axios.post("http://localhost:3001/contact", input);
 			return data;
 		} catch (error) {
-			alert(error.response.data);
+console.log(error)
 		}
 	};
 }

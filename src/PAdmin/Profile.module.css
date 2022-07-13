@@ -5,6 +5,7 @@
 .barralateral {
   text-align: left;
   width: 14rem;
+  margin-left: 10px;
   height: calc(100vh - 52px);
   border-right: 2px solid #e78345;
 }

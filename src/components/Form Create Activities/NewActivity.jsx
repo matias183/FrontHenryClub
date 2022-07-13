@@ -85,7 +85,7 @@ export default function NewActivity() {
   return (
     <div className={s.new}>
       <div className={s.wrapper}>
-        <div className={s.loginTitle2}> <h3 >Create New Activity</h3> </div>
+        <div className={s.loginTitle2}> <h3 >Crear nueva actividad</h3> </div>
         <form className={s.Form} onSubmit={onSubmit}>
           <>
             {input.day && input.day.length < 3 ? <small>dias de la actividad</small> : null}
