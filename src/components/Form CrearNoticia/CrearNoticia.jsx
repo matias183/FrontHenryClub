@@ -129,7 +129,7 @@ export default function CrearAnuncio() {
 
         // news: [],
       });
-
+      window.location.reload(true)
       swal({
         title: '¡Noticia Creada!',
         icon: 'success',

@@ -57,7 +57,7 @@ export default function Futbol() {
           </div>
           <div className="sportCardContainer">
             {render?.map((activity, i) => {
-              if (activity.name === "Futbol") return (
+              if (activity.sport.name === "Futbol") return (
                 <SportCard
                   key={i}
                   sport={activity}

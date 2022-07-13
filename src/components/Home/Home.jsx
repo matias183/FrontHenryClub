@@ -13,6 +13,7 @@ import flyerUno from '../../utils/fotos/flyer1.png';
 import flyerDos from '../../utils/fotos/flyer2.png';
 import flyerTres from '../../utils/fotos/flayerTres.png';
 import PuffLoader from 'react-spinners/PuffLoader';
+import swal from 'sweetalert';
 
 // import Barra from '../../Barra/Barra';
 // import GaleriaDeFotos from '../SeccionFotos/Fotos';
@@ -69,6 +70,12 @@ export default function Home() {
     dispatch(postNewLetters(email))
     setEmail('')
     setModal(false)
+    swal({
+      title: "¡Confirmado!",
+      text: "¡Recibiras información en breve!, chequeá tu correo.",
+      icon: "success",
+      button: "Ok."
+    })
   }
 
   return (
@@ -184,8 +191,12 @@ export default function Home() {
               <div className={S.sectionNewsLetters}>
                 <button className={S.botonNL} onClick={NewLetters}>Suscríbete a nuestro <span className={S.newsletter}>NewsLetters</span></button>
                 <Modal estado={modal} cambiarEstado={setModal}>
+                  <h1 className={S.titNewsletters}>NEWSLETTERS</h1>
+                  <p>¡Recibe información sobre nuestras novedades, noticias y mucho más!</p>
+                  <p>¡Ingresa tu Email aqui!</p>
                   <form>
                     <input
+                      className={S.inputNewsLetters}
                       name='email'
                       type='text'
                       value={email.email}

@@ -55,7 +55,7 @@ export default function Hockey() {
           <Barra />
           <div className="sportCardContainer">
             {render?.map((activity, i) => {
-              if (activity.name === "Hockey") return (
+              if (activity.sport.name === "Hockey") return (
                 <SportCard
                   key={i}
                   sport={activity}
