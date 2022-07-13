@@ -189,11 +189,11 @@ export function getUserSports(userId) {
 
 }
 
-export function createSport(userId, input) {
+export function createSport(input) {
 	return async function () {
 		try {
 			const { data } = await axios.post(
-				`http://localhost:3001/sport/${userId}`,
+				`http://localhost:3001/sport/`,
 				input
 			);
 			return data;
@@ -245,11 +245,11 @@ export function defaultGetCategorySport() {
 
 }
 
-export function createCategory(userId, input) {
+export function createCategory(input) {
 	return async function () {
 		try {
 			const { data } = await axios.post(
-				`http://localhost:3001/category/${userId}`,
+				`http://localhost:3001/category`,
 				input
 			);
 			return data;
@@ -273,13 +273,39 @@ export function updateCategory(id, input) {
 	};
 }
 
+export function updateSport(input) {
+	return async () => {
+		try{
+			console.log(input)
+			let {data} = await axios.put(`http://localhost:3001/sport`, input)
+			return data
+		}
+		catch(error){
+			console.log(error)
+			alert(error.response.data);
+		}
+	}
+}
+
+export function deleteSport(id) {
+	return async () => {
+		try {
+			let {data} = await axios.delete(`http://localhost:3001/sport/${id}`)
+			return data
+		} catch (error) {
+			console.log(error)
+			alert(error.response.data)
+		}
+	}
+}
+
 export function deleteCategory(id) {
 	return async (dispatch) => {
 		try {
 			let { data } = await axios.delete(`http://localhost:3001/category/${id}`);
-			return dispatch({ type: DELETE_CATEGORY, payload: data });
+			return data
 		} catch (error) {
-			alert(error.response.data);
+			console.log(error)
 		}
 	};
 }
