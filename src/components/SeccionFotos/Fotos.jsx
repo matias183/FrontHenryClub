@@ -24,7 +24,7 @@ export default function Fotos() {
     dispatch(getGallery())
   }, [dispatch])
 
- 
+
   return (
     <div className={S.contenedorGeneral}>
       {loading ? (
@@ -44,22 +44,29 @@ export default function Fotos() {
           <NavBar />
 
           <h1 className={S.tituloGaleria}>Galeria de imagenes</h1>
-          <div className={S.contenedor}>
-          {fotos.map(e => {
-              return (
-                <div className='containerFoto'>
-                  {e.name}
-                 <img src={e.image} key={e.id} id={e.id}/> 
-                  {e.album.name}
-               </div>
-                );
-            })}</div>
-              {console.log(fotos)}
+          {
+            fotos.length === 0
+              ? <div className={S.mensaje}>NO HAY FOTOS PARA MOSTRAR</div>
+              :
+              <div className={S.contenedor}>
+                {fotos.map(e => {
+                  return (
+                    <div className={S.galeryContainer}>
+
+                      <img src={e.image} key={e.id} id={e.id} />
+                      {/* {e.album.name} */}
+                      <p className='nombreFoto'>{e.name}</p>
+                    </div>
+                  );
+                })}</div>
+          }
+
+
           <div>
             <Footer />
           </div>
         </div>
-       )} 
+      )}
     </div>
   );
 }

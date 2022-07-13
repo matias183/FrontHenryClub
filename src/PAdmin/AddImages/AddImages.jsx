@@ -2,8 +2,10 @@ import { useEffect, useState } from "react"
 import './AddImages.css'
 import { getAlbum, postImages } from "../../redux/Actions/Action";
 import { useDispatch, useSelector } from "react-redux/es/exports";
+import swal from "sweetalert";
 
-export default function AddImages(){
+
+export default function AddImages() {
     const dispatch = useDispatch()
     // const {albumId} = useParams()
     const album = useSelector(state => state.albums);
@@ -23,15 +25,15 @@ export default function AddImages(){
         data.append('file', files[0]);
         data.append('upload_preset', 'Galeria');
         const res = await fetch(
-          'https://api.cloudinary.com/v1_1/proyectohenry/upload',
-          {
-            method: 'POST',
-            body: data,
-          }
+            'https://api.cloudinary.com/v1_1/proyectohenry/upload',
+            {
+                method: 'POST',
+                body: data,
+            }
         );
         const file = await res.json();
         console.log(file.secure_url);
-        setPhoto({...photo, image : file.secure_url })
+        setPhoto({ ...photo, image: file.secure_url })
         console.log('cloudinary', photo)
         // setInput(file.secure_url);
     };
@@ -52,7 +54,7 @@ export default function AddImages(){
         dispatch(getAlbum());
     }, [dispatch]);
 
-    
+
     // const {getRootProps, getInputProps, isDragActive } = useDropzone({
     //     onDrop,
     //     accept: {'image/png': ['.png'], 'image/jpg': ['.jpg']}
@@ -60,32 +62,34 @@ export default function AddImages(){
 
     const HandleChange = e => {
         setPhoto({
-          ...photo,
-          [e.target.name] : e.target.value
+            ...photo,
+            [e.target.name]: e.target.value
         })
-      }
+    }
 
     const handleSelect = e => {
         setPhoto({
-          ...photo,
-          album: e.target.value,
+            ...photo,
+            album: e.target.value,
         });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         dispatch(postImages(photo))
         setPhoto({
             name: "",
             image: "",
             album: 0
         })
+
     }
 
-    return(
+    return (
         <div className="photo">
-            <h2>Agrega una imagen a tu album</h2>
+            <h2 className="tituloAgregarFoto">Agrega una imagen a tu album</h2>
             <form className="agregarphoto">
                 <select
+                    className="select"
                     name="albumId"
                     id="albumId"
                     onChange={e => handleSelect(e)}
@@ -93,15 +97,15 @@ export default function AddImages(){
                     <option value="">Elegir album</option>
                     {
                         album.lenght !== 0
-                        ? album?.map(e => (
-                            <option key={e.id} value={e.id}>
-                                {e.name}
-                            </option>
+                            ? album?.map(e => (
+                                <option key={e.id} value={e.id}>
+                                    {e.name}
+                                </option>
                             ))
-                        : null
+                            : null
                     }
                 </select>
-                <input 
+                <input
                     name="name"
                     type="text"
                     placeholder="Nombre de la imagen"
@@ -109,7 +113,7 @@ export default function AddImages(){
                     value={photo.name}
                     className='espacio'
                 />
-                <input 
+                <input
                     name="file"
                     type="file"
                     placeholder="Sube tu Imagen"
@@ -119,8 +123,8 @@ export default function AddImages(){
                 />
                 <img
                     src={
-                    photo.image ||
-                    'https://www.yiwubazaar.com/resources/assets/images/default-product.jpg'
+                        photo.image ||
+                        'https://www.yiwubazaar.com/resources/assets/images/default-product.jpg'
                     }
                     alt='img not found'
                     className='imagen'

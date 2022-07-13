@@ -8,6 +8,8 @@ import { useDispatch } from 'react-redux';
 import { sendContact } from '../../redux/Actions/Action';
 import validations from '../Contact/validate';
 import PuffLoader from 'react-spinners/PuffLoader';
+import swal from 'sweetalert';
+
 
 export default function Contact() {
   const [loading, setLoading] = useState(false);
@@ -40,6 +42,12 @@ export default function Contact() {
   const handleSubmit = e => {
     e.preventDefault();
     dispatch(sendContact(input));
+    swal({
+      title: "¡Mensaje enviado!",
+      text: "Recibiras una notificacion en tu correo en breve.",
+      icon: "success",
+      button: "Ok."
+    })
   };
 
   return (

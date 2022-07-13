@@ -12,7 +12,10 @@ import Post from './Post/Post'
 import s from './Profile.module.css';
 import { PermIdentity, Storefront, WorkOutline } from "@material-ui/icons";
 import EventNoteIcon from '@material-ui/icons/EventNote';
+import AddAlbum from './AddImages/AddAlbum';
 import AddImages from './AddImages/AddImages';
+import PAdminhome from './PAdminhome';
+
 // import Planes from './Planes/Planes'
 
 export default function PAdmin() {
@@ -21,9 +24,10 @@ export default function PAdmin() {
     <>
       <div className={s.header}>
         <Header />
+
+
       </div>
       <div className={s.container}>
-
         <div className={s.barralateral}>
 
           <div className={s.menu}>
@@ -47,6 +51,12 @@ export default function PAdmin() {
               </NavLink>
               <NavLink to="/admin/post" className={s.link}>
                 <li className={s.item}>  <Storefront className={s.icon} /> Post</li>
+              </NavLink>
+              <NavLink to="/admin/agregarAlbum" className={s.link}>
+                <li className={s.item}>  <Storefront className={s.icon} /> Crear album de fotos</li>
+              </NavLink>
+              <NavLink to="/admin/agregarImagen" className={s.link}>
+                <li className={s.item}>  <Storefront className={s.icon} /> Subir fotos</li>
               </NavLink>
             </ul>
           </div>
@@ -83,6 +93,7 @@ export default function PAdmin() {
 
         </div>
 
+
         <div className={s.mostrar}>
           <Route path="/admin/post" component={Post} />
           <Route path="/admin/socios" component={Socios} />
@@ -93,6 +104,7 @@ export default function PAdmin() {
           <Route path="/admin/empleados" component={Empleados} />
           <Route path="/admin/calendario" component={Calendario} />
           <Route path="/admin/agregarImagen" component={AddImages} />
+          <Route path="/admin/agregarAlbum" component={AddAlbum} />
           {/* <Route path="/admin/planes" component={Planes} /> */}
         </div>
       </div>
