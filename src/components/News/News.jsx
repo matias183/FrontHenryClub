@@ -10,6 +10,8 @@ export default function Noticias({ title, subtitle, image, id }) {
   const dispatch = useDispatch();
   const noticia = useSelector(state => state.news);
 
+
+
   return (
     <div className="news" key={title}>
       <img

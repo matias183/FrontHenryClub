@@ -1,5 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { icons } from "react-icons";
 import swal from "sweetalert";
 
 import {
@@ -41,7 +42,7 @@ import {
   PAYMENT,
   DEFAULT_GET_CATEGORY_SPORT,
 
-  GET_NEW_LETTERS
+  GET_NEW_LETTERS,
 
   ALL_ALBUMS,
 
@@ -103,10 +104,16 @@ export function getNews() {
 			let { data } = await axios.get("http://localhost:3001/news");
 			return dispatch({ type: ALL_NEWS, payload: data });
 		} catch (error) {
-			alert(error.response.data);
+			error = {
+				id: "No encontrado",
+				title: "No se encontro lo que buscaba...",
+				subtitle: "No se encontro lo que buscaba...",
+				image: "https://www.seekpng.com/png/detail/212-2123432_404-error-error-404-in-png.png"
+			}
 		}
 	};
 }
+
 
 export function getRoles() {
 	return async (dispatch) => {
@@ -636,9 +643,18 @@ export function payment(input) {
 
 export function filterNews(title) {
 	return async (dispatch) => {
+		try{
 		let { data } = await axios.get(`http://localhost:3001/news?title=${title}`);
 		return dispatch({ type: SEARCH_SEARCH, payload: data });
-	};
+	}catch(error){
+		swal({
+			title: "No se encontró su busqueda.",
+			text: "Intente escribir un nombre de una noticia o asegurese de que este bien escrito.",
+			icon: "error",
+			button: "Ok."
+		})
+	}
+};
 }
 export function filterNewsByName(name) {
 	return async (dispatch) => {

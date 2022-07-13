@@ -69,18 +69,23 @@ export default function Profile() {
   }, []);
 
   const GuardarCambios = id => {
-    console.log(input);
-    if (input.name || input.surname || input.photo) {
+    console.log(input.name);
+    if (details.name && details.surname || details.photo) {
       dispatch(
         updateMember(JSON.parse(localStorage.getItem('data')).id, input)
       );
+
       swal({
         title: 'Perfil modificado',
         icon: 'success',
         button: 'Ok.',
       });
-      setModal(false);
+      setModal(false)
+      dispatch(detailMember());
+
+
     }
+
   };
   // const myProfile = useSelector((state) => state.detail);
 
@@ -195,3 +200,4 @@ export default function Profile() {
     </div>
   );
 }
+

@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../footer/footer';
@@ -5,7 +6,7 @@ import S from '../../components/Contact/Contact.module.css';
 import NavBar from '../../navbar/navbar';
 import { useDispatch } from 'react-redux';
 import { sendContact } from '../../redux/Actions/Action';
-import validations from './validate';
+import validations from '../Contact/validate';
 import PuffLoader from 'react-spinners/PuffLoader';
 
 export default function Contact() {
@@ -28,12 +29,12 @@ export default function Contact() {
       ...input,
       [e.target.name]: e.target.value,
     });
-    // setError(
-    //   validations({
-    //     ...input,
-    //     [e.target.name]: e.target.value,
-    //   })
-    // );
+    setError(
+      validations({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
 
   const handleSubmit = e => {
@@ -66,8 +67,8 @@ export default function Contact() {
           <div className={S.infoDatos}>
             <ul>
               <li>Direccion Av. Cifuentes 123 Buenos Aires, Argentina</li>
-              <li>Tel: 555-7600 (líneas rotativas)</li>
-              <li> email: comunicaciones@clubhenry.org.ar</li>
+              <li>Tel: 555-7600</li>
+              <li> email: clubdehenry@gmail.com</li>
             </ul>
           </div>
 

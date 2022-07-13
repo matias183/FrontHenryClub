@@ -38,7 +38,7 @@ import {
   FILTER_CATEGORY,
   DEFAULT_GET_CATEGORY_SPORT,
 
-  GET_NEW_LETTERS
+  GET_NEW_LETTERS,
 
   ALL_ALBUMS,
 
@@ -68,7 +68,7 @@ const initialState = {
   categoryFilter: [],
   defaultCategorySport: [],
 
-  newletters:[]
+  newletters:[],
 
   albums:[],
 
