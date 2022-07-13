@@ -8,10 +8,12 @@ import Request from './Request/Request';
 import EditNews from './EditNews/EditNews';
 import Empleados from './Empleados/Empleados';
 import Calendario from '../components/Calendario/Calendario';
-import Post from './Post/Post'
+// import Post from './Post/Post'
 import s from './Profile.module.css';
 import { PermIdentity, Storefront, WorkOutline } from "@material-ui/icons";
 import EventNoteIcon from '@material-ui/icons/EventNote';
+import Categorias from './Categorias/categorias';
+import Deportes from './Deportes/deportes';
 import AddImages from './AddImages/AddImages';
 // import Planes from './Planes/Planes'
 
@@ -45,9 +47,9 @@ export default function PAdmin() {
               <NavLink to="/admin/planes" className={s.link}>
                 <li className={s.item}>  <Storefront className={s.icon} /> Ver Actividades</li>
               </NavLink>
-              <NavLink to="/admin/post" className={s.link}>
+              {/* <NavLink to="/admin/post" className={s.link}>
                 <li className={s.item}>  <Storefront className={s.icon} /> Post</li>
-              </NavLink>
+              </NavLink> */}
             </ul>
           </div>
 
@@ -71,7 +73,13 @@ export default function PAdmin() {
               </NavLink>
             </ul>
           </div>
-
+          <div>
+            <li>
+              <NavLink to='/admin/Categorias'>Ver categorias</NavLink>
+            </li>
+            <li>
+              <NavLink to='/admin/Deportes'>Ver deportes</NavLink>
+            </li>
           <div className={s.menu}>
             <h3 className={s.titulo}>AGENDA</h3>
             <ul className={s.lista}>
@@ -84,7 +92,7 @@ export default function PAdmin() {
         </div>
 
         <div className={s.mostrar}>
-          <Route path="/admin/post" component={Post} />
+          {/* <Route path="/admin/post" component={Post} /> */}
           <Route path="/admin/socios" component={Socios} />
           <Route path="/admin/newactivity" component={FormActiv} />
           <Route path="/admin/createnews" component={Createnews} />
@@ -92,6 +100,8 @@ export default function PAdmin() {
           <Route path="/admin/editnews" component={EditNews} />
           <Route path="/admin/empleados" component={Empleados} />
           <Route path="/admin/calendario" component={Calendario} />
+          <Route path="/admin/categorias" component={Categorias} />
+          <Route path="/admin/deportes" component={Deportes} />
           <Route path="/admin/agregarImagen" component={AddImages} />
           {/* <Route path="/admin/planes" component={Planes} /> */}
         </div>

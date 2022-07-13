@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+// import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import logoHenry from '../../utils/fotos/logo.gif';
+// import logoHenry from '../../utils/fotos/logo.gif';
 import NavBar from '../../navbar/navbar';
 import Footer from '../footer/footer.jsx';
 import './profile.css';
@@ -15,7 +15,7 @@ import { useHistory } from 'react-router-dom';
 import swal from 'sweetalert';
 import Modal from '../Calendario/Modal';
 import { useState } from 'react';
-import Evento from '../Calendario/Evento';
+// import Evento from '../Calendario/Evento';
 
 export default function Profile() {
   const dispatch = useDispatch();
@@ -155,6 +155,7 @@ export default function Profile() {
                 input.photo ||
                 'https://www.yiwubazaar.com/resources/assets/images/default-product.jpg'
               }
+              alt="Foto de perfil"
             />
             <button onClick={GuardarCambios}>Ok</button>
           </div>
@@ -193,7 +194,19 @@ export default function Profile() {
           </div> */}
         </div>
         <div>
-          <Evento />
+          {/* <Evento /> */}
+          <div>
+          <h2>Actividades</h2>
+          {details.hasOwnProperty("inscriptions") && details.inscriptions.map((inscription, i ) => (
+            <div key={i} className='activityCard'>
+              <h3>Actividad</h3>
+              {inscription.CategorySport.description}
+              <h3>Horario</h3>
+              <span>De: {inscription.CategorySport.start} hasta: {inscription.CategorySport.finish}</span>
+              <h3>El día: {inscription.CategorySport.day}</h3>
+            </div>
+          ))}
+          </div>
         </div>
       </div>
       <Footer />
