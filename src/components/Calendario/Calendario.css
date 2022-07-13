@@ -44,7 +44,17 @@ button span:after {
   width: 40%;
   justify-content: space-evenly;
 }
-
+.inputcalendar{
+  margin-bottom: 10px; 
+  width: 12rem;
+font-weight: 700;
+text-align: center;
+padding: 10px 20px;
+}
+.errorcalendar {
+  text-decoration: red;
+  color: red;
+}
 /* -------------------------LOADER------------------------- */
 
 .loader {
