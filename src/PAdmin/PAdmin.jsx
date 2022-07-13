@@ -12,6 +12,7 @@ import Post from './Post/Post'
 import s from './Profile.module.css';
 import { PermIdentity, Storefront, WorkOutline } from "@material-ui/icons";
 import EventNoteIcon from '@material-ui/icons/EventNote';
+import AddImages from './AddImages/AddImages';
 // import Planes from './Planes/Planes'
 
 export default function PAdmin() {
@@ -71,6 +72,15 @@ export default function PAdmin() {
             </ul>
           </div>
 
+          <div className={s.menu}>
+            <h3 className={s.titulo}>AGENDA</h3>
+            <ul className={s.lista}>
+              <NavLink to="/admin/agregarImagen" className={s.link}>
+                <li className={s.item}>  <EventNoteIcon className={s.icon} /> Imagen</li>
+              </NavLink>
+            </ul>
+          </div>
+
         </div>
 
         <div className={s.mostrar}>
@@ -82,6 +92,7 @@ export default function PAdmin() {
           <Route path="/admin/editnews" component={EditNews} />
           <Route path="/admin/empleados" component={Empleados} />
           <Route path="/admin/calendario" component={Calendario} />
+          <Route path="/admin/agregarImagen" component={AddImages} />
           {/* <Route path="/admin/planes" component={Planes} /> */}
         </div>
       </div>
