@@ -3,29 +3,28 @@ import FullCalendar from '@fullcalendar/react'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+import currentDate from "../../utils/functions/currentDate";
 import interactionPlugin from '@fullcalendar/interaction';
 import './Calendario.css';
+import validate from "./validatecalendar"; 
 import { useDispatch, useSelector } from 'react-redux';
 import PuffLoader from 'react-spinners/PuffLoader';
-
 import {
   getSport,
   postEvento,
   getEvents,
-  detailEvento,
-  clearPage,
+  // detailEvento,
+  // clearPage,
 } from '../../redux/Actions/Action';
-import { Link, useParams } from 'react-router-dom';
-
+import { Link} from 'react-router-dom';
 import styled from 'styled-components';
 import Modal from './Modal';
-import NavBar from '../../navbar/navbar';
-import Footer from '../footer/footer.jsx';
 import swal from 'sweetalert';
 
 export default function MyCalendar() {
   const [loading, setLoading] = useState(false);
-
+  const [errors, setErrors] = useState({})
+  const today = currentDate()
   useEffect(() => {
     setLoading(true);
     setTimeout(() => {
@@ -48,7 +47,7 @@ export default function MyCalendar() {
   });
   const [modal, setModal] = useState(false);
 
-  const [detail, setDetail] = useState(false);
+  // const [detail, setDetail] = useState(false);
   // const {id} = useParams()
   // console.log(id)
   // const detailEvent = useSelector(state => state.eventDetail)
@@ -82,18 +81,28 @@ export default function MyCalendar() {
         [e.target.name]: e.target.value,
       });
     }
+    setErrors(validate({
+      ...newEvent,
+      [e.target.name]: e.target.value
+    }));
   };
 
   const handleSubmit = () => {
+    if (newEvent.title !== "" && newEvent.startTime !== "" && newEvent.endTime !== "" &&
+    newEvent.startRecur !== "" && newEvent.endRecur !== "" && newEvent.sportId !== "" &&
+    newEvent.daysOfWeek !== "");
+  else if (
+    !Object.keys(errors).length)
+    {  
     setMyEvents([...myEvents, newEvent]);
     // alert('Evento Creado');
-    swal({
+   
+    dispatch(postEvento(newEvent));
+     swal({
       title: '¡Evento Creado!',
       icon: 'success',
       button: 'Ok.',
     });
-    console.log(newEvent);
-    dispatch(postEvento(newEvent));
     setNewEvent({
       title: '',
       startTime: '',
@@ -103,6 +112,12 @@ export default function MyCalendar() {
       sportId: 0,
       daysOfWeek: [],
     });
+  }
+  swal({
+    title: 'Faltan datos',
+    icon: 'error',
+    button: 'Ok.',
+  });
   };
 
   const handleSelectSport = e => {
@@ -143,41 +158,70 @@ export default function MyCalendar() {
    {JSON.parse(localStorage.getItem('data')) && JSON.parse(localStorage.getItem('data')).role.name === 'Admin'? 
     <Modal estado={modal} cambiarEstado={setModal}>
             <form className="formCalendario">
+              <h3>CREA UN EVENTO</h3>
+               <> 
               <input
+              className="inputcalendar"
                 type="text"
                 name="title"
                 value={newEvent.title}
                 onChange={e => handleChangeInput(e)}
                 placeholder="Nombre del evento"
               />
-              <label>Desde las</label>
+               {errors.title && <p className="errorcalendar">{errors.title}</p>}
+              </>
+              <> 
+              <label>hora de inicio</label>
               <input
-                type={'time'}
+               className="inputcalendar"
+                type={"time"}
+                min="09:00"
+                max="20:00"
                 name="startTime"
                 value={newEvent.startTime}
                 onChange={e => handleChangeInput(e)}
               />
-              <label>Hasta las</label>
+               {errors.startTime && <p className="errorcalendar">{errors.startTime}</p>}
+              </>
+              <>
+                  <label>hora de finalizacion</label>
               <input
-                type={'time'}
+               className="inputcalendar"
+                type={"time"}
                 name="endTime"
+                min="09:00"
+                max="20:00"
                 value={newEvent.endTime}
                 onChange={e => handleChangeInput(e)}
               />
-              <label>Duración:</label>
+               {errors.endTime && <p className="errorcalendar">{errors.endTime}</p>}
+              </>
+              <>
+                <label>Fecha de inicio:</label>
               <input
+               className="inputcalendar"
                 type={'date'}
                 name="startRecur"
+                min={today}
                 value={newEvent.startRecur}
                 onChange={e => handleChangeInput(e)}
               />
+             {errors.startRecur && <p className="errorcalendar">{errors.startRecur}</p>}
+              </>
+              <> 
+               <label>Fecha de finalizacion:</label>
               <input
+               className="inputcalendar"
                 type={'date'}
                 name="endRecur"
                 value={newEvent.endRecur}
                 onChange={e => handleChangeInput(e)}
               />
+              {errors.endRecur && <p className="errorcalendar">{errors.endRecur}</p>}
+              </>
+              
               <select
+               className="inputcalendar"
                 name="sportId"
                 id="sportId"
                 onChange={e => handleSelectSport(e)}
@@ -192,6 +236,7 @@ export default function MyCalendar() {
                   : null}
               </select>
               <select
+               className="inputcalendar"
                 name="daysOfWeek"
                 id="daysOfWeek"
                 onChange={e => handleChangeInput(e)}
