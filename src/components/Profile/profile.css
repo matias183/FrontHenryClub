@@ -21,6 +21,14 @@
   margin-bottom: 30px;
 }
 
+.activityCard{
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border: 3px;
+  margin: 5px;
+}
+
 .modalEdit {
   display: flex;
   flex-direction: column;
