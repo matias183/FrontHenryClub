@@ -72,12 +72,14 @@ export default function NewsDetail() {
         comment: '',
       });
       alert('Comentario Enviado');
-      dispatch(detailNews(id));
+
+      // window.location.reload(true)
       // swal({
       //   title: '¡Comentario enviado!',
       //   icon: 'success',
       //   button: 'Ok.',
       // });
+      dispatch(detailNews(id));
     } else {
       swal({
         title: '¡Ups!',
@@ -146,7 +148,7 @@ export default function NewsDetail() {
                       <div className="containerComment" key={i}>
                         <h3>
                           {comment.user &&
-                          comment.user.hasOwnProperty('username')
+                            comment.user.hasOwnProperty('username')
                             ? comment.user.username
                             : comment.user.name}
                         </h3>

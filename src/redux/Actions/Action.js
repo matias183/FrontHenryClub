@@ -1,5 +1,6 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { icons } from "react-icons";
 import swal from "sweetalert";
 
 import {
@@ -21,12 +22,10 @@ import {
   DELETE_CONTACT,
   SEARCH_SEARCH,
   CLEAR_PAGE,
-  FILTER_NEWS,
   CLEAR_COMMENTS,
   DETAIL_EVENTO,
   ALL_EVENTO,
   GET_SPORT,
-  GET_PROFILE,
   GET_CATEGORY,
   UPDATE_CATEGORY,
   GET_TEACHER,
@@ -42,6 +41,11 @@ import {
   GET_USER_SPORTS,
   PAYMENT,
   DEFAULT_GET_CATEGORY_SPORT,
+
+  GET_NEW_LETTERS,
+
+  ALL_ALBUMS,
+
 } from './DataTypes';
 
 
@@ -75,8 +79,19 @@ export function getContacts() {
 export function getGallery() {
 	return async (dispatch) => {
 		try {
-			let { data } = await axios.get("Ruta para imagenes");
+			let { data } = await axios.get("http://localhost:3001/photo");
 			return dispatch({ type: ALL_IMAGES, payload: data });
+		} catch (error) {
+			alert(error.response.data);
+		}
+	};
+}
+
+export function getAlbum() {
+	return async (dispatch) => {
+		try {
+			let { data } = await axios.get("http://localhost:3001/album");
+			return dispatch({ type: ALL_ALBUMS, payload: data });
 		} catch (error) {
 			alert(error.response.data);
 		}
@@ -89,10 +104,16 @@ export function getNews() {
 			let { data } = await axios.get("http://localhost:3001/news");
 			return dispatch({ type: ALL_NEWS, payload: data });
 		} catch (error) {
-			alert(error.response.data);
+			error = {
+				id: "No encontrado",
+				title: "No se encontro lo que buscaba...",
+				subtitle: "No se encontro lo que buscaba...",
+				image: "https://www.seekpng.com/png/detail/212-2123432_404-error-error-404-in-png.png"
+			}
 		}
 	};
 }
+
 
 export function getRoles() {
 	return async (dispatch) => {
@@ -390,6 +411,22 @@ export function createNews(userId, input) {
 	};
 }
 
+export function postAlbum(payload){
+	return async function(){
+	  const json = await axios.post('http://localhost:3001/album', payload);
+	  return json
+	}
+  }
+  
+  export async function postImages(payload){
+	// return async function() {
+	  return await axios.post(`http://localhost:3001/photo/${payload.album}`, payload)
+	  // return json
+	// }
+  }
+  
+  
+
 export function createInscription(userId, input) {
 	return async function () {
 		try {
@@ -632,9 +669,18 @@ export function payment(input) {
 
 export function filterNews(title) {
 	return async (dispatch) => {
+		try{
 		let { data } = await axios.get(`http://localhost:3001/news?title=${title}`);
 		return dispatch({ type: SEARCH_SEARCH, payload: data });
-	};
+	}catch(error){
+		swal({
+			title: "No se encontró su busqueda.",
+			text: "Intente escribir un nombre de una noticia o asegurese de que este bien escrito.",
+			icon: "error",
+			button: "Ok."
+		})
+	}
+};
 }
 export function filterNewsByName(name) {
 	return async (dispatch) => {
@@ -736,6 +782,17 @@ export function postNewLetters(payload){
     return json
   }
 }
+
+export function getNewLetters() {
+	return async function (dispatch) {
+		const { data } = await axios.get("http://localhost:3001/newsletter");
+		return dispatch({
+			type: GET_NEW_LETTERS,
+			payload: data,
+		});
+	};
+}
+
 
 export function banMember(id, input){
 	return async function(){

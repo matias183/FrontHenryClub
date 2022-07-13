@@ -19,7 +19,28 @@ export default function SeccionNews() {
     }, 2000);
   }, []);
 
+  // let detalle = useSelector(state => state.countryDetail);
+  // if (!detalle) {
+  //   detalle = {
+  //     idPais: 'NOT',
+  //     name: 'Not Found',
+  //     imagen:
+  //       'https://www.seekpng.com/png/detail/212-2123432_404-error-error-404-in-png.png',
+  //     continente: 'Not Found',
+  //     capital: 'Not Found',
+  //     subregion: 'Not Found ',
+  //     area: 0,
+  //     poblacion: 0,
+  //     activities: [],
+  //   };
+  // }
+
+
   const news = useSelector(state => state.news);
+
+
+
+
 
   const dispatch = useDispatch();
   useEffect(() => {

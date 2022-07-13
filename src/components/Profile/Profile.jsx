@@ -69,18 +69,23 @@ export default function Profile() {
   }, []);
 
   const GuardarCambios = id => {
-    console.log(input);
-    if (input.name || input.surname || input.photo) {
+    console.log(input.name);
+    if (details.name && details.surname || details.photo) {
       dispatch(
         updateMember(JSON.parse(localStorage.getItem('data')).id, input)
       );
+      window.location.reload(true)
       swal({
         title: 'Perfil modificado',
         icon: 'success',
-        button: 'Ok.',
+        timer: "1000"
       });
-      setModal(false);
+      setModal(false)
+      dispatch(detailMember());
+
+
     }
+
   };
   // const myProfile = useSelector((state) => state.detail);
 
@@ -102,7 +107,7 @@ export default function Profile() {
             src={
               details.photo
                 ? details.photo
-                : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6CExBGqgGYIYYcu8ZqtcRr4dVJJCbpcbUoA&usqp=CAU'
+                : 'https://cdn-icons-png.flaticon.com/512/1177/1177568.png'
             }
             alt="foto de perfil"
           />
@@ -195,3 +200,4 @@ export default function Profile() {
     </div>
   );
 }
+

@@ -2,6 +2,7 @@
   position: absolute;
   margin-top: -5px;
   z-index: 10;
+  width: 100%;
 }
 
 .contenidoCentral {
@@ -21,7 +22,7 @@
   margin: auto;
   background-color: rgba(0, 0, 0, 0);
   width: 100%;
-  margin-bottom: 50px;
+
   background-image: url('../../utils/fotos/fondoNoticias.png');
   background-position: center;
   background-repeat: no-repeat;
@@ -230,6 +231,39 @@ button:after {
   height: 700px;
 }
 
+.botonNL{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: auto;
+text-shadow: 5px 5px 5px grey;
+color: white;
+  text-align: center;
+background-color: black;
+  width: 100%;
+  background-color: black;
+  height: 60px;
+ 
+  font-weight: 100;
+}
+.newsletter{
+  font-weight: 700;
+}
+.sectionNewsLetters{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  height: 50%;
+}
+.titNewsletters{
+  color: #e78345;
+}
+.inputNewsLetters{
+  text-align: center;
+
+}
 /* -------------------------LOADER------------------------- */
 
 .loader {

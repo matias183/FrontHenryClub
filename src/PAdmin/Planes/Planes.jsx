@@ -2,10 +2,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {Table,TableContainer,TableHead,TableCell,TableBody,TableRow,TextField, Modal, Button, Select, MenuItem,InputLabel} from "@material-ui/core";
-import { getCategorySport,deleteCategorySport,putCategorySport, getCategory, getSport, getTeacher, } from "../../redux/Actions/Action";
+import { getCategorySport, getCategory, getSport, getTeacher, } from "../../redux/Actions/Action";
 import {Edit, Delete } from '@material-ui/icons';
 import swal from 'sweetalert';
-
+ // deleteCategorySport,putCategorySport,
 const useStyles = makeStyles((theme) => ({
   modal: {
     position: 'absolute',
@@ -54,28 +54,28 @@ export default function Planes() {
 
 
 
-  const eliminarplan = (e) => {
-    dispatch(deleteCategorySport(deleteId))
-      .then(res => dispatch( getCategorySport()))
-      .then(res => abricerrarMEliminar());
-    swal({
-        title: 'Socio eliminado.',
-        icon: 'success',
-        button: 'Ok.',
-      });
-  };
-  const EditarPLan = id => {
-    dispatch(putCategorySport(editId, input))
-      .then(res => dispatch( getCategorySport()))
-      .then(res => {
-        abricerrarMEdit();
-        swal({
-          title: 'Plan modificado',
-          icon: 'success',
-          button: 'Ok.',
-        });
-      });
-  };
+  // const eliminarplan = (e) => {
+  //   dispatch(deleteCategorySport(deleteId))
+  //     .then(res => dispatch( getCategorySport()))
+  //     .then(res => abricerrarMEliminar());
+  //   swal({
+  //       title: 'Socio eliminado.',
+  //       icon: 'success',
+  //       button: 'Ok.',
+  //     });
+  // };
+  // const EditarPLan = id => {
+  //   dispatch(putCategorySport(editId, input))
+  //     .then(res => dispatch( getCategorySport()))
+  //     .then(res => {
+  //       abricerrarMEdit();
+  //       swal({
+  //         title: 'Plan modificado',
+  //         icon: 'success',
+  //         button: 'Ok.',
+  //       });
+  //     });
+  // };
 
   const HandleChange = e => {
     e.preventDefault();
@@ -172,9 +172,9 @@ export default function Planes() {
       </Select>
       <br />
       <div align="right">
-        <Button color="primary" onClick={EditarPLan}>
+        {/* <Button color="primary" onClick={EditarPLan}>
           Editar
-        </Button>
+        </Button> */}
         <Button onClick={abricerrarMEdit}>Cancelar</Button>
       </div>
     </div>
@@ -184,7 +184,7 @@ export default function Planes() {
     <div className={styles.modal}>
     <p>Estas seguro que deseas eliminar ?</p>
       <div align="right">
-        <Button color="primary" onClick={eliminarplan} >SI</Button>
+        {/* <Button color="primary" onClick={eliminarplan} >SI</Button> */}
         <Button onClick={abricerrarMEliminar} >NO</Button>
       </div>
     </div>

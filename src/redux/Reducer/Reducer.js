@@ -37,6 +37,11 @@ import {
   GET_USER_SPORTS,
   FILTER_CATEGORY,
   DEFAULT_GET_CATEGORY_SPORT,
+
+  GET_NEW_LETTERS,
+
+  ALL_ALBUMS,
+
 } from '../Actions/DataTypes';
 
 const initialState = {
@@ -62,6 +67,11 @@ const initialState = {
   eventoDetail: [],
   categoryFilter: [],
   defaultCategorySport: [],
+
+  newletters:[],
+
+  albums:[],
+
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -72,12 +82,23 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         members: payload,
       };
-    //Aun no hay endpoint de imagenes
     case ALL_IMAGES:
       return {
         ...state,
         images: payload,
       };
+
+      case GET_NEW_LETTERS:
+        return {
+          ...state,
+          newletters: payload,
+        };
+
+    case ALL_ALBUMS:
+      return{
+        ...state,
+        albums:payload,
+      }
 
     case ALL_NEWS:
       return {
