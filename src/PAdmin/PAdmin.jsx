@@ -8,7 +8,7 @@ import Request from './Request/Request';
 import EditNews from './EditNews/EditNews';
 import Empleados from './Empleados/Empleados';
 import Calendario from '../components/Calendario/Calendario';
-// import Post from './Post/Post'
+import Post from './Post/Post'
 import s from './Profile.module.css';
 import { PermIdentity, Storefront, WorkOutline } from "@material-ui/icons";
 import EventNoteIcon from '@material-ui/icons/EventNote';
@@ -74,7 +74,7 @@ export default function PAdmin() {
         </div>
 
         <div className={s.mostrar}>
-          {/* <Route path="/admin/post" component={Post} /> */}
+          <Route path="/admin/post" component={Post} />
           <Route path="/admin/socios" component={Socios} />
           <Route path="/admin/newactivity" component={FormActiv} />
           <Route path="/admin/createnews" component={Createnews} />

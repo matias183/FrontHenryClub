@@ -74,11 +74,11 @@ export default function Profile() {
       dispatch(
         updateMember(JSON.parse(localStorage.getItem('data')).id, input)
       );
-
+      window.location.reload(true)
       swal({
         title: 'Perfil modificado',
         icon: 'success',
-        button: 'Ok.',
+        timer: "1000"
       });
       setModal(false)
       dispatch(detailMember());
@@ -107,7 +107,7 @@ export default function Profile() {
             src={
               details.photo
                 ? details.photo
-                : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6CExBGqgGYIYYcu8ZqtcRr4dVJJCbpcbUoA&usqp=CAU'
+                : 'https://cdn-icons-png.flaticon.com/512/1177/1177568.png'
             }
             alt="foto de perfil"
           />
