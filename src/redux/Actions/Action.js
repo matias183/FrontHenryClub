@@ -732,7 +732,7 @@ export function jasonWebToken(input) {
 			);
 			return data;
 		} catch (error) {
-			alert(error);
+			console.log('este es el error', error)
 		}
 	};
 }
