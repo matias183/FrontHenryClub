@@ -614,7 +614,7 @@ export function deleteContact(id) {
 			let { data } = await axios.delete(`http://localhost:3001/contact/${id}`);
 			return dispatch({ type: DELETE_CONTACT, payload: data });
 		} catch (error) {
-			alert(error.response.data);
+			console.log(error.response.data);
 		}
 	};
 }
@@ -823,6 +823,7 @@ export function deleteCategorySport(id) {
 
 	};
   }
+ 
   
 export function putCategorySport(id, input) {
 
