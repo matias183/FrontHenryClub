@@ -39,7 +39,7 @@ import {
   DEFAULT_GET_CATEGORY_SPORT,
 
   GET_NEW_LETTERS,
-
+  DELETE_CONTACT,
   ALL_ALBUMS,
   UPDATE_CATEGORY_SPORT,DELETE_CATEGORY_SPORT,
 } from '../Actions/DataTypes';
@@ -248,6 +248,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         category: payload,
       };
       case DELETE_CATEGORY_SPORT: 
+      return {
+        ...state,
+      };
+
+      case DELETE_CONTACT:
       return {
         ...state,
       };
