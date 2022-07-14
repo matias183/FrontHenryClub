@@ -45,7 +45,7 @@ import {
   GET_NEW_LETTERS,
 
   ALL_ALBUMS,
-
+  UPDATE_CATEGORY_SPORT,DELETE_CATEGORY_SPORT,
 } from './DataTypes';
 
 
@@ -811,3 +811,30 @@ export function banMember(id, input){
 		return data
 	}
 }
+
+export function deleteCategorySport(id) {
+	return async function (dispatch) {
+	try {
+	  const { data } = await axios.delete(`http://localhost:3001/categorysport/${id}`);
+	  return dispatch({type:DELETE_CATEGORY_SPORT, payload: data});
+	} catch (error) {
+		console.log(error.response.data);
+	}
+
+	};
+  }
+  
+export function putCategorySport(id, input) {
+
+	return async function (dispatch) {
+		try {
+	  const { data } = await axios.put(`http://localhost:3001/categorysport/${id}`, input);
+	  return dispatch({
+		type: UPDATE_CATEGORY_SPORT,
+		payload: data,
+	  });
+	} catch (error) {
+		console.log(error.response.data);
+	}
+	};
+  }

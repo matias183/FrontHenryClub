@@ -19,9 +19,9 @@ import Categorias from './Categorias/categorias';
 import Deportes from './Deportes/deportes';
 
 import AddImages from './AddImages/AddImages';
-import PAdminhome from './PAdminhome';
+// import PAdminhome from './PAdminhome';
 
-// import Planes from './Planes/Planes'
+import Planes from './Planes/Planes'
 
 export default function PAdmin() {
   return JSON.parse(localStorage.getItem('data')) &&
@@ -124,7 +124,7 @@ export default function PAdmin() {
           <Route path="/admin/deportes" component={Deportes} />
           <Route path="/admin/agregarImagen" component={AddImages} />
           <Route path="/admin/agregarAlbum" component={AddAlbum} />
-          {/* <Route path="/admin/planes" component={Planes} /> */}
+          <Route path="/admin/planes" component={Planes} /> 
         </div>
       </div>
     </>

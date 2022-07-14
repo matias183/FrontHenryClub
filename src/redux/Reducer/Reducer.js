@@ -34,14 +34,14 @@ import {
   CLEAR_MEMBER_DETAIL,
   DETAIL_CATEGORY_SPORT,
   GET_CATEGORY_SPORT,
-  GET_USER_SPORTS,
+  // GET_USER_SPORTS,
   FILTER_CATEGORY,
   DEFAULT_GET_CATEGORY_SPORT,
 
   GET_NEW_LETTERS,
 
   ALL_ALBUMS,
-
+  UPDATE_CATEGORY_SPORT,DELETE_CATEGORY_SPORT,
 } from '../Actions/DataTypes';
 
 const initialState = {
@@ -247,7 +247,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         category: payload,
       };
-
+      case DELETE_CATEGORY_SPORT: 
+      return {
+        ...state,
+      };
+      case  UPDATE_CATEGORY_SPORT: 
+      return {
+        ...state,
+      };
     case ALL_ROLES:
       return {
         ...state,
@@ -270,7 +277,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         categorySport: payload,
-        defaultCategorySport: payload
+        // defaultCategorySport: payload
       };
 
     case DEFAULT_GET_CATEGORY_SPORT:
