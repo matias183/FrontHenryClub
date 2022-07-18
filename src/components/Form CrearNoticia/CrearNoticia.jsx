@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import S from '../Form CrearNoticia/CrearNoticia.module.css';
 import { FormGroup, Label, Input } from 'reactstrap';
+import swal from 'sweetalert';
 
 // const schema = yup.object().shape({
 //   foto: yup
@@ -128,10 +129,19 @@ export default function CrearAnuncio() {
 
         // news: [],
       });
+      swal({
+        title: '¡Noticia Creada!',
+        icon: 'success',
+        button: 'Ok.',
+      });
+      // window.location.reload(true)
 
-      alert('Noticia Creada');
     } else {
-      alert('Todos los campos deben llenarse para publicar su noticia.');
+      swal({
+        title: 'Todos los campos deben llenarse para crear la noticia.',
+        icon: 'error',
+        button: 'Ok.',
+      });
     }
   }
 
@@ -171,8 +181,8 @@ export default function CrearAnuncio() {
 
   return (
     <div className={S.contenedorGeneral}>
-      <h1 className={S.titulo}>Crear Noticias</h1>
       <form onSubmit={handleSubit} id="form" className={S.form}>
+        <h1 className={S.titulo}>Crear Noticias</h1>
         <label className={S.labelTit}>Titulo de Noticia: </label>
         <input
           className={S.inputName}
@@ -212,8 +222,8 @@ export default function CrearAnuncio() {
           className={S.textarea}
           name="text"
           id="text"
-          cols="40"
-          rows="5"
+          cols="70"
+          rows="10"
           placeholder="Escribe la noticia"
           onChange={validarTextNoticia}
         ></textarea>
@@ -247,6 +257,7 @@ export default function CrearAnuncio() {
             value=""
           />
           <img
+            className={S.imagen}
             src={
               input.image ||
               'https://www.yiwubazaar.com/resources/assets/images/default-product.jpg'

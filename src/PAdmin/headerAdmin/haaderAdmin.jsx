@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logoHenry from '../../utils/fotos/logo.gif';
+import logoHenry from '../../utils/fotos/LOGONARANJA.png';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import './headerAdmin.css';
 
@@ -18,18 +18,20 @@ export default function navbar() {
           <img className="logo" src={logoHenry} alt="logo" />
         </Link>
         <h1 className="titulo">Club Henry</h1> <br /> {/* titulo */}
-        <div className="dropdown">
+        <div>
           {localStorage.getItem('token') ? (
-            <div className="dropdown">
-              <p className="botonDeslizable">
+            <div>
+              <p className="botonDeslizableNav">
                 {localStorage.getItem('data') ? (
-                  <div>{JSON.parse(localStorage.getItem('data')).name}</div>
+                  <div className="nombredeUsuario">
+                    {JSON.parse(localStorage.getItem('data')).name}
+                  </div>
                 ) : (
                   'No hay usuario logueado'
                 )}
-              </p>{' '}
-              {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
-              <div className="dropdown-content">
+              </p>
+
+              {/* <div className="dropdown-content">
                 <ul>
                   <li>
                     <Link>
@@ -43,15 +45,14 @@ export default function navbar() {
                     </Link>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
           ) : (
-            <div className="dropdown">
+            <div>
               <Link to="/login">
                 <p className="botonDeslizable">
-                  <FaArrowCircleRight />{' '}
-                </p>{' '}
-                {/* boton de INICIO DE SESION O REGISTRO desplegable*/}
+                  <FaArrowCircleRight className="flechita" />
+                </p>
               </Link>
 
               <div className="dropdown-content">

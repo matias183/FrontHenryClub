@@ -1,145 +1,152 @@
-.contenedorGeneral{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: auto;
-    margin-bottom: -20px;
-    flex-direction: row;
-    border-top: solid 1px  black;
-    width: 100%;
-    height: 15%;
-    background-color: #9a8757;
+.contenedorGeneral {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  margin-bottom: -20px;
+  flex-direction: row;
+  border-top: solid 1px #e78345;
+  width: 100%;
+  height: 15%;
+  background-color: #e78345;
 }
-.copyright{
-    background-color:#9a8757;
-    padding-top: 20px;
-    padding-bottom: 10px;
-    margin-bottom: -20px;
-    font-size: 15px;
-    font-weight: 700;
+.copyright {
+  background-color: #e78345;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  margin-bottom: -0px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
 }
-.redes{
-    margin-top: -25px;
+.redes {
+  margin-top: -25px;
 }
-.redes h3{
-    text-align: center;
-    font-size: 20px;
-    margin-bottom: 0px;
-    margin-left: 40px;
-    text-transform: uppercase;
-    color: #222861;
+.redes h3 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 0px;
+  margin-left: 40px;
+  text-transform: uppercase;
+  color: #fff;
 }
-.redes ul{
-    display: flex;
-    justify-content: space-around;
-    margin-left: -20px;
-    margin-top: 20px;
+.redes ul {
+  display: flex;
+  justify-content: space-around;
+  margin-left: -20px;
+  margin-top: 20px;
+  color: #fff;
 }
-.redes ul li{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: auto;
-    flex-direction: row-reverse;
-    margin-left: 25px;
-    list-style: none;
-    margin-bottom: 5px;
-    text-align: justify;
-    color: rgb(56, 56, 56);
-    font-size: 35px;
-    margin-left: 20px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.redes ul li {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: auto;
+  flex-direction: row-reverse;
+  margin-left: 25px;
+  list-style: none;
+  margin-bottom: 5px;
+  text-align: justify;
+  color: #fff;
+  font-size: 35px;
+  margin-left: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-.redes ul li:hover{
-    transform: scale(1.2);
-    transition: all 0.3s ease;
-    background: 0 0 10px 10px rgb(0, 0, 0) ;
+.redes ul li:hover {
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+  background: 0 0 10px 10px rgb(0, 0, 0);
 }
-.fb, .ig, .tw{
-    color: white;
-    margin-bottom: 5px;
-
+.fb a,
+.ig a,
+.tw a,
+.ldn a {
+  color: white;
+  margin-bottom: 5px;
 }
-.fb:hover{
-color: rgb(0, 0, 105);
+.fb a:hover {
+  color: rgb(37, 37, 187);
 }
-.ig:hover{
-    color:rgb(116, 4, 26)
+.ig a:hover {
+  color: rgb(187, 0, 244);
 }
-.tw:hover{
-    color: rgb(45, 169, 218)
+.tw a:hover {
+  color: rgb(45, 169, 218);
 }
-.noticias h3{
-    text-align: center;
-    font-size: 20px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-   color:  #222861;
+.ldn a:hover {
+  color: rgb(97, 97, 252);
 }
-.noticias ul li{
-    list-style: none;
-    margin-bottom: 5px;
-    text-align: justify;
-    color: rgb(56, 56, 56);
-    font-size: 15px;
-    margin-left: -35px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.noticias h3 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #fff;
 }
-.noticias ul li:hover{
-    transform: scale(1.2);
-    transition: all 0.3s ease;
-    text-shadow: 3px 3px 3px rgb(141, 138, 138);
+.noticias ul li {
+  list-style: none;
+  margin-bottom: 5px;
+  text-align: justify;
+  color: #fff;
+  font-size: 15px;
+  margin-left: -35px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-.actividades h3{
-    text-align: center;
-    font-size: 20px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    color: #222861;
+.noticias ul li:hover {
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+  text-shadow: 3px 3px 3px rgb(0, 0, 0);
 }
-.actividades ul li{
-    list-style: none;
-    margin-bottom: 5px;
-    text-align: justify;
-    color: rgb(56, 56, 56);
-    font-size: 15px;
-    margin-left: -35px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.actividades h3 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #fff;
 }
-.actividades ul li:hover{
-    transform: scale(1.2);
-    transition: all 0.3s ease;
-    text-shadow: 3px 3px 3px rgb(141, 138, 138);
+.actividades ul li {
+  list-style: none;
+  margin-bottom: 5px;
+  text-align: justify;
+  color: #fff;
+  font-size: 15px;
+  margin-left: -35px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-.contacto h3{
-    text-align: end;
-    font-size: 20px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    color: #222861;
+.actividades ul li:hover {
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+  text-shadow: 3px 3px 3px rgb(0, 0, 0);
 }
-.contacto ul li{
-    list-style: none;
-    margin-bottom: 5px;
-    text-align: end;
-    color: rgb(56, 56, 56);
-    font-size: 15px;
-}
-.contacto p{
-    text-decoration: none;
-    font-size: 15px;
-    color: black;
-    transition: all 0.3s ease;
-    text-align: end;
-    font-weight: bold;
-}
-.contacto p:hover{
-    transform: scale(1.2);
-    transition: all 0.3s ease;
-    text-shadow: 3px 3px 3px rgb(141, 138, 138);
+.contacto h3 {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  color: #fff;
 }
 
+.contacto ul li {
+  list-style: none;
+  margin-bottom: 5px;
+  text-align: end;
+  color: #fff;
+  font-size: 15px;
+}
+.contacto p {
+  text-decoration: none;
+  font-size: 15px;
+  color: #fff;
+  transition: all 0.3s ease;
+  text-align: end;
+  font-weight: bold;
+}
+.contacto p:hover {
+  transform: scale(1.2);
+  transition: all 0.3s ease;
+  text-shadow: 3px 3px 3px rgb(0, 0, 0);
+}
 

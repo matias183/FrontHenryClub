@@ -1,12 +1,13 @@
 .header {
-  border-bottom: 3px solid gray;
+  border-bottom: 1px solid #e78345;
 }
 
 .barralateral {
   text-align: left;
   width: 14rem;
+  margin-left: 10px;
   height: calc(100vh - 52px);
-  border-right: 2px solid gray;
+  border-right: 2px solid #e78345;
 }
 ul {
   list-style: none;
@@ -18,9 +19,18 @@ ul {
 li {
   margin-bottom: 1rem;
 }
+li:focus {
+  color: #e78345;
+}
 a {
   text-decoration: none;
-  color: blue;
+  color: black;
+  transition: all 0.3s ease;
+}
+a:focus {
+  color: #e78345;
+
+  transition: all 0.3s ease;
 }
 .container {
   display: flex;
@@ -28,3 +38,38 @@ a {
 .mostrar {
   width: 100%;
 }
+.manu {
+  margin-bottom: 10px;
+}
+.titulo {
+  font-size: 13px;
+  color: rgb(187, 186, 186);
+}
+
+.lista {
+  list-style: none;
+  padding: 5px;
+}
+
+.item {
+  padding: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.item.active,
+.item:hover {
+  background-color: rgb(240, 240, 255);
+}
+
+.icon{
+    margin-right: 5px;
+    font-size: 20px !important;
+}
+.link{
+  text-decoration: none;
+  color: inherit;
+}
+

@@ -1,0 +1,186 @@
+.contenido {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+
+  width: 90%;
+  height: 100vh; */
+  width: 50%;
+  height: 60%;
+  margin: auto;
+  background: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-left: 4%;
+  border-right: 4%;
+  display: grid;
+  /* padding-bottom: 0px; */
+  /* border-radius: 20px 20px; */
+  /* align-items: center; */
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.activityCard{
+  display: flex;
+  flex-direction: column;
+  border: solid 3px black;
+  margin: 5px;
+}
+
+.modalEdit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+.modalEdit .selectPhoto {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-top: 10px;
+}
+.fotoDefault {
+  margin: auto;
+  margin-top: 20px;
+}
+.h5 {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.fotoDePefil {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+.tituloPerfil {
+  font-size: 40px;
+  text-shadow: 5px 5px 5px grey;
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: 60px;
+  text-transform: uppercase;
+}
+.contenido img {
+  width: 250px;
+  height: 250px;
+
+  position: static;
+  top: 30vh;
+  left: 2vw;
+  border-radius: 50%;
+}
+.botonesPerfil {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60vh;
+  left: 5vw;
+}
+.datosDeUsuario {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  margin: auto;
+  width: 80%;
+  height: 100%;
+  margin-right: 50px;
+}
+
+.datosDeUsuario .datosUsuario {
+  display: flex;
+  justify-content: space-around;
+
+  flex-direction: column;
+  margin: auto;
+  width: 33%;
+  height: 60%;
+  text-align: justify;
+}
+.datosDeUsuario .datosUsuario h1 {
+  margin-bottom: -15px;
+
+  text-shadow: 5px 5px 5px grey;
+}
+.datosDeUsuario .datosUsuario h2 {
+  margin-bottom: -15px;
+  text-align: justify;
+}
+.datosDeUsuario .datosUsuario h4 {
+  text-align: justify;
+  font-size: 20px;
+}
+.datosDeUsuario .datosTutor {
+  display: flex;
+  justify-content: space-around;
+
+  flex-direction: column;
+  margin: auto;
+  width: 33%;
+  height: 70%;
+  text-align: center;
+}
+.datosDeUsuario .datosTutor h1 {
+  margin-bottom: -15px;
+  text-shadow: 5px 5px 5px grey;
+  margin-left: -30px;
+}
+.datosDeUsuario .datosTutor h2 {
+  margin-bottom: -20%;
+  text-align: justify;
+}
+.datosDeUsuario .datosTutor h4 {
+  text-align: justify;
+  font-size: 20px;
+}
+.datosDeUsuario .inscripciones {
+  display: flex;
+  justify-content: space-around;
+
+  flex-direction: column;
+  margin: auto;
+  width: 33%;
+  height: 70%;
+  text-align: justify;
+  text-transform: uppercase;
+}
+.datosDeUsuario .inscripciones h1 {
+  margin-bottom: -15px;
+  text-shadow: 5px 5px 5px grey;
+}
+.datosDeUsuario .inscripciones h2 {
+  margin-bottom: -10px;
+  text-align: justify;
+}
+.datosDeUsuario .inscripciones h4 {
+  text-align: justify;
+  font-size: 20px;
+}
+.datosDeUsuario .inscripciones ul li {
+  text-align: justify;
+}
+.aPagar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  flex-direction: column;
+  width: 50%;
+  height: 50%;
+  border: double 5px black;
+  padding: 20px;
+  margin-right: 250px;
+  box-shadow: 0 0 30px 10px grey;
+}
+.aPagar .aranceles {
+  font-size: 40px;
+  text-shadow: 5px 5px 5px grey;
+}
+.aPagar .precio {
+  font-size: 25px;
+}

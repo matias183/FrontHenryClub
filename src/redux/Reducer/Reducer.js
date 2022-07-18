@@ -7,12 +7,12 @@ import {
   DETAIL_MEMBER,
   ALL_COMMENTS,
   ALL_CONTACTS,
-  UPDATE_NEWS,
-  UPDATE_COMMENT,
-  UPDATE_MEMBER,
-  DELETE_MEMBER,
-  DELETE_NEWS,
-  DELETE_COMMENT,
+  // UPDATE_NEWS,
+  // UPDATE_COMMENT,
+  // UPDATE_MEMBER,
+  // DELETE_MEMBER,
+  // DELETE_NEWS,
+  // DELETE_COMMENT,
   CLEAR_PAGE,
   GET_PROFILE,
   CLEAR_COMMENTS,
@@ -21,16 +21,27 @@ import {
   GET_SPORT,
   GET_TEACHER,
   GET_CATEGORY,
-  FILTER_NEWS,
+  // FILTER_NEWS,
   ALL_PAYS,
   DETAIL_TEACHER,
-  DELETE_TEACHER,
+  // DELETE_TEACHER,
   UPDATE_TEACHER,
   UPDATE_CATEGORY,
   DELETE_CATEGORY,
   ALL_ROLES,
   ALL_INSCRIPTIONS,
   JWT,
+  CLEAR_MEMBER_DETAIL,
+  DETAIL_CATEGORY_SPORT,
+  GET_CATEGORY_SPORT,
+  // GET_USER_SPORTS,
+  FILTER_CATEGORY,
+  DEFAULT_GET_CATEGORY_SPORT,
+
+  GET_NEW_LETTERS,
+  DELETE_CONTACT,
+  ALL_ALBUMS,
+  UPDATE_CATEGORY_SPORT,DELETE_CATEGORY_SPORT,
 } from '../Actions/DataTypes';
 
 const initialState = {
@@ -49,8 +60,18 @@ const initialState = {
   category: [],
   pago: [],
   roles: [],
-  inscriptions: [],
+  inscriptions: {},
   jwt: [],
+  categorySportDetail: [],
+  categorySport: [],
+  eventoDetail: [],
+  categoryFilter: [],
+  defaultCategorySport: [],
+
+  newletters:[],
+
+  albums:[],
+
 };
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -61,12 +82,23 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         members: payload,
       };
-    //Aun no hay endpoint de imagenes
     case ALL_IMAGES:
       return {
         ...state,
         images: payload,
       };
+
+      case GET_NEW_LETTERS:
+        return {
+          ...state,
+          newletters: payload,
+        };
+
+    case ALL_ALBUMS:
+      return{
+        ...state,
+        albums:payload,
+      }
 
     case ALL_NEWS:
       return {
@@ -108,6 +140,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
         category: payload,
       };
 
+    case DETAIL_EVENTO:
+      return {
+        ...state,
+        eventoDetail: payload,
+      };
+
     case JWT:
       return {
         ...state,
@@ -139,11 +177,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         memberDetail: payload,
-      };
-    case DETAIL_EVENTO:
-      return {
-        ...state,
-        evento: payload,
       };
     case DETAIL_TEACHER:
       return {
@@ -214,7 +247,19 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         category: payload,
       };
+      case DELETE_CATEGORY_SPORT: 
+      return {
+        ...state,
+      };
 
+      case DELETE_CONTACT:
+      return {
+        ...state,
+      };
+      case  UPDATE_CATEGORY_SPORT: 
+      return {
+        ...state,
+      };
     case ALL_ROLES:
       return {
         ...state,
@@ -225,6 +270,43 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         inscriptions: payload,
+      };
+
+    case DETAIL_CATEGORY_SPORT:
+      return {
+        ...state,
+        categorySportDetail: payload,
+      };
+
+    case GET_CATEGORY_SPORT:
+      return {
+        ...state,
+        categorySport: payload,
+        // defaultCategorySport: payload
+      };
+
+    case DEFAULT_GET_CATEGORY_SPORT:
+      return {
+        ...state,
+        defaultCategorySport: payload,
+      };
+
+    case CLEAR_MEMBER_DETAIL:
+      return {
+        ...state,
+        memberDetail: {},
+      };
+
+    case FILTER_CATEGORY:
+      
+      const filterActivity = [...state.categorySport];
+      const filtroPorCategoria =
+        payload === 'All'
+          ? filterActivity
+          : filterActivity.filter(e => e.category.name === payload);
+      return {
+        ...state,
+        defaultCategorySport: filtroPorCategoria,
       };
 
     default:

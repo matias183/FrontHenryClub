@@ -1,29 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loginMember, jasonWebToken } from '../../redux/Actions/Action';
+import { jasonWebToken } from '../../redux/Actions/Action';
 import { Link } from 'react-router-dom';
-import { useLocalStorage } from '../../custom/useLocalStorage';
-import Google from './google.png';
-import Facebook from './facebook.png';
-import Github from './github.png';
+// import { useLocalStorage } from '../../custom/useLocalStorage';
+// import Google from './google.png';
+// import Facebook from './facebook.png';
+import logoHenry from '../../utils/fotos/LOGODIA.png';
+// import Github from './github.png';
 import s from './Login.module.css';
-import validate from './validate';
-import axios from 'axios';
+// import validate from './validate';
+// import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
+import { FaArrowRight } from 'react-icons/fa';
+// import jwt_decode from 'jwt-decode';
+import swal from 'sweetalert';
+// import { useAuth0 } from '@auth0/auth0-react';
+import LoginButton from '../Auth0/Login/Login';
+
 // aca
 
 export default function Login() {
   //defino lo que va en los inputs
   const history = useHistory();
   const dispatch = useDispatch();
+  // const {user, isAuthenticated, isLoading} = useAuth0()
+
   const [datos, setDatos] = useState({
     email: '',
     password: '',
   });
 
-  const [cargandoUsuario, setCargandoUsuario] = useState(true);
-  const [token, setToken] = useState();
+  // console.log(user)
+
+  // const [cargandoUsuario, setCargandoUsuario] = useState(true);
+  // const [token, setToken] = useState();
 
   //manejo de cambios para ir guardando lo que voy escribiendo
   const handleInputChange = e => {
@@ -40,14 +50,33 @@ export default function Login() {
     } else {
       // console.log(jasonWebToken(datos));
       dispatch(jasonWebToken(datos)).then(res => {
-        console.log(localStorage.getItem('data'));
-        if (JSON.parse(localStorage.getItem('data')).role.name === 'Admin') {
-          history.push('/admin');
+        if(res !== undefined){
+          alertaLogin()
+          console.log(localStorage.getItem('data'));
+          if (JSON.parse(localStorage.getItem('data')).role.name === 'Admin') {
+            history.push('/admin');
+          } else {
+            history.push('/home');
+          }
         } else {
-          history.push('/home');
+          swal({
+            title: '¡Datos Incorrectos!',
+            icon: 'error',
+            button: 'Ok.',
+            timer: '2000',
+          });
         }
       });
     }
+  };
+
+  const alertaLogin = () => {
+    swal({
+      title: '¡Sesión Iniciada!',
+      icon: 'success',
+      button: 'Ok.',
+      timer: '2000',
+    });
   };
 
   return (
@@ -56,20 +85,13 @@ export default function Login() {
       <h3 className={s.loginTitle2}>Choose a Login Method</h3>
 
       <div className={s.wrapper}>
-        <div className={s.left}>
-          <div className={s.loginButtongoogle}>
-            <img src={Google} alt="Google" className={s.icon} />
-            Google
-          </div>
-          <div className={s.loginButtonfacebook}>
-            <img src={Facebook} alt="Facebook" className={s.icon} />
-            Facebook{' '}
-          </div>
-        </div>
+        <img src={logoHenry} width="350px" height="350px" alt="" />
 
         <div className={s.center}>
           <div className={s.line} />
-          <div className={s.or}>OR</div>
+          <div className={s.or}>
+            <FaArrowRight />
+          </div>
         </div>
 
         <form className={s.right} onSubmit={handleSubmit}>
@@ -91,22 +113,28 @@ export default function Login() {
             name="password"
             id="password"
             type="password"
-            placeholder="Password..."
+            placeholder="Contraseña..."
             autoComplete="off"
           />
           {/* {errors.password && <p className={s.errors}>{errors.password}</p>} */}
 
           {/* HACER RENDERIZADO CONDICIONAL PARA USER O ADMIN */}
 
-          <button className={s.submit} type="submit">
+          <button
+            // onClick={}
+            className={s.submit}
+            type="submit"
+          >
             Iniciar Sesión
           </button>
 
           <br />
+
           <p>
             Aun no tienes cuenta? <Link to="/register">Registrate!</Link>
           </p>
-        </form>
+        <LoginButton />
+          </form>
       </div>
     </div>
   );
